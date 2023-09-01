@@ -88,7 +88,6 @@ class UserController extends Controller
             'email' => $req->email,
             'contact_no' => $req->contact_no,
             'role' => $req->role,
-            'cid_sub_role' => $req->cid_sub_role,
             'res_province' => $req->res_province,
             'res_city' => $req->res_city,
             'res_barangay' => $req->res_barangay,
@@ -123,7 +122,6 @@ class UserController extends Controller
         $data->sex = $req->sex;
         $data->email = $req->email;
         $data->role = $req->role;
-        $data->cid_sub_role = $req->cid_sub_role;
         $data->res_province = $req->res_province;
         $data->res_city = $req->res_city;
         $data->res_barangay = $req->res_barangay;
@@ -135,15 +133,6 @@ class UserController extends Controller
         ]);
     }
 
-
-    public function getBrowseDentist(Request $req){
-
-        $data = User::where('lname', 'like', $req->lname . '%')
-            ->where('fname', 'like', $req->fname . '%')
-            ->where('role', 'DENTIST')
-            ->paginate($req->perpage);
-        return $data;
-    }
 
     public function resetPassword(Request $req, $id){
 
@@ -158,7 +147,6 @@ class UserController extends Controller
         return response()->json([
             'status' => 'changed'
         ],200);
-
 
     }
 

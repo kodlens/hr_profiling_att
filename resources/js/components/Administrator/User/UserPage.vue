@@ -2,10 +2,12 @@
     <div>
         <div class="section">
             <div class="columns is-centered">
-                <div class="column is-10">
+                <div class="column is-8-widescreen is-10-desktop is-10-tablet">
+
                     <div class="box">
 
-                        <div class="is-flex mb-2" style="font-size: 20px; font-weight: bold;">LIST OF USER</div>
+                        <div class="is-flex mb-2" style="font-size: 20px; font-weight: bold;">USER LIST</div>
+                        <hr>
 
                         <div class="level">
                             <div class="level-left">
@@ -27,7 +29,7 @@
                                                  @keyup.native.enter="loadAsyncData"/>
                                         <p class="control">
                                              <b-tooltip label="Search" type="is-success">
-                                            <b-button type="is-primary" icon-right="account-filter" @click="loadAsyncData"/>
+                                            <b-button type="is-primary" icon-right="magnify" @click="loadAsyncData"/>
                                              </b-tooltip>
                                         </p>
                                     </b-field>
@@ -37,7 +39,7 @@
 
 
                         <div class="buttons mt-3">
-                            <b-button @click="openModal" icon-left="plus" class="is-success">NEW</b-button>
+                            <b-button @click="openModal" icon-left="account" class="is-success is-outlined is-small has-text-weight-bold">NEW USER</b-button>
                         </div>
 
 
@@ -47,7 +49,7 @@
                             paginated
                             backend-pagination
                             :total="total"
-                            :pagination-rounded="true"
+                            :pagination-rounded="false"
                             :per-page="perPage"
                             @page-change="onPageChange"
                             aria-next-label="Next page"
@@ -62,31 +64,27 @@
                                 {{ props.row.user_id }}
                             </b-table-column>
 
-                            <b-table-column field="username" label="Username" sortable v-slot="props">
+                            <b-table-column field="username" label="USERNAME" sortable v-slot="props">
                                 {{ props.row.username }}
                             </b-table-column>
 
-                            <b-table-column field="lname" label="Name" sortable v-slot="props">
+                            <b-table-column field="lname" label="NAME" sortable v-slot="props">
                                 {{ props.row.lname }}, {{ props.row.fname }} {{ props.row.mname }}
                             </b-table-column>
 
-                            <b-table-column field="sex" label="Sex" v-slot="props">
+                            <b-table-column field="sex" label="SEX" v-slot="props">
                                 {{ props.row.sex }}
                             </b-table-column>
 
-                            <b-table-column field="email" label="Email" v-slot="props">
+                            <b-table-column field="email" label="EMAIL" v-slot="props">
                                 {{ props.row.email }}
                             </b-table-column>
 
-                            <b-table-column field="role" label="Role" v-slot="props">
+                            <b-table-column field="role" label="ROLE" v-slot="props">
                                 {{ props.row.role }}
                             </b-table-column>
 
-                            <b-table-column field="cid_sub_role" label="Sub Role" v-slot="props">
-                                {{ props.row.cid_sub_role }}
-                            </b-table-column>
-
-                            <b-table-column label="Action" v-slot="props">
+                            <b-table-column label="ACTION" v-slot="props">
                                 <div class="is-flex">
                                     <b-tooltip label="Edit" type="is-warning">
                                         <b-button class="button is-small mr-1" tag="a" icon-right="pencil" @click="getData(props.row.user_id)"></b-button>
@@ -122,7 +120,7 @@
             <form @submit.prevent="submit">
                 <div class="modal-card">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">User Information</p>
+                        <p class="modal-card-title">USER INFORMATION</p>
                         <button
                             type="button"
                             class="delete"
@@ -238,10 +236,8 @@
                                              :message="this.errors.role ? this.errors.role[0] : ''">
                                         <b-select v-model="fields.role" expanded>
                                             <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-                                            <option value="HRLD">HRLD</option>
-                                            <option value="CID">CID</option>
-                                            <option value="FACULTY">FACULTY</option>
-                                            <option value="DEPED OFFICIAL">DEPED OFFICIAL</option>
+                                            <option value="EMPLOYEE">EMPLOYEE</option>
+                                            <option value="POINT-PERSON">POINT-PERSON</option>
                                         </b-select>
                                     </b-field>
                                 </div>
@@ -255,7 +251,7 @@
                                              :type="this.errors.cid_sub_role ? 'is-danger':''"
                                              :message="this.errors.cid_sub_role ? this.errors.cid_sub_role[0] : ''">
                                         <b-select v-model="fields.cid_sub_role" expanded>
-                                            <option v-for="(i, ix) in cid_sub_roles" :key="ix" 
+                                            <option v-for="(i, ix) in cid_sub_roles" :key="ix"
                                                 :value="i.cid_sub_role">{{ i.cid_sub_role }}</option>
                                         </b-select>
                                     </b-field>
@@ -305,6 +301,7 @@
                             </div>
                         </div>
                     </section>
+
                     <footer class="modal-card-foot">
                         <b-button
                             label="Close"
@@ -314,6 +311,7 @@
                             label="Save"
                             type="is-success">SAVE</button>
                     </footer>
+
                 </div>
             </form><!--close form-->
         </b-modal>
@@ -491,7 +489,7 @@ export default{
                 username: '',
                 lname: '', fname: '', mname: '',
                 password: '', password_confirmation : '',
-                sex : '', role: '',  cid_sub_role: '', 
+                sex : '', role: '',  cid_sub_role: '',
                 email : '', contact_no : '',
                 province: '', city: '', barangay: '', street: ''
             },
@@ -772,23 +770,12 @@ export default{
                 }
             })
         },
-        loadSpecializations(){
-            axios.get('/get-open-specializations').then(res=>{
-                this.specializations = res.data
-            })
-
-            axios.get('/get-open-cid-sub-roles').then(res=>{
-                this.cid_sub_roles = res.data
-            })
-        },
 
     },
 
     mounted() {
-        //this.loadOffices();
         this.loadAsyncData();
         this.loadProvince();
-        this.loadSpecializations()
     }
 
 }

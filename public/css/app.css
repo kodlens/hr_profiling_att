@@ -26631,12 +26631,6 @@
   }
 }
 @charset "UTF-8";
-html,
-body {
-  background: #f0f0f0;
-  min-height: 100vh;
-}
-
 @media screen and (max-width: 1023px) {
   .b-sidebar .sidebar-content.is-mini-mobile:not(.is-mini-expand) .menu-list li a span:nth-child(2), .b-sidebar .sidebar-content.is-mini-mobile.is-mini-expand:not(:hover):not(.is-mini-delayed) .menu-list li a span:nth-child(2) {
     display: none;
@@ -26669,17 +26663,6 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.box {
-  border-top: 5px solid blue;
-}
-
-.box-heading {
-  font-weight: bold;
-  font-size: 1.4em;
-  margin: 15px auto;
-  text-align: center;
 }
 
 #Spots polygon,
@@ -31321,7 +31304,7 @@ button.dropdown-item.is-active {
 .modal-card-head,
 .modal-card-foot {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: #ffffff;
   display: flex;
   flex-shrink: 0;
   justify-content: flex-start;
@@ -31331,21 +31314,21 @@ button.dropdown-item.is-active {
 
 .modal-card-head {
   border-bottom: 1px solid #dbdbdb;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .modal-card-title {
   color: #363636;
   flex-grow: 1;
   flex-shrink: 0;
-  font-size: 1.5rem;
+  font-size: 16px;
   line-height: 1;
 }
 
 .modal-card-foot {
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   border-top: 1px solid #dbdbdb;
 }
 .modal-card-foot .button:not(:last-child) {
@@ -42446,4 +42429,44 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
   .upload .upload-draggable + input[type=file] {
     z-index: -1;
   }
+}
+html {
+  background: #f7f7f7;
+}
+
+input[type=text], input[type=password], .select > select,
+.field > label,
+.table {
+  color: gray;
+}
+
+.box {
+  border-top: 5px solid #d08d48;
+  border-radius: 0;
+}
+
+.box-heading {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.table thead tr th {
+  color: #939393;
+  font-weight: bolder;
+  border-top: 2px solid #d6d6d6;
+}
+
+.button {
+  border-radius: 0;
+}
+
+.table {
+  font-size: 15px;
+}
+
+.modal-card-title {
+  font-weight: bold;
+  font-size: 16px;
 }

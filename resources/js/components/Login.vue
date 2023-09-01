@@ -4,9 +4,12 @@
 
             <form @submit.prevent="submit">
                 <div class="card">
-                    <div class="title is-4">
-                        Sign In
-                        <b-icon icon="login" class="is-large"></b-icon>
+                    <div class="title is-4 has-text-centered">
+                        Welcome to HR Profiling and Events Monitoring System
+                    </div>
+
+                    <div>
+                        <img src="/img/banners.jpg" height="100" alt="">
                     </div>
                     <hr>
 
@@ -22,8 +25,11 @@
                         </b-field>
 
                         <div class="buttons">
-                            <button class="button is-rounded is-fullwidth is-primary">LOGIN</button>
+                            <button class="button is-fullwidth is-primary">LOGIN</button>
                         </div>
+                        <p>
+                            <a href="/sign-up">Register Here</a>
+                        </p>
                     </div>
                 </div>
             </form>
@@ -103,7 +109,7 @@ export default {
     }
 
     .card:hover {
-        border: #006fff 0.2em solid;
+        border: #ce7e45 0.2em solid;
     }
 
 

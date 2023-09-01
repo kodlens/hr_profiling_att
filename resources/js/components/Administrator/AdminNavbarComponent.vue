@@ -4,39 +4,59 @@
             <template #brand>
                 <b-navbar-item>
                     <img
-                        src="/img/deped-logo.png"
-                        alt="Lightweight UI components for Vue.js based on Bulma"
+                        src="/img/logo.png"
+                        alt="Tangub City Logo"
                     >
                 </b-navbar-item>
             </template>
             <template #start>
-                <b-navbar-item href="/admin-home">
-                    Home
-                </b-navbar-item>
-
-                <b-navbar-dropdown label="Setting">
-                    <b-navbar-item href="/learning-dev">
-                        Learning Development
-                    </b-navbar-item>
-                    <b-navbar-item href="/specialization">
-                        Specialization
-                    </b-navbar-item>
-
-                    <b-navbar-item href="/cid-sub-role">
-                        CID Sub Role
-                    </b-navbar-item>
-                </b-navbar-dropdown>
+                
             </template>
 
             <template #end>
+
+                <b-navbar-item href="/admin-home">
+                    <b-icon icon="home"></b-icon>
+                    &nbsp;
+                    HOME
+                </b-navbar-item>
+
+                <b-dropdown
+                    append-to-body
+                    aria-role="menu"
+                    scrollable
+                    max-height="200"
+                    trap-focus
+                >
+                    <template #trigger>
+                        <a
+                            class="navbar-item"
+                            role="button">
+                            <b-icon icon="cog"></b-icon> &nbsp;
+                            <span>SETTING</span>
+                            <b-icon icon="menu-down"></b-icon>
+                        </a>
+                    </template>
+
+                    <b-dropdown-item custom aria-role="listitem">
+                        <b-input placeholder="search" expanded />
+                  </b-dropdown-item>
+
+                </b-dropdown>
+
+
                 <b-navbar-item href="/users">
-                    User
+                    <b-icon icon="account"></b-icon>
+                    &nbsp;
+                    USER
                 </b-navbar-item>
                 <b-navbar-item tag="div">
                     <div class="buttons">
 
-                        <a class="button is-danger" @click="logout">
-                            Log out
+                        <a class="button is-danger is-outlined" @click="logout">
+                            LOGOUT
+                            &nbsp; &nbsp;
+                            <b-icon icon="logout"></b-icon>
                         </a>
                     </div>
                 </b-navbar-item>

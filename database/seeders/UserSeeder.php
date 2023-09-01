@@ -18,9 +18,9 @@ class UserSeeder extends Seeder
         $data = [
             [
                 'username' => 'admin',
-                'lname' => 'VARGAS',
-                'fname' => 'CHARLES',
-                'mname' => 'P',
+                'lname' => 'CYRELL',
+                'fname' => 'SAYRE',
+                'mname' => 'M',
                 'sex' => 'MALE',
 
                 'res_province' => 'MISAMIS OCCIDENTAL',
@@ -41,9 +41,9 @@ class UserSeeder extends Seeder
 
             //FACULTY
             [
-                'username' => 'charles',
-                'lname' => 'VARGAS',
-                'fname' => 'CHARLES',
+                'username' => 'junrey',
+                'lname' => 'SANTARITA',
+                'fname' => 'JUN REY',
                 'mname' => 'P',
                 'sex' => 'MALE',
 
@@ -57,9 +57,9 @@ class UserSeeder extends Seeder
                 'per_barangay' => 'CANIANGAN',
                 'per_street' => 'P-6',
 
-                'email' => 'charles@dev.com',
+                'email' => 'junrey@dev.com',
                 'contact_no' => '09683014598',
-                'role' => 'FACULTY',
+                'role' => 'EMPLOYEE',
                 'password' => Hash::make('a')
             ],
         ];

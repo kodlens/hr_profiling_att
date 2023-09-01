@@ -1,5 +1,5 @@
-@extends('layouts.user')
+@extends('layouts.no-navbar')
 
 @section('content')
-    <welcome-page></welcome-page>
+    <login></login>
 @endsection

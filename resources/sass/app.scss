@@ -11,13 +11,7 @@
 //@import '~font-awesome/css/font-awesome.css';
 //npm i font-awesome
 //https://fontawesome.com/v4.7.0/
-html,
-body {
-    background: #f0f0f0;
-    // width: 100%;
-    // height: 100%;
-    min-height: 100vh;
-}
+
 
 @media screen and (max-width: 1023px) {
     .b-sidebar {
@@ -91,16 +85,7 @@ body {
     }
 }
 
-.box {
-    border-top: 5px solid blue;
-}
 
-.box-heading {
-    font-weight: bold;
-    font-size: 1.4em;
-    margin: 15px auto;
-    text-align: center;
-}
 
 #Spots {
     polygon,
@@ -164,6 +149,16 @@ $navbar-item-img-max-height: 4rem;
 //    border-bottom: 3px solid blue;
 //}
 // Import Bulma and Buefy styles
+
+
+
+$modal-card-head-radius: 0;
+$modal-card-foot-radius: 0;
+$modal-card-title-size: 16px;
+$modal-card-head-background-color: #ffffff;
+
+
+
 @import "~bulma";
 .sidebar-content {
     background-color: #2a2a2a;
@@ -241,17 +236,20 @@ h2 span {
         padding: 5px 5px 5px 3px;
     }
 
-    
-    
+
+
     .w-td-150 {
         width: 200px !important;
     }
+
+
+
 }
 
 @page {
     size: 8.5in 13in;
-    
-    }
+}
+
 
 @import "~buefy/src/scss/buefy";
 // Import only what you need from Bulma
@@ -264,3 +262,49 @@ h2 span {
 //@import "~bulma/sass/components/navbar.sass";
 //@import "~bulma/sass/layout/hero.sass";
 //@import "~bulma/sass/layout/section.sass";
+
+html {
+    background: #f7f7f7;
+    
+}
+
+//set all text color
+input[type="text"], input[type="password"], .select > select, 
+.field > label,
+.table
+{
+    color: gray;
+}
+
+.box {
+    border-top: 5px solid #d08d48;
+    border-radius: 0;
+}
+
+.box-heading {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin: 15px auto;
+    text-align: center;
+}
+
+
+.table thead tr th {
+    color: #939393;
+    font-weight: bolder;
+    border-top: 2px solid #d6d6d6;
+}
+
+.button{
+    border-radius: 0;
+}
+
+.table{
+    font-size: 15px;
+}
+
+.modal-card-title{
+    font-weight: bold;
+    font-size: 16px;
+}
+
