@@ -25,6 +25,7 @@ class User extends Authenticatable
         'civil_status',
         'civil_status_others', 'height', 'weight', 'blood_type', 'gsis',
         'pagibig', 'philhealth', 'sss', 'tin', 'agency_idno', 'citizenship',
+        'dual_citizenship', 'select_citizenship',
         'res_province', 'res_city', 'res_barangay', 'res_street', 'res_houseno_blockno', 'res_zipcode',
         'per_province', 'per_city', 'per_barangay', 'per_street', 'per_houseno_blockno', 'per_zipcode',
         'tel_no', 'contact_no', 'email',

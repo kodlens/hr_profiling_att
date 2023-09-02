@@ -42444,6 +42444,10 @@ input[type=text], input[type=password], .select > select,
   color: gray;
 }
 
+.field > label {
+  text-transform: uppercase;
+}
+
 .box {
   border-top: 5px solid #d08d48;
   border-radius: 0;

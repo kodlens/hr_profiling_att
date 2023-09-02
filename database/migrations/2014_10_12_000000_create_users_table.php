@@ -38,6 +38,8 @@ class CreateUsersTable extends Migration
             $table->string('agency_idno', 100)->nullable();
 
             $table->string('citizenship', 100)->nullable();
+            $table->string('dual_citizenship', 100)->nullable();
+            $table->string('select_citizenship', 100)->nullable();
 
             $table->string('res_province')->nullable();
             $table->string('res_city')->nullable();
