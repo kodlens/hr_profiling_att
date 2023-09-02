@@ -21,7 +21,73 @@
 </head>
 <body>
 <div id="app">
-    <admin-navbar-component></admin-navbar-component>
+
+    <b-navbar>
+            <template #brand>
+                <b-navbar-item>
+                    <img
+                        src="/img/logo.png"
+                        alt="Tangub City Logo"
+                    >
+                </b-navbar-item>
+            </template>
+            <template #start>
+                
+            </template>
+
+            <template #end>
+
+                <b-navbar-item href="/admin-home" class="{{ request()->is('admin-home*') ? 'active' : '' }}">
+                    <b-icon icon="home"></b-icon>
+                    &nbsp;
+                    HOME
+                </b-navbar-item>
+
+                <b-dropdown
+                    append-to-body
+                    aria-role="menu"
+                    scrollable
+                    max-height="200"
+                    trap-focus
+                >
+                    <template #trigger>
+                        <a
+                            class="navbar-item"
+                            role="button">
+                            <b-icon icon="cog"></b-icon> &nbsp;
+                            <span>SETTING</span>
+                            <b-icon icon="menu-down"></b-icon>
+                        </a>
+                    </template>
+
+                    <b-dropdown-item custom aria-role="listitem">
+                        <b-input placeholder="search" expanded />
+                  </b-dropdown-item>
+
+                </b-dropdown>
+
+
+                <b-navbar-item href="/users" class="{{ request()->is('users*') ? 'active' : '' }}">
+                    <b-icon icon="account"></b-icon>
+                    &nbsp;
+                    USER
+                </b-navbar-item>
+                <b-navbar-item tag="div">
+                    <div class="buttons">
+
+                        <button class="button is-danger is-outlined" 
+                            onclick="document.getElementById('logout').submit()">
+                            LOGOUT
+                            &nbsp; &nbsp;
+                            <b-icon icon="logout"></b-icon>
+                        </button>
+                    </div>
+                </b-navbar-item>
+            </template>
+        </b-navbar>
+
+        <form action="/logout" method="post" id="logout">@csrf</form>
+
 
     <div>
         @yield('content')

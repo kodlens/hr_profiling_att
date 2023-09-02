@@ -42434,6 +42434,10 @@ html {
   background: #f7f7f7;
 }
 
+.active {
+  border-bottom: 3px solid orangered;
+}
+
 input[type=text], input[type=password], .select > select,
 .field > label,
 .table {

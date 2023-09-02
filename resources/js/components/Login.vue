@@ -27,9 +27,8 @@
                         <div class="buttons">
                             <button class="button is-fullwidth is-primary">LOGIN</button>
                         </div>
-                        <p>
-                            <a href="/sign-up">Register Here</a>
-                        </p>
+                        <h2><span><a href="/sign-up" class="has-text-weight-bold">Register Here</a></span></h2>
+                      
                     </div>
                 </div>
             </form>
