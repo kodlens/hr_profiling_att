@@ -54,22 +54,8 @@ export default {
     methods: {
         submit: function(){
             axios.post('/login', this.fields).then(res=>{
-                console.log(res.data)
-                if(res.data.role === 'ADMINISTRATOR'){
-                    window.location = '/admin-home';
-                }
-                if(res.data.role === 'FACULTY'){
-                    window.location = '/faculty/home';
-                }
-                if(res.data.role === 'HRLD'){
-                    window.location = '/hrld/home';
-                }
-                if(res.data.role === 'CID'){
-                    window.location = '/cid/home';
-                }
-                if(res.data.role === 'DEPED OFFICIAL'){
-                    window.location = '/deped/home';
-                }
+                window.location = '/login';
+                
                //window.location = '/dashboard';
             }).catch(err=>{
                 if(err.response.status === 422){

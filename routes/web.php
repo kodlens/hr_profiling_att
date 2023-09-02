@@ -90,10 +90,25 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/cid-sub-role', App\Http\Controllers\Administrator\CidSubRoleController::class);
     Route::get('/get-cid-sub-roles', [App\Http\Controllers\Administrator\CidSubRoleController::class, 'getCidSubRoles']);
+
+    
+    
+
 });
 
 
 /*     ADMINSITRATOR          */
+
+
+/*     AUTH          */
+
+Route::middleware(['auth'])->group(function () {
+    //routes that only need an authentication
+    Route::get('/change-password',[App\Http\Controllers\Auth\ChangePasswordController::class, 'index']);;
+    Route::post('/reset-password',[App\Http\Controllers\Auth\ChangePasswordController::class, 'changePassword']);
+});
+
+
 
 
 // FACULTY ROUTES
@@ -102,31 +117,34 @@ Route::get('/pending-page', function(){
 });
 
 
-Route::post('/reset-password',[App\Http\Controllers\Auth\ChangePasswordController::class, 'changePassword']);;
+Route::middleware(['auth', 'employee'])->group(function () {
+    
+    Route::resource('/employee-dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
+Route::get('/employee-get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
 
 
-Route::resource('/faculty/home', App\Http\Controllers\Faculty\FacultyHomeController::class);
-Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
+    Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
 
-Route::resource('/faculty/personal-data-sheet', App\Http\Controllers\Faculty\FacultyPDSController::class);
-Route::post('/faculty/personal-data-sheet-update/{id}', [App\Http\Controllers\Faculty\FacultyPDSController::class, 'update']);
+    Route::resource('/faculty/personal-data-sheet', App\Http\Controllers\Faculty\FacultyPDSController::class);
+    Route::post('/faculty/personal-data-sheet-update/{id}', [App\Http\Controllers\Faculty\FacultyPDSController::class, 'update']);
 
-Route::resource('/faculty/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
-Route::resource('/faculty/children', App\Http\Controllers\Faculty\FacultyChildController::class);
-Route::resource('/faculty/eligibilities', App\Http\Controllers\Faculty\FacultyCSEController::class);
-Route::resource('/faculty/work-experiences', App\Http\Controllers\Faculty\FacultyWorkExperienceController::class);
-Route::resource('/faculty/learning-developments', App\Http\Controllers\Faculty\FacultyLearningDevelopmentController::class);
-Route::resource('/faculty/other-informations', App\Http\Controllers\Faculty\FacultyOtherInformationController::class);
+    Route::resource('/faculty/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
+    Route::resource('/faculty/children', App\Http\Controllers\Faculty\FacultyChildController::class);
+    Route::resource('/faculty/eligibilities', App\Http\Controllers\Faculty\FacultyCSEController::class);
+    Route::resource('/faculty/work-experiences', App\Http\Controllers\Faculty\FacultyWorkExperienceController::class);
+    Route::resource('/faculty/learning-developments', App\Http\Controllers\Faculty\FacultyLearningDevelopmentController::class);
+    Route::resource('/faculty/other-informations', App\Http\Controllers\Faculty\FacultyOtherInformationController::class);
 
-Route::resource('/faculty/trainings-interventions', App\Http\Controllers\Faculty\TrainingInterventionController::class);
-Route::post('/faculty/trainings-interventions-update/{id}', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'update']);
+    Route::resource('/faculty/trainings-interventions', App\Http\Controllers\Faculty\TrainingInterventionController::class);
+    Route::post('/faculty/trainings-interventions-update/{id}', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'update']);
 
-Route::get('/faculty/get-learning-trainings', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'getLearningTrainings']);
+    Route::get('/faculty/get-learning-trainings', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'getLearningTrainings']);
 
-//certificates
-Route::post('/faculty/upload-certificates/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'upload']);
-Route::delete('/faculty/remove-certificate/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'delete']);
+    //certificates
+    Route::post('/faculty/upload-certificates/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'upload']);
+    Route::delete('/faculty/remove-certificate/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'delete']);
 
+});
 
 
 //HRLD

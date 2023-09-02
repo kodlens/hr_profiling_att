@@ -27,6 +27,9 @@ class RedirectIfAuthenticated
                 if($user->role === 'ADMINISTRATOR'){
                     return redirect('/admin-home');
                 }
+                if($user->role === 'EMPLOYEE'){
+                    return redirect('/employee-dashboard');
+                }
                
                 //return redirect(RouteServiceProvider::HOME);
             }
