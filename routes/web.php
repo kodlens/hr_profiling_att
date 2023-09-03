@@ -32,6 +32,7 @@ Route::get('/', function () {
 Route::get('/get-open-learning-dev-types', [App\Http\Controllers\OpenController::class, 'loadLearningDevTypes']);
 Route::get('/get-open-specializations', [App\Http\Controllers\OpenController::class, 'loadSpecializations']);
 Route::get('/get-open-cid-sub-roles', [App\Http\Controllers\OpenController::class, 'loadSubRoles']);
+Route::get('/load-open-degrees', [App\Http\Controllers\OpenController::class, 'loadDegrees']);
 
 
 

@@ -7,6 +7,7 @@ use App\Models\LearningDevelopmentType;
 use App\Models\Specialization;
 use App\Models\CidSubRole;
 
+use App\Models\Degree;
 
 class OpenController extends Controller
 {
@@ -29,6 +30,11 @@ class OpenController extends Controller
 
     public function loadSubRoles(){
         return CidSubRole::orderBy('cid_sub_role', 'asc')
+            ->get();
+    }
+
+    public function loadDegrees(){
+        return Degree::orderBy('degree_program', 'asc')
             ->get();
     }
 

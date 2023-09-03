@@ -535,7 +535,8 @@
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Level" expanded label-position="on-border">
-                                                    <b-select v-model="item.level" placeholder="Level" required expanded>
+                                                    <b-select v-model="item.level" placeholder="Level" required expanded
+                                                        @input="loadDegrees()">
                                                         <option value="ELEMENTARY">ELEMENTARY</option>
                                                         <option value="SECONDARY">SECONDARY</option>
                                                         <option value="VOCATIONAL/TRADE COURSE">VOCATIONAL/TRADE COURSE</option>
@@ -553,7 +554,11 @@
                                         <div class="columns">
                                             <div class="column is-8">
                                                 <b-field label="Degree" label-position="on-border">
-                                                    <b-input type="text" v-model="item.degree" placeholder="Degree" required></b-input>
+                                                    <b-select v-model="item.degree" 
+                                                        placeholder="Degree" required>
+                                                            <option :value="deg.degree_program" v-for="(deg, ix) in degrees"
+                                                                :key="`deg${ix}`">{{  deg.degree_program }}</option>
+                                                    </b-select>
                                                 </b-field>
                                             </div>
                                             <div class="column is-4">
@@ -1247,6 +1252,8 @@ export default {
 
             learning_developments: [],
             specializations: [],
+
+            degress: [],
         }
     },
     methods: {
@@ -1561,7 +1568,7 @@ export default {
                     let id = this.fields.educational_backgrounds[index].ed_bg_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/educational-backgrounds/' + id).then(res=>{
+                        axios.delete('/employee-educational-backgrounds/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Educational background deleted successfully.`,
@@ -1598,7 +1605,7 @@ export default {
                     let cse_id = this.fields.eligibilities[index].cse_id;
 
                     if(cse_id > 0){
-                        axios.delete('/faculty/eligibilities/' + cse_id).then(res=>{
+                        axios.delete('/employee-eligibilities/' + cse_id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Eligibility deleted successfully.`,
@@ -1637,7 +1644,7 @@ export default {
                     let work_ex_id = this.fields.work_experiences[index].cse_id;
 
                     if(work_ex_id > 0){
-                        axios.delete('/faculty/work-experiences/' + work_ex_id).then(res=>{
+                        axios.delete('/employee-work-experiences/' + work_ex_id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Work experience deleted successfully.`,
@@ -1673,7 +1680,7 @@ export default {
                     let id = this.fields.voluntary_works[index].voluntary_work_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/voluntary-works/' + id).then(res=>{
+                        axios.delete('/employee-voluntary-works/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1712,7 +1719,7 @@ export default {
                     let id = this.fields.learning_developments[index].learning_dev_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/learning-developments/' + id).then(res=>{
+                        axios.delete('/employee-learning-developments/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1747,7 +1754,7 @@ export default {
                     let id = this.fields.other_informations[index].other_info_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/other-informations/' + id).then(res=>{
+                        axios.delete('/employee-other-informations/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1774,6 +1781,11 @@ export default {
                 this.specializations = res.data
             })
         },
+        loadDegrees(level){
+            axios.get('/load-open-degrees?level=').then(res=>{
+                this.degrees = res.data
+            })
+        },
 
     },
     mounted() {
@@ -1781,6 +1793,7 @@ export default {
         this.loadProvince();
         this.loadLearningDevelopments()
         this.loadSpecializations()
+        this.loadDegrees()
     },
 
     computed: {

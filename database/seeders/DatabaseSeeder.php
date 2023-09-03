@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CitizenshipSeeder::class,
             CivilStatusSeeder::class,
             UserSeeder::class,
+            DegreeSeeder::class,
 
         ]);
     }
