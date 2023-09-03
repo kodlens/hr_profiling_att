@@ -3,7 +3,7 @@
         <div class="section">
             <div class="columns is-centered">
                 <div class="column is-6">
-                    <div class="box box-post" v-for="(event, index) in events" :key="index">
+                    <!-- <div class="box box-post" v-for="(event, index) in events" :key="index">
                         <div class="box-post-heading">
                             <div class="posted-text mb-4">Posted: {{ seminar.date_posted }}</div>
                             <div class="post-action">
@@ -55,7 +55,7 @@
                                     type="is-primary"></b-button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

@@ -58,7 +58,7 @@
                     <div class="buttons">
                         <button label="LOGOUT" 
                             class="button is-outlined is-danger"
-                            onclick="document.getElementById('logout')">
+                            onclick="document.getElementById('logout').submit()">
                             LOGOUT
                             &nbsp; &nbsp;
                             <b-icon icon="logout"></b-icon>
@@ -75,7 +75,7 @@
             @yield('content')
         </div>
 
-        <footer-page></footer-page>
+        <!-- <footer-page></footer-page> -->
     </div>
 </body>
 
