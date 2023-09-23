@@ -49,7 +49,7 @@ class SignUpController extends Controller
             'suffix' => strtoupper($req->suffix),
             'sex' => $req->sex,
             'contact_no' => $req->contact_no,
-            'role' => 'FACULTY',
+            'role' => 'EMPLOYEE',
             'res_province' => $req->res_province,
             'res_city' => $req->res_city,
             'res_barangay' => $req->res_barangay,
