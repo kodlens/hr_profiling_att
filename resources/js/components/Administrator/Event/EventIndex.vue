@@ -28,7 +28,7 @@
                                 <div class="level-item">
                                     <b-field label="Search">
                                         <b-input type="text"
-                                                 v-model="search.event" placeholder="Search Office"
+                                                 v-model="search.event" placeholder="Search Event"
                                                  @keyup.native.enter="loadAsyncData"/>
                                         <p class="control">
                                              <b-tooltip label="Search" type="is-success">
@@ -52,6 +52,7 @@
                             :data="data"
                             :loading="loading"
                             paginated
+                            detailed
                             backend-pagination
                             :total="total"
                             :per-page="perPage"
@@ -68,24 +69,25 @@
                                 {{ props.row.event_id }}
                             </b-table-column>
 
+                            <b-table-column field="event_datetime" label="Date & Time" v-slot="props">
+                                {{ new Date(props.row.event_datetime).toLocaleString() }}
+                            </b-table-column>
+
                             <b-table-column field="event_title" label="Event Title" v-slot="props">
                                 {{ props.row.event_title }}
                             </b-table-column>
 
-                            <b-table-column field="event_description" label="Desccription" v-slot="props">
-                                {{ props.row.event_description }}
+                            <b-table-column field="content" label="Desccription" v-slot="props">
+                                {{ props.row.content }}
                             </b-table-column>
 
-                            <b-table-column field="event_datetime" label="Date & Time" v-slot="props">
-                                {{ props.row.event_datetime }}
-                            </b-table-column>
 
                             <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
                                     <b-tooltip label="Edit" type="is-warning">
                                         <b-button class="button is-small is-warning mr-1" 
                                             tag="a" 
-                                            icon-right="pencil" @click="getData(props.row.event_id)"></b-button>
+                                            icon-right="pencil" :href="`/admin-events/${props.row.event_id}/edit`" ></b-button>
                                     </b-tooltip>
                                     <b-tooltip label="Delete" type="is-danger">
                                         <b-button class="button is-small is-danger mr-1" 
@@ -94,6 +96,12 @@
                                     </b-tooltip>
                                 </div>
                             </b-table-column>
+
+                            
+                            <template #detail="props">
+                                <img :src="`/storage/events/${props.row.img_path}`"/>
+                            </template>
+
 
                         </b-table>
 
@@ -162,7 +170,7 @@
 
 <script>
 export default {
-    name: "AppointmentType",
+
     data(){
         return{
             data: [],

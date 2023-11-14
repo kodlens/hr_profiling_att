@@ -63,7 +63,7 @@ class AdminEventController extends Controller
 
         Event::create([
             
-            'event_title' => $req->event,
+            'event_title' => $req->event_title,
             'content' => $req->content,
             'event_datetime' => $event_date,
             'img_path' => $req->hasFile('event_img') ? $n[2] : ''

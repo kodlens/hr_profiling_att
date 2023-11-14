@@ -56,7 +56,7 @@
 
                             <div class="columns">
                                 <div class="column">
-                                    <p v-if="propId > 0" style="font-size: 10px; font-weight: bold; color: red;">To update the image, just attach new image and the system will automatically remove the old save image.</p>
+                                    <p v-if="propId > 0" style="font-size: 14px; font-weight: bold; color: red;">To update the image, just attach new image and the system will automatically remove the old save image.</p>
                                     <b-field label="Event Image (Landscape is recommended for better view)">
                                         <b-upload v-model="fields.event_img"
                                                 drag-drop>
@@ -126,6 +126,13 @@ export default {
         return{
             editorOption: {
             // Some Quill options...
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        ['clean'],
+                    ],
+                },
             },
             content: null,
 
@@ -147,14 +154,14 @@ export default {
         submit(){
 
             let formData = new FormData();
-            formData.append('event', this.fields.event ? this.fields.event_title : '');
+            formData.append('event_title', this.fields.event_title ? this.fields.event_title : '');
             formData.append('content', this.fields.content ? this.fields.content : '');
             formData.append('event_datetime', this.fields.dateAndTime ? this.$formatDateAndTime(this.fields.dateAndTime) : '');
             formData.append('event_img', this.fields.event_img ? this.fields.event_img : '');
 
             if(this.propId > 0){
                 //update
-                axios.post('/events-update/' + this.propId, formData).then(res=>{
+                axios.post('/admin-events-update/' + this.propId, formData).then(res=>{
        
                     if (res.data.status === 'updated'){
                        
@@ -162,7 +169,7 @@ export default {
                             title: 'Saved.',
                             message: 'Successfully updated.',
                             onConfirm: ()=>{
-                                window.location = '/events';
+                                window.location = '/admin-events';
                             }
                         })
 
@@ -174,7 +181,7 @@ export default {
                 })
             }else{
                 //insert
-                axios.post('/events', formData).then(res=>{
+                axios.post('/admin-events', formData).then(res=>{
 
                     if(res.data.status === 'saved'){
 
@@ -182,7 +189,7 @@ export default {
                             title: 'Saved.',
                             message: 'Successfully saved.',
                             onConfirm: ()=>{
-                                window.location = '/events';
+                                window.location = '/admin-events';
                             }
                         })
                     }
@@ -203,7 +210,8 @@ export default {
         },
 
         getData(){
-            this.fields.event =  this.propData.event
+
+            this.fields.event_title =  this.propData.event_title
             this.content =  this.propData.content
             this.fields.dateAndTime =  new Date(this.propData.event_datetime)
             this.fields.image_path = this.propData.img_path
