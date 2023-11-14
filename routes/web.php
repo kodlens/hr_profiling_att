@@ -73,12 +73,19 @@ Route::get('/load-barangays', [App\Http\Controllers\AddressController::class, 'l
 /*     ADMINSITRATOR          */
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
+    
     Route::resource('/admin-home', App\Http\Controllers\Administrator\AdminHomeController::class);
+    
+
+    Route::resource('/admin-events', App\Http\Controllers\Administrator\AdminEventController::class);
+    Route::get('/get-admin-events', [App\Http\Controllers\Administrator\AdminEventController::class, 'getData']);
 
     Route::resource('/users', App\Http\Controllers\Administrator\UserController::class);
     Route::get('/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
+
     Route::get('/get-user-offices', [App\Http\Controllers\Administrator\UserController::class, 'getOffices']);
+
     Route::post('/user-reset-password/{id}', [App\Http\Controllers\Administrator\UserController::class, 'resetPassword']);
     Route::post('/other-info-store/{userid}', [App\Http\Controllers\Administrator\UserController::class, 'storeOtherInfo']);
 
@@ -121,7 +128,7 @@ Route::get('/pending-page', function(){
 Route::middleware(['auth', 'employee'])->group(function () {
     
     Route::resource('/employee-dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
-Route::get('/employee-get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
+    Route::get('/employee-get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
 
 
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);

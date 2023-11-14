@@ -33,6 +33,7 @@
         "element-ui": "^2.15.14",
         "font-awesome": "^4.7.0",
         "qrcode": "^1.4.4",
-        "vue-qrcode-reader": "^3.1.0"
+        "vue-qrcode-reader": "^3.1.0",
+        "vue-quill-editor": "^3.0.6"
     }
 }

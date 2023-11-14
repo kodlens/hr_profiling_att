@@ -66,6 +66,12 @@
 
                 </b-dropdown>
 
+                <b-navbar-item href="/admin-events" class="{{ request()->is('admin-events*') ? 'active' : '' }}">
+                    <b-icon icon="calendar"></b-icon>
+                    &nbsp;
+                    EVENTS
+                </b-navbar-item>
+
 
                 <b-navbar-item href="/users" class="{{ request()->is('users*') ? 'active' : '' }}">
                     <b-icon icon="account"></b-icon>
