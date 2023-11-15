@@ -135,7 +135,6 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
 
     Route::resource('/employee-personal-data-sheet', App\Http\Controllers\Faculty\EmployeePDSController::class);
-    Route::post('/faculty/personal-data-sheet-update/{id}', [App\Http\Controllers\Faculty\EmployeePDSController::class, 'update']);
 
     Route::resource('/faculty/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
     Route::resource('/faculty/children', App\Http\Controllers\Faculty\FacultyChildController::class);

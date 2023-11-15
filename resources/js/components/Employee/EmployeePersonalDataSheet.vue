@@ -1,7 +1,7 @@
 <template>
     <section class="section">
         <div class="columns is-centered">
-            <div class="column is-8-desktop is-10-tablet">
+            <div class="column is-8-widescreen is-10-desktop is-10-tablet">
 
 
                 <div class="box">
@@ -671,6 +671,11 @@
 
 
                             <div class="separator">Work Experience</div>
+                            <div class="has-text-centered is-italic" 
+                                v-if="fields.work_experiences.length < 1"
+                                >
+                                Click <strong>ADD</strong> button to add new entry
+                            </div>
                             <div class="columns">
                                 <div class="column">
                                     <div class="w-separator" v-for="(item, k) in fields.work_experiences" :key="`work${k}`">
@@ -745,6 +750,11 @@
                             <div class="separator">
                                 Voluntary Work or Involvment in Civic / Non-Gov't / People / Voluntary Org
                             </div>
+                            <div class="has-text-centered is-italic" 
+                                v-if="fields.voluntary_works.length < 1"
+                                >
+                                Click <strong>ADD</strong> button to add new entry
+                            </div>
                             <div class="w-separator" v-for="(item, k) in fields.voluntary_works" :key="`voluntary${k}`">
                                 <div class="columns">
                                     <div class="column">
@@ -790,6 +800,11 @@
                             <!-- Learning Dev -->
                             <div class="separator">
                                 Learning and Development Inventions / Trainings / Programs Attended
+                            </div>
+                            <div class="has-text-centered is-italic" 
+                                v-if="fields.learning_developments.length < 1"
+                                >
+                                Click <strong>ADD</strong> button to add new entry
                             </div>
 
                             <div class="w-separator" v-for="(item, index) in fields.learning_developments" :key="`ld${index}`">
@@ -853,6 +868,11 @@
                             <!-- OTHER -->
                             <div class="separator">
                                 Other Information
+                            </div>
+                            <div class="has-text-centered is-italic" 
+                                v-if="fields.other_informations.length < 1"
+                                >
+                                Click <strong>ADD</strong> button to add new entry
                             </div>
 
                             <div class="w-separator" v-for="(item, k) in fields.other_informations" :key="`info${k}`">
@@ -1477,7 +1497,7 @@ export default {
             this.fields.is_separated_yes_details = this.user.is_separated_yes_details;
             this.fields.is_candidate_election = this.user.is_candidate_election;
             this.fields.is_candiadte_election_yes = this.user.is_candiadte_election_yes;
-            this.fields.is_resigned = this.user.is_resigned;
+            //this.fields.is_resigned = this.user.is_resigned;
             this.fields.is_resigned = this.user.is_resigned;
             this.fields.is_resigned_yes = this.user.is_resigned_yes;
             this.fields.is_immigrant_yes = this.user.is_immigrant_yes;
@@ -1493,13 +1513,13 @@ export default {
         submit(){
 
             //formData.append('fields', this.fields);
-            axios.post('/faculty/personal-data-sheet-update/' + this.user.user_id, this.fields).then(res=>{
+            axios.put('/employee-personal-data-sheet/' + this.user.user_id, this.fields).then(res=>{
                 if(res.data.status === 'saved'){
                     this.$buefy.dialog.alert({
                         title: "UPDATED!",
                         message: 'Profile updated successfully',
                         type: 'is-success',
-                        onConfirm: ()=>  window.location = '/faculty/personal-data-sheet'
+                        onConfirm: ()=>  window.location = '/employee-personal-data-sheet'
                     });
                 }
             }).catch(err=>{
@@ -1791,8 +1811,8 @@ export default {
     mounted() {
         //this.initData();
         this.loadProvince();
-        this.loadLearningDevelopments()
-        this.loadSpecializations()
+       // this.loadLearningDevelopments()
+       // this.loadSpecializations()
         this.loadDegrees()
     },
 

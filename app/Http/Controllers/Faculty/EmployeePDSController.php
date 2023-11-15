@@ -49,7 +49,6 @@ class EmployeePDSController extends Controller
         $req->validate([
             'surname' => ['required'],
             'fname' => ['required'],
-            'school_assigned' => ['required'],
             'sex' => ['required'],
             'email' => ['required', 'unique:users,email,'. $id . ',user_id'],
             'agency_idno' => ['required']
@@ -65,7 +64,7 @@ class EmployeePDSController extends Controller
         $data->mname = strtoupper($req->mname);
         $data->suffix = strtoupper($req->suffix);
         $data->sex = strtoupper($req->sex);
-        $data->school_assigned = strtoupper($req->school_assigned);
+        //$data->school_assigned = strtoupper($req->school_assigned);
         $data->date_birth = $dob;
         $data->place_birth = strtoupper($req->place_birth);
         $data->civil_status = strtoupper($req->civil_status);
