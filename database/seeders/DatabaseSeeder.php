@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CivilStatusSeeder::class,
             UserSeeder::class,
             DegreeSeeder::class,
+            EventSeeder::class,
 
         ]);
     }

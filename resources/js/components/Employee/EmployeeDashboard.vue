@@ -3,9 +3,9 @@
         <div class="section">
             <div class="columns is-centered">
                 <div class="column is-6">
-                    <!-- <div class="box box-post" v-for="(event, index) in events" :key="index">
+                    <div class="box box-post" v-for="(event, index) in events" :key="index">
                         <div class="box-post-heading">
-                            <div class="posted-text mb-4">Posted: {{ seminar.date_posted }}</div>
+                            <div class="posted-text mb-4">Posted: {{ event.created_at }}</div>
                             <div class="post-action">
 
                             </div>
@@ -13,49 +13,30 @@
                         <div class="post-desc">
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Title: {{ event.title }}</div>
-                                </div>
-                                <div class="column">
-                                    <div class="has-text-weight-bold">Skill: {{ event.skills }}</div>
+                                    <div class="has-text-weight-bold">Title: {{ event.event_title }}</div>
                                 </div>
                             </div>
+                            
                             <div class="columns">
+                               
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Serminar Date: {{ event.seminar_date  }}</div>
-                                </div>
-                                <div class="column">
-                                    <div class="has-text-weight-bold">Learning Development: {{ event.ld_type }}</div>
+                                    <div class="" v-html="event.content"> </div>
                                 </div>
                             </div>
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="has-text-weight-bold">Conducted: {{ event.conducted_by  }}</div>
-                                </div>
-                                <div class="column">
-                                    <div class="has-text-weight-bold">CPD Units: {{ event.cpd_units }}</div>
-                                </div>
-                            </div>
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="has-text-weight-bold">Specialization: {{ event.specialization  }}</div>
-                                </div>
-                                <div class="column">
-                                    <div class="has-text-weight-bold">No of Hours: {{ event.no_hours }}</div>
-                                </div>
-                            </div>
+                           
                         </div>
                         <div class="post-img-container" v-if="event.img_path">
-                            <img :src="`/storage/seminars/${seminar.img_path}`" class="post-img" />
+                            <img :src="`/storage/events/${event.img_path}`" class="post-img" />
                         </div>
 
-                        <div class="box-post-footer">
+                        <!-- <div class="box-post-footer">
                             <div class="buttons is-right">
                                 <b-button label="Request Participation"
                                     @click="imIn(seminar)"
                                     type="is-primary"></b-button>
                             </div>
-                        </div>
-                    </div> -->
+                        </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -75,34 +56,34 @@ export default{
     },
 
     methods: {
-        loadSeminars(){
+        loadEvents(){
             axios.get('/employee-get-posted-events').then(res=>{
-                this.serminars = res.data
+                this.events = res.data
             })
         },
 
-        imIn(post){
+        // imIn(post){
            
-            this.fields = post;
+        //     this.fields = post;
 
-            //console.log(postId);
-            axios.post('/seminar-im-in', this.fields).then(res=>{
-                if(res.data.status === 'saved'){
-                    this.$buefy.dialog.alert({
-                        title: "Saved!",
-                        message: 'Request recorded successfully.',
-                        type: 'is-success',
-                        onConfirm: ()=>  this.loadSeminars()
-                    });
-                }
-            }).catch(err=>{
+        //     //console.log(postId);
+        //     axios.post('/seminar-im-in', this.fields).then(res=>{
+        //         if(res.data.status === 'saved'){
+        //             this.$buefy.dialog.alert({
+        //                 title: "Saved!",
+        //                 message: 'Request recorded successfully.',
+        //                 type: 'is-success',
+        //                 onConfirm: ()=>  this.loadSeminars()
+        //             });
+        //         }
+        //     }).catch(err=>{
             
-            })
-        }
+        //     })
+        // }
     },
 
     mounted(){
-        this.loadSeminars()
+        this.loadEvents()
     }
 }
 
