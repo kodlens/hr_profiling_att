@@ -24,10 +24,10 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = Auth::user();
-                if($user->role === 'ADMINISTRATOR'){
+                if(strtolower($user->role) === 'administrator'){
                     return redirect('/admin-home');
                 }
-                if($user->role === 'EMPLOYEE'){
+                if(strtolower($user->role) === 'employee'){
                     return redirect('/employee-dashboard');
                 }
                
