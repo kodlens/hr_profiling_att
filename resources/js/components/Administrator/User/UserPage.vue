@@ -95,7 +95,8 @@
                                         <b-button class="button is-small mr-1" icon-right="lock" @click="openModalResetPassword(props.row.user_id)"></b-button>
                                     </b-tooltip>
                                     <b-tooltip label="Add Other Information" type="is-info">
-                                        <b-button class="button is-small mr-1" icon-right="plus" @click="openOtherInfo(props.row.user_id)"></b-button>
+                                        <b-button class="button is-small mr-1" icon-right="plus" 
+                                            @click="openOtherInfo(props.row.user_id)"></b-button>
                                     </b-tooltip>
                                 </div>
                             </b-table-column>
@@ -234,9 +235,11 @@
                                              :type="this.errors.role ? 'is-danger':''"
                                              :message="this.errors.role ? this.errors.role[0] : ''">
                                         <b-select v-model="fields.role" expanded>
-                                            <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-                                            <option value="EMPLOYEE">EMPLOYEE</option>
-                                            <option value="POINTPERSON">POINT-PERSON</option>
+                                            <option value="administrator">ADMINISTRATOR</option>
+                                            <option value="employee">EMPLOYEE</option>
+                                            <option value="point_person">POINT-PERSON</option>
+                                            <option value="record_officer">RECORD OFFICER</option>
+                                            <option value="training_dev_officer">TRAINING/DEVELOPMENT OFFICER</option>
                                         </b-select>
                                     </b-field>
                                 </div>
