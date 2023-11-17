@@ -20,7 +20,13 @@ class EmployeeDashboardController extends Controller
 
 
     public function getPostedEvents(Request $req){
-        return Event::orderBy('event_id', 'desc')
+        $user = Auth::user();
+
+        //retrive all events and retrieve all attachment for specific user but events will still load all
+        return Event::with(['event_attachment' => function($q) use ($user) {
+                $q->where('user_id', $user->user_id);
+            }])
+            ->orderBy('event_id', 'desc')
             ->get();
     }
 
@@ -63,13 +69,21 @@ class EmployeeDashboardController extends Controller
         EventEmployeeAttendance::create([
             'event_id' => $req->event_id,
             'user_id' => $user->user_id,
-            'img_path' => $req->hasFile('event_img') ? $n[2] : ''
+            'img_description' => $user->img_description,
+            'img_path' => $req->hasFile('attachment') ? $n[2] : ''
         ]);
 
 
         return response()->json([
             'status' => 'uploaded'
         ], 200);
+    }
+
+
+    public function getByUserEventAttachment(Request $req){
+        $eventId = $req->eventid;
+        $userId = $req->userid;
+
     }
 
 }

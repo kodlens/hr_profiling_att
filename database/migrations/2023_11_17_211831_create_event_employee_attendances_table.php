@@ -24,6 +24,8 @@ class CreateEventEmployeeAttendancesTable extends Migration
             $table->foreign('user_id')->references('user_id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
+            $table->text('img_description')->nullable();
+
             $table->string('img_path')->nullable();
 
             $table->timestamps();

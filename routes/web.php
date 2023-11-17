@@ -134,6 +134,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::resource('/employee-dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
     Route::get('/employee-get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
     Route::post('/employee-dashboard-upload-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'uploadAttachment']);
+    Route::get('/get-by-user-event-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getByUserEventAttachment']);
 
     
 

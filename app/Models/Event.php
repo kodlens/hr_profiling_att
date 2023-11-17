@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Auth;
 class Event extends Model
 {
     use HasFactory;
@@ -20,6 +20,11 @@ class Event extends Model
         'img_path'
     ];
 
+
+    public function event_attachment(){
+
+        return $this->hasOne(EventEmployeeAttendance::class, 'event_id', 'event_id');
+    }
 
 
 }
