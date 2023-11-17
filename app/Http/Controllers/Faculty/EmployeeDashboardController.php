@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Models\Event;
+use App\Models\EventEmployeeAttendance;
 
 
 class EmployeeDashboardController extends Controller
@@ -45,5 +46,30 @@ class EmployeeDashboardController extends Controller
     //     ], 200);
     // }
 
+
+    public function uploadAttachment(Request $req){
+
+        $req->validate([
+            'event_id' => ['required']
+        ]);
+
+        $n = [];
+        if($req->hasFile('attachment')) {
+            $pathFile = $req->attachment->store('public/attachments'); //get path of the file
+            $n = explode('/', $pathFile); //split into array using /
+        }
+        $user = Auth::user();
+
+        EventEmployeeAttendance::create([
+            'event_id' => $req->event_id,
+            'user_id' => $user->user_id,
+            'img_path' => $req->hasFile('event_img') ? $n[2] : ''
+        ]);
+
+
+        return response()->json([
+            'status' => 'uploaded'
+        ], 200);
+    }
 
 }

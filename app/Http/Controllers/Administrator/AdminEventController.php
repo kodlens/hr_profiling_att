@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
 
+
 class AdminEventController extends Controller
 {
     //
@@ -17,7 +18,7 @@ class AdminEventController extends Controller
 
 
     public function show($id){
-    
+
     }
 
     public function getData(Request $req){
@@ -46,12 +47,12 @@ class AdminEventController extends Controller
 
 
     public function store(Request $req){
-    
+
         $event_date = date('Y-m-d H:i:s', strtotime($req->event_datetime));
 
         $req->validate([
             'event_title' => ['required'],
-            'content' => ['required'],
+            'event_desc' => ['required'],
             'event_datetime' => ['required'],
         ]);
 
@@ -62,9 +63,8 @@ class AdminEventController extends Controller
         }
 
         Event::create([
-            
             'event_title' => $req->event_title,
-            'content' => $req->content,
+            'event_desc' => $req->event_desc,
             'event_datetime' => $event_date,
             'img_path' => $req->hasFile('event_img') ? $n[2] : ''
         ]);
@@ -84,10 +84,10 @@ class AdminEventController extends Controller
 
         $req->validate([
             'event_title' => ['required'],
-            'content' => ['required'],
+            'event_desc' => ['required'],
             'event_datetime' => ['required'],
         ]);
-      
+
         $data = Event::find($id);
         $n = [];
 
@@ -102,15 +102,15 @@ class AdminEventController extends Controller
         }
 
         //get data from database
-       
+
         $data->event_title = $req->event_title;
-        $data->content = $req->content;
+        $data->event_desc = $req->event_desc;
         $data->event_datetime = $event_date;
-        
+
         if($req->hasFile('event_img')){
             $data->img_path = $n[2];
         }
-        
+
         $data->save();
 
         return response()->json([

@@ -236,7 +236,7 @@
                                         <b-select v-model="fields.role" expanded>
                                             <option value="ADMINISTRATOR">ADMINISTRATOR</option>
                                             <option value="EMPLOYEE">EMPLOYEE</option>
-                                            <option value="POINT-PERSON">POINT-PERSON</option>
+                                            <option value="POINTPERSON">POINT-PERSON</option>
                                         </b-select>
                                     </b-field>
                                 </div>

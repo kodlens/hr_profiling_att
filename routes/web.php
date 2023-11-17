@@ -74,21 +74,24 @@ Route::get('/load-barangays', [App\Http\Controllers\AddressController::class, 'l
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    
+
     Route::resource('/admin-home', App\Http\Controllers\Administrator\AdminHomeController::class);
-    
+
 
     Route::resource('/admin-events', App\Http\Controllers\Administrator\AdminEventController::class);
     Route::post('/admin-events-update/{id}', [App\Http\Controllers\Administrator\AdminEventController::class, 'updateEvent']);
     Route::get('/get-admin-events', [App\Http\Controllers\Administrator\AdminEventController::class, 'getData']);
 
+
+    Route::resource('/training-developments', App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class);
+    Route::post('/training-developments/{id}', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'updateTrainingDev']);
+    Route::get('/get-training-developments', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'getData']);
+
+
     Route::resource('/users', App\Http\Controllers\Administrator\UserController::class);
     Route::get('/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
 
-    Route::get('/get-user-offices', [App\Http\Controllers\Administrator\UserController::class, 'getOffices']);
 
-    Route::post('/user-reset-password/{id}', [App\Http\Controllers\Administrator\UserController::class, 'resetPassword']);
-    Route::post('/other-info-store/{userid}', [App\Http\Controllers\Administrator\UserController::class, 'storeOtherInfo']);
 
 
     Route::resource('/learning-dev', App\Http\Controllers\LearningDevelopmentTypeController::class);
@@ -100,8 +103,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/cid-sub-role', App\Http\Controllers\Administrator\CidSubRoleController::class);
     Route::get('/get-cid-sub-roles', [App\Http\Controllers\Administrator\CidSubRoleController::class, 'getCidSubRoles']);
 
-    
-    
+
+
 
 });
 
@@ -127,9 +130,12 @@ Route::get('/pending-page', function(){
 
 
 Route::middleware(['auth', 'employee'])->group(function () {
-    
+
     Route::resource('/employee-dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
     Route::get('/employee-get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
+    Route::post('/employee-dashboard-upload-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'uploadAttachment']);
+
+    
 
 
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);

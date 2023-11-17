@@ -72,6 +72,12 @@
                     EVENTS
                 </b-navbar-item>
 
+                <b-navbar-item href="/training-developments" class="{{ request()->is('training-developments*') ? 'active' : '' }}">
+                    <b-icon icon="calendar"></b-icon>
+                    &nbsp;
+                    TRAINING DEVELOPMENTS
+                </b-navbar-item>
+
 
                 <b-navbar-item href="/users" class="{{ request()->is('users*') ? 'active' : '' }}">
                     <b-icon icon="account"></b-icon>

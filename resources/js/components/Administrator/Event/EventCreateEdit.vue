@@ -136,8 +136,8 @@ export default {
             },
             content: null,
 
-          
-            
+
+
             fields: {
                 event: null,
                 event_description: null,
@@ -155,16 +155,16 @@ export default {
 
             let formData = new FormData();
             formData.append('event_title', this.fields.event_title ? this.fields.event_title : '');
-            formData.append('content', this.fields.content ? this.fields.content : '');
+            formData.append('event_desc', this.fields.content ? this.fields.content : '');
             formData.append('event_datetime', this.fields.dateAndTime ? this.$formatDateAndTime(this.fields.dateAndTime) : '');
             formData.append('event_img', this.fields.event_img ? this.fields.event_img : '');
 
             if(this.propId > 0){
                 //update
                 axios.post('/admin-events-update/' + this.propId, formData).then(res=>{
-       
+
                     if (res.data.status === 'updated'){
-                       
+
                         this.$buefy.dialog.alert({
                             title: 'Saved.',
                             message: 'Successfully updated.',
@@ -200,9 +200,9 @@ export default {
                 })
             }
 
-           
 
-          
+
+
         },
 
         deleteDropFile(index) {
@@ -212,7 +212,7 @@ export default {
         getData(){
 
             this.fields.event_title =  this.propData.event_title
-            this.content =  this.propData.content
+            this.content =  this.propData.event_desc
             this.fields.dateAndTime =  new Date(this.propData.event_datetime)
             this.fields.image_path = this.propData.img_path
             this.fields.event_type = this.propData.event_type

@@ -42,7 +42,7 @@
 
                         <div class="buttons mt-3 is-right">
                             <b-button tag="a"
-                                href="/admin-events/create" 
+                                href="/admin-events/create"
                                 outlined
                                 icon-left="plus"
                                 class="is-primary is-small">NEW</b-button>
@@ -78,30 +78,28 @@
                             </b-table-column>
 
                             <b-table-column field="content" label="Desccription" v-slot="props">
-                                {{ props.row.content }}
+                                {{ props.row.event_desc }}
                             </b-table-column>
 
 
                             <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
                                     <b-tooltip label="Edit" type="is-warning">
-                                        <b-button class="button is-small is-warning mr-1" 
-                                            tag="a" 
+                                        <b-button class="button is-small mr-1"
+                                            tag="a"
                                             icon-right="pencil" :href="`/admin-events/${props.row.event_id}/edit`" ></b-button>
                                     </b-tooltip>
                                     <b-tooltip label="Delete" type="is-danger">
-                                        <b-button class="button is-small is-danger mr-1" 
-                                            icon-right="delete" 
+                                        <b-button class="button is-small mr-1"
+                                            icon-right="delete"
                                             @click="confirmDelete(props.row.event_id)"></b-button>
                                     </b-tooltip>
                                 </div>
                             </b-table-column>
 
-                            
                             <template #detail="props">
-                                <img :src="`/storage/events/${props.row.img_path}`"/>
+                                <img :src="`/storage/events/${props.row.img_path}`" style="height: 200px;" />
                             </template>
-
 
                         </b-table>
 
