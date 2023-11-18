@@ -18,9 +18,12 @@ class EventEmployeeAttendance extends Model
         'user_id',
         'img_description',
         'img_path',
+        'attendance_status'
     ];
 
   
-
+    public function user(){
+        return $this->hasOne(User::class, 'user_id', 'user_id');
+    }
 
 }

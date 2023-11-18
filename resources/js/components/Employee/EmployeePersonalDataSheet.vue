@@ -1513,7 +1513,7 @@ export default {
         submit(){
 
             //formData.append('fields', this.fields);
-            axios.put('/employee-personal-data-sheet/' + this.user.user_id, this.fields).then(res=>{
+            axios.put('/employee/personal-data-sheet/' + this.user.user_id, this.fields).then(res=>{
                 if(res.data.status === 'saved'){
                     this.$buefy.dialog.alert({
                         title: "UPDATED!",
@@ -1550,7 +1550,7 @@ export default {
                     let childId = this.fields.children[index].child_id;
 
                     if(childId > 0){
-                        axios.delete('/faculty/children/' + childId).then(res=>{
+                        axios.delete('/employee/children/' + childId).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Child deleted successfully.`,
@@ -1588,7 +1588,7 @@ export default {
                     let id = this.fields.educational_backgrounds[index].ed_bg_id;
 
                     if(id > 0){
-                        axios.delete('/employee-educational-backgrounds/' + id).then(res=>{
+                        axios.delete('/employee/educational-backgrounds/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Educational background deleted successfully.`,

@@ -25,9 +25,9 @@ class CreateEventEmployeeAttendancesTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->text('img_description')->nullable();
-
             $table->string('img_path')->nullable();
 
+            $table->tinyInteger('attendance_status')->default(0);
             $table->timestamps();
         });
     }

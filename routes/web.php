@@ -131,17 +131,17 @@ Route::get('/pending-page', function(){
 
 Route::middleware(['auth', 'employee'])->group(function () {
 
-    Route::resource('/employee-dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
-    Route::get('/employee-get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
-    Route::post('/employee-dashboard-upload-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'uploadAttachment']);
-    Route::get('/get-by-user-event-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getByUserEventAttachment']);
+    Route::resource('/employee/dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
+    Route::get('/employee/get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
+    Route::post('/employee/dashboard-upload-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'uploadAttachment']);
+    Route::get('/employee/get-by-user-event-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getByUserEventAttachment']);
 
+    Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Faculty\EmployeePDSController::class);
     
 
 
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
 
-    Route::resource('/employee-personal-data-sheet', App\Http\Controllers\Faculty\EmployeePDSController::class);
 
     Route::resource('/faculty/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
     Route::resource('/faculty/children', App\Http\Controllers\Faculty\FacultyChildController::class);
@@ -162,6 +162,17 @@ Route::middleware(['auth', 'employee'])->group(function () {
 });
 
 
+
+Route::middleware(['auth', 'point_person'])->group(function () {
+    Route::resource('/point-person/dashboard', App\Http\Controllers\PointPerson\PointPersonDashboarcController::class);
+    
+    Route::resource('/point-person/events', App\Http\Controllers\PointPerson\PointPersonEventController::class);
+    Route::get('/point-person/get-events', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'getData']);
+    Route::get('/point-person/events-view/{id}', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventView']);
+    
+    
+
+});
 //HRLD
 Route::resource('/hrld/home', App\Http\Controllers\Hrld\HrldHomeController::class);
 

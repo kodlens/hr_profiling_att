@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DegreeSeeder::class,
             EventSeeder::class,
+            EventEmployeeAttendanceSeeder::class,
 
         ]);
     }

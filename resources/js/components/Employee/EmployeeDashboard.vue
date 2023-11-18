@@ -243,7 +243,7 @@ export default{
             formData.append('attachment', this.dropFile ? this.dropFile : '');
             formData.append('img_description', this.fields.img_description ? this.fields.img_description : '');
 
-            axios.post('/employee-dashboard-upload-attachment',  formData).then(res=>{
+            axios.post('/employee/dashboard-upload-attachment',  formData).then(res=>{
                 this.btnClass['is-loading'] = false
                 if(res.data.status === 'uploaded'){
                     this.loadEvents()
@@ -258,7 +258,7 @@ export default{
         },
 
         getAttachmentImage(eventId, userId){
-            axios.get(`/get-by-user-event-attachment?eventid=${eventId}&userid=${userId}`).then(res=>{
+            axios.get(`/employee/get-by-user-event-attachment?eventid=${eventId}&userid=${userId}`).then(res=>{
             
             }).catch(err=>{
             
