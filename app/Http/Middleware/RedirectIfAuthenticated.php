@@ -33,8 +33,8 @@ class RedirectIfAuthenticated
                 if(strtolower($user->role) === 'point_person'){
                     return redirect('/point-person/dashboard');
                 }
-                if(strtolower($user->role) === 'training_dev_officer'){
-                    return redirect('/training-dev-dashboard');
+                if(strtolower($user->role) === 'training_officer'){
+                    return redirect('/training-officer/dashboard');
                 }
                
                 //return redirect(RouteServiceProvider::HOME);

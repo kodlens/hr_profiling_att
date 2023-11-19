@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             DegreeSeeder::class,
             EventSeeder::class,
             EventEmployeeAttendanceSeeder::class,
-
+            TrainingSeminarSeeder::class
         ]);
     }
 }

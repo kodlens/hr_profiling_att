@@ -38,14 +38,17 @@
 
             <template #end>
 
-                <b-navbar-item href="/employee-dashboard">
+                <b-navbar-item href="/employee/dashboard">
                     Home
                 </b-navbar-item>
 
-                <b-navbar-item href="/employee-personal-data-sheet">
+                <b-navbar-item href="/employee/personal-data-sheet">
                     Personal Data Sheet
                 </b-navbar-item>
 
+                <b-navbar-item href="/employee/training-seminars">
+                    Training/Seminars
+                </b-navbar-item>
 
                 <b-navbar-dropdown label="{{ auth()->user()->lname }}">
                     <b-navbar-item href="/change-password">

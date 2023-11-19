@@ -105,13 +105,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 
-
 });
 
 
 /*     ADMINSITRATOR          */
-
-
 /*     AUTH          */
 
 Route::middleware(['auth'])->group(function () {
@@ -130,35 +127,50 @@ Route::get('/pending-page', function(){
 
 
 Route::middleware(['auth', 'employee'])->group(function () {
-    Route::resource('/employee/dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
-    Route::get('/employee/get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
-    Route::post('/employee/dashboard-upload-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'uploadAttachment']);
-    Route::get('/employee/get-by-user-event-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getByUserEventAttachment']);
+    
+    Route::resource('/employee/dashboard', App\Http\Controllers\Employee\EmployeeDashboardController::class);
+    Route::get('/employee/get-posted-events', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'getPostedEvents']);
+    Route::post('/employee/dashboard-upload-attachment', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'uploadAttachment']);
+    Route::get('/employee/get-by-user-event-attachment', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'getByUserEventAttachment']);
 
-    Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Faculty\EmployeePDSController::class);
+
+    Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Employee\EmployeePDSController::class);
+
+    Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);
+    Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
+
     
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
 
 
-    Route::resource('/faculty/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
-    Route::resource('/faculty/children', App\Http\Controllers\Faculty\FacultyChildController::class);
-    Route::resource('/faculty/eligibilities', App\Http\Controllers\Faculty\FacultyCSEController::class);
-    Route::resource('/faculty/work-experiences', App\Http\Controllers\Faculty\FacultyWorkExperienceController::class);
-    Route::resource('/faculty/learning-developments', App\Http\Controllers\Faculty\FacultyLearningDevelopmentController::class);
-    Route::resource('/faculty/other-informations', App\Http\Controllers\Faculty\FacultyOtherInformationController::class);
+    Route::resource('/employee/educational-backgrounds', App\Http\Controllers\Employee\EmployeeEducationalBackgroundController::class);
+    Route::resource('/employee/children', App\Http\Controllers\Employee\EmployeeChildController::class);
+    Route::resource('/employee/eligibilities', App\Http\Controllers\Employee\EmployeeCSEController::class);
+    Route::resource('/employee/work-experiences', App\Http\Controllers\Employee\EmployeeWorkExperienceController::class);
+    Route::resource('/employee/learning-developments', App\Http\Controllers\Employee\EmployeeLearningDevelopmentController::class);
+    Route::resource('/employee/other-informations', App\Http\Controllers\Employee\EmployeeOtherInformationController::class);
 
-    Route::resource('/faculty/trainings-interventions', App\Http\Controllers\Faculty\TrainingInterventionController::class);
-    Route::post('/faculty/trainings-interventions-update/{id}', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'update']);
+    // Route::resource('/employee/trainings-interventions', App\Http\Controllers\Employee\TrainingInterventionController::class);
+    // Route::post('/employee/trainings-interventions-update/{id}', [App\Http\Controllers\Employee\TrainingInterventionController::class, 'update']);
 
-    Route::get('/faculty/get-learning-trainings', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'getLearningTrainings']);
+    // Route::get('/faculty/get-learning-trainings', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'getLearningTrainings']);
 
-    //certificates
-    Route::post('/faculty/upload-certificates/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'upload']);
-    Route::delete('/faculty/remove-certificate/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'delete']);
+    // //certificates
+    // Route::post('/faculty/upload-certificates/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'upload']);
+    // Route::delete('/faculty/remove-certificate/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'delete']);
 
 });
 
 
+//Training dev officer moidule
+Route::middleware(['auth', 'training_officer'])->group(function () {
+    Route::resource('/training-officer/dashboard', App\Http\Controllers\TrainingOfficer\TrainingSeminarDashboard::class);
+    
+    Route::resource('/training-officer/training-seminars', App\Http\Controllers\TrainingOfficer\TrainingSeminarController::class);
+    Route::get('/training-officer/get-training-seminars', [App\Http\Controllers\TrainingOfficer\TrainingSeminarController::class, 'getData']);
+
+    
+});
 
 Route::middleware(['auth', 'point_person'])->group(function () {
     Route::resource('/point-person/dashboard', App\Http\Controllers\PointPerson\PointPersonDashboarcController::class);

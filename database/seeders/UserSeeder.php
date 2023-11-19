@@ -101,10 +101,9 @@ class UserSeeder extends Seeder
                 'per_city' => 'TANGUB CITY',
                 'per_barangay' => 'CANIANGAN',
                 'per_street' => 'P-6',
-
                 'email' => 'eman@dev.com',
                 'contact_no' => '09683014598',
-                'role' => 'training_dev_officer',
+                'role' => 'training_officer',
                 'password' => Hash::make('a')
             ],
 
