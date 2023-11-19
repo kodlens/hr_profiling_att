@@ -9,7 +9,6 @@ use App\Models\TrainingSeminar;
 class EmployeeTrainingSeminarController extends Controller
 {
     //
-
     public function index(){
         return view('employee.employee-training-seminar-index');
     }
@@ -23,6 +22,5 @@ class EmployeeTrainingSeminarController extends Controller
 
         return $data;
     }
-
 
 }

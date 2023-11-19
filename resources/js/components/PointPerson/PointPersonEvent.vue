@@ -42,7 +42,7 @@
 
                         <div class="buttons mt-3 is-right">
                             <b-button tag="a"
-                                href="/admin-events/create"
+                                href="/point-person/events/create"
                                 outlined
                                 icon-left="plus"
                                 class="is-primary is-small">NEW</b-button>
@@ -285,7 +285,7 @@ export default {
         },
         //execute delete after confirming
         deleteSubmit(delete_id) {
-            axios.delete('/events/' + delete_id).then(res => {
+            axios.delete('/point-person/events/' + delete_id).then(res => {
                 this.loadAsyncData();
             }).catch(err => {
                 if (err.response.status === 422) {
@@ -317,7 +317,7 @@ export default {
         submit: function(){
             if(this.global_id > 0){
                 //update
-                axios.put('/events/'+this.global_id, this.fields).then(res=>{
+                axios.put('/point-person/events/'+this.global_id, this.fields).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: 'UPDATED!',
@@ -338,7 +338,7 @@ export default {
                 })
             }else{
                 //INSERT HERE
-                axios.post('/events', this.fields).then(res=>{
+                axios.post('/point-person/events', this.fields).then(res=>{
                     if(res.data.status === 'saved'){
                         this.$buefy.dialog.alert({
                             title: 'SAVED!',

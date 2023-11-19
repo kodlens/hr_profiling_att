@@ -18,7 +18,7 @@ class PointPersonMiddleware
     public function handle(Request $request, Closure $next)
     {
         $role = Auth::user()->role;
-        if(strtolower($role) === 'point_person'){
+        if(strtolower($role) === 'point_person' || 'administrator'){
             $response = $next($request);
             $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
             $response->headers->set('Pragma', 'no-cache');

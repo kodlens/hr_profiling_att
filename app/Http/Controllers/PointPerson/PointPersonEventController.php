@@ -65,4 +65,43 @@ class PointPersonEventController extends Controller
         ], 200);
     }
 
+
+    public function create(){
+        return view('point_person.point-person-event-create-edit')
+            ->with('id', 0)
+            ->with('data', []);
+    }
+
+
+    public function store(Request $req){
+
+        $event_date = date('Y-m-d H:i:s', strtotime($req->event_datetime));
+
+        $req->validate([
+            'event_title' => ['required'],
+            'event_desc' => ['required'],
+            'event_datetime' => ['required'],
+        ]);
+
+        $n = [];
+        if($req->hasFile('event_img')) {
+            $pathFile = $req->event_img->store('public/events'); //get path of the file
+            $n = explode('/', $pathFile); //split into array using /
+        }
+
+        Event::create([
+            'event_title' => $req->event_title,
+            'event_desc' => $req->event_desc,
+            'event_datetime' => $event_date,
+            'img_path' => $req->hasFile('event_img') ? $n[2] : ''
+        ]);
+
+        return response()->json([
+            'status' => 'saved'
+        ], 200);
+
+    }
+
+    
+
 }
