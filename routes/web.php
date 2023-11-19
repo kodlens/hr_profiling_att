@@ -75,21 +75,21 @@ Route::get('/load-barangays', [App\Http\Controllers\AddressController::class, 'l
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::resource('/admin-home', App\Http\Controllers\Administrator\AdminHomeController::class);
+    Route::resource('/admin/dashboard', App\Http\Controllers\Administrator\AdminDashboardController::class);
 
 
-    Route::resource('/admin-events', App\Http\Controllers\Administrator\AdminEventController::class);
-    Route::post('/admin-events-update/{id}', [App\Http\Controllers\Administrator\AdminEventController::class, 'updateEvent']);
-    Route::get('/get-admin-events', [App\Http\Controllers\Administrator\AdminEventController::class, 'getData']);
+    Route::resource('/admin/events', App\Http\Controllers\Administrator\AdminEventController::class);
+    Route::post('/admin/events-update/{id}', [App\Http\Controllers\Administrator\AdminEventController::class, 'updateEvent']);
+    Route::get('/admin/get-events', [App\Http\Controllers\Administrator\AdminEventController::class, 'getData']);
 
 
-    Route::resource('/training-developments', App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class);
-    Route::post('/training-developments/{id}', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'updateTrainingDev']);
-    Route::get('/get-training-developments', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'getData']);
+    Route::resource('/admin/training-developments', App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class);
+    Route::post('/admin/training-developments/{id}', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'updateTrainingDev']);
+    Route::get('/admin/get-training-developments', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'getData']);
 
 
-    Route::resource('/users', App\Http\Controllers\Administrator\UserController::class);
-    Route::get('/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
+    Route::resource('/admin/users', App\Http\Controllers\Administrator\UserController::class);
+    Route::get('/admin/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
 
 
 
@@ -130,7 +130,6 @@ Route::get('/pending-page', function(){
 
 
 Route::middleware(['auth', 'employee'])->group(function () {
-
     Route::resource('/employee/dashboard', App\Http\Controllers\Faculty\EmployeeDashboardController::class);
     Route::get('/employee/get-posted-events', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'getPostedEvents']);
     Route::post('/employee/dashboard-upload-attachment', [App\Http\Controllers\Faculty\EmployeeDashboardController::class, 'uploadAttachment']);
@@ -138,8 +137,6 @@ Route::middleware(['auth', 'employee'])->group(function () {
 
     Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Faculty\EmployeePDSController::class);
     
-
-
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
 
 
@@ -169,7 +166,9 @@ Route::middleware(['auth', 'point_person'])->group(function () {
     Route::resource('/point-person/events', App\Http\Controllers\PointPerson\PointPersonEventController::class);
     Route::get('/point-person/get-events', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'getData']);
     Route::get('/point-person/events-view/{id}', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventView']);
-    
+    Route::post('/point-person/events-attachment-set-status', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventAttachmentSetStatus']);
+    //load list of attendees base on event id
+    Route::get('/point-person/load-attendees-events-view', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'loadAttendees']);
     
 
 });

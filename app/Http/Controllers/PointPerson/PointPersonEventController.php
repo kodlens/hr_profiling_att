@@ -42,5 +42,27 @@ class PointPersonEventController extends Controller
         ->where('event_id', $id)
         ->paginate();
     }
+    public function loadAttendees(Request $req){
+        $sort = explode('.', $req->sort_by);
+
+        $event = EventEmployeeAttendance::with(['user', 'event'])
+            ->where('event_id', $req->eventid)
+            //->orderBy($sort[0], $sort[1])
+            //->paginate($req->perpage);
+            ->get();
+        return $event;
+    }
+
+    public function eventAttachmentSetStatus(Request $req){
+
+        $data = EventEmployeeAttendance::find($req->event_employee_attachment_id);
+        $data->attendance_status = $req->status === 1 ? 1 : 2;
+        $data->save();
+
+        return response()->json([
+            'status' => 'saved',
+            'att_status' => $req->status === 1 ? 1 : 2
+        ], 200);
+    }
 
 }

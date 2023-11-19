@@ -220,7 +220,7 @@ export default {
             ].join('&')
 
             this.loading = true
-            axios.get(`/get-admin-events?${params}`)
+            axios.get(`/admin/get-training-developments?${params}`)
                 .then(({ data }) => {
                     this.data = [];
                     let currentTotal = data.total
@@ -281,7 +281,7 @@ export default {
         },
         //execute delete after confirming
         deleteSubmit(delete_id) {
-            axios.delete('/events/' + delete_id).then(res => {
+            axios.delete('/admin/training-developments/' + delete_id).then(res => {
                 this.loadAsyncData();
             }).catch(err => {
                 if (err.response.status === 422) {
@@ -313,7 +313,7 @@ export default {
         submit: function(){
             if(this.global_id > 0){
                 //update
-                axios.put('/events/'+this.global_id, this.fields).then(res=>{
+                axios.put('/admin/training-developments/'+this.global_id, this.fields).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: 'UPDATED!',
@@ -334,7 +334,7 @@ export default {
                 })
             }else{
                 //INSERT HERE
-                axios.post('/events', this.fields).then(res=>{
+                axios.post('/admin/training-developments', this.fields).then(res=>{
                     if(res.data.status === 'saved'){
                         this.$buefy.dialog.alert({
                             title: 'SAVED!',

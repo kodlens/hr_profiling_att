@@ -27,7 +27,7 @@ class EventEmployeeAttendanceSeeder extends Seeder
                 'event_id' => 1,
                 'user_id' => 5,
                 'img_description' => 'sample description of the image',
-                'img_path' => 'Um0RYniXZfYl0Phcp2x5R5hQDyjZGZvaviPKjGth.png',
+                'img_path' => 'JbR31WvvDJYeTL8aUtbL2aEwmfMF0GNO7q4SurNH.jpg',
                 'attendance_status' => 0
             ],
             [
@@ -48,7 +48,7 @@ class EventEmployeeAttendanceSeeder extends Seeder
                 'event_id' => 1,
                 'user_id' => 8,
                 'img_description' => 'sample description of the image',
-                'img_path' => 'Um0RYniXZfYl0Phcp2x5R5hQDyjZGZvaviPKjGth.png',
+                'img_path' => 'JbR31WvvDJYeTL8aUtbL2aEwmfMF0GNO7q4SurNH.jpg',
                 'attendance_status' => 0
             ],
             [

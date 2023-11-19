@@ -161,7 +161,7 @@ export default {
 
             if(this.propId > 0){
                 //update
-                axios.post('/admin-events-update/' + this.propId, formData).then(res=>{
+                axios.post('/admin/events-update/' + this.propId, formData).then(res=>{
 
                     if (res.data.status === 'updated'){
 
@@ -169,7 +169,7 @@ export default {
                             title: 'Saved.',
                             message: 'Successfully updated.',
                             onConfirm: ()=>{
-                                window.location = '/admin-events';
+                                window.location = '/admin/events';
                             }
                         })
 
@@ -181,7 +181,7 @@ export default {
                 })
             }else{
                 //insert
-                axios.post('/admin-events', formData).then(res=>{
+                axios.post('/admin/events', formData).then(res=>{
 
                     if(res.data.status === 'saved'){
 
@@ -189,7 +189,7 @@ export default {
                             title: 'Saved.',
                             message: 'Successfully saved.',
                             onConfirm: ()=>{
-                                window.location = '/admin-events';
+                                window.location = '/admin/events';
                             }
                         })
                     }

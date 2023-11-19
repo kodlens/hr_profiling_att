@@ -37,7 +37,7 @@
 
             <template #end>
 
-                <b-navbar-item href="/admin-home" class="{{ request()->is('admin-home*') ? 'active' : '' }}">
+                <b-navbar-item href="/admin/dashboard" class="{{ request()->is('admin/dashboard*') ? 'active' : '' }}">
                     <b-icon icon="home"></b-icon>
                     &nbsp;
                     HOME
@@ -66,20 +66,20 @@
 
                 </b-dropdown>
 
-                <b-navbar-item href="/admin-events" class="{{ request()->is('admin-events*') ? 'active' : '' }}">
+                <b-navbar-item href="/admin/events" class="{{ request()->is('admin/events*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
                     &nbsp;
                     EVENTS
                 </b-navbar-item>
 
-                <b-navbar-item href="/training-developments" class="{{ request()->is('training-developments*') ? 'active' : '' }}">
+                <b-navbar-item href="/admin/training-developments" class="{{ request()->is('admin/training-developments*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
                     &nbsp;
                     TRAINING DEVELOPMENTS
                 </b-navbar-item>
 
 
-                <b-navbar-item href="/users" class="{{ request()->is('users*') ? 'active' : '' }}">
+                <b-navbar-item href="/admin/users" class="{{ request()->is('users*') ? 'active' : '' }}">
                     <b-icon icon="account"></b-icon>
                     &nbsp;
                     USER

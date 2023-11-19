@@ -37,13 +37,13 @@
 
             <template #end>
 
-                <b-navbar-item href="/point-person/dashboard" class="{{ request()->is('point-person-home*') ? 'active' : '' }}">
+                <b-navbar-item href="/point-person/dashboard" class="{{ request()->is('point-person/dashboard*') ? 'active' : '' }}">
                     <b-icon icon="home"></b-icon>
                     &nbsp;
                     HOME
                 </b-navbar-item>
 
-                <b-dropdown
+                <!-- <b-dropdown
                     append-to-body
                     aria-role="menu"
                     scrollable
@@ -65,7 +65,7 @@
                   </b-dropdown-item>
                   
 
-                </b-dropdown>
+                </b-dropdown> -->
 
                 <b-navbar-item href="/point-person/events" class="{{ request()->is('point-person/events*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>

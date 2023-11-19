@@ -42,7 +42,7 @@
 
                         <div class="buttons mt-3 is-right">
                             <b-button tag="a"
-                                href="/admin-events/create"
+                                href="/admin/events/create"
                                 outlined
                                 icon-left="plus"
                                 class="is-primary is-small">NEW</b-button>
@@ -87,7 +87,7 @@
                                     <b-tooltip label="Edit" type="is-warning">
                                         <b-button class="button is-small mr-1"
                                             tag="a"
-                                            icon-right="pencil" :href="`/admin-events/${props.row.event_id}/edit`" ></b-button>
+                                            icon-right="pencil" :href="`/admin/events/${props.row.event_id}/edit`" ></b-button>
                                     </b-tooltip>
                                     <b-tooltip label="Delete" type="is-danger">
                                         <b-button class="button is-small mr-1"
@@ -218,7 +218,7 @@ export default {
             ].join('&')
 
             this.loading = true
-            axios.get(`/get-admin-events?${params}`)
+            axios.get(`/admin/get-events?${params}`)
                 .then(({ data }) => {
                     this.data = [];
                     let currentTotal = data.total
@@ -311,7 +311,7 @@ export default {
         submit: function(){
             if(this.global_id > 0){
                 //update
-                axios.put('/events/'+this.global_id, this.fields).then(res=>{
+                axios.put('/admin/events/'+this.global_id, this.fields).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: 'UPDATED!',
@@ -332,7 +332,7 @@ export default {
                 })
             }else{
                 //INSERT HERE
-                axios.post('/events', this.fields).then(res=>{
+                axios.post('/admin/events', this.fields).then(res=>{
                     if(res.data.status === 'saved'){
                         this.$buefy.dialog.alert({
                             title: 'SAVED!',

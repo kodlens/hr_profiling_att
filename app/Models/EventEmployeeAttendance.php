@@ -26,4 +26,8 @@ class EventEmployeeAttendance extends Model
         return $this->hasOne(User::class, 'user_id', 'user_id');
     }
 
+    public function event(){
+        return $this->belongsTo(Event::class, 'event_id', 'event_id');
+    }
+
 }

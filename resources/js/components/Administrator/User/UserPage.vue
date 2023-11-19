@@ -88,9 +88,9 @@
                                     <b-tooltip label="Edit" type="is-warning">
                                         <b-button class="button is-small mr-1" tag="a" icon-right="pencil" @click="getData(props.row.user_id)"></b-button>
                                     </b-tooltip>
-                                    <b-tooltip label="Delete" type="is-danger">
+                                    <!-- <b-tooltip label="Delete" type="is-danger">
                                         <b-button class="button is-small mr-1" icon-right="delete" @click="confirmDelete(props.row.user_id)"></b-button>
-                                    </b-tooltip>
+                                    </b-tooltip> -->
                                     <b-tooltip label="Reset Password" type="is-info">
                                         <b-button class="button is-small mr-1" icon-right="lock" @click="openModalResetPassword(props.row.user_id)"></b-button>
                                     </b-tooltip>
@@ -533,7 +533,7 @@ export default{
             ].join('&')
 
             this.loading = true
-            axios.get(`/get-users?${params}`)
+            axios.get(`/admin/get-users?${params}`)
                 .then(({ data }) => {
                     this.data = [];
                     let currentTotal = data.total
@@ -605,7 +605,7 @@ export default{
 
             if(this.global_id > 0){
                 //update
-                axios.put('/users/'+this.global_id, this.fields).then(res=>{
+                axios.put('/admin/users/'+this.global_id, this.fields).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: 'UPDATED!',
@@ -626,7 +626,7 @@ export default{
                 })
             }else{
                 //INSERT HERE
-                axios.post('/users', this.fields).then(res=>{
+                axios.post('/admin/users', this.fields).then(res=>{
                     if(res.data.status === 'saved'){
                         this.$buefy.dialog.alert({
                             title: 'SAVED!',
@@ -663,7 +663,7 @@ export default{
         },
         //execute delete after confirming
         deleteSubmit(delete_id) {
-            axios.delete('/users/' + delete_id).then(res => {
+            axios.delete('/admin/users/' + delete_id).then(res => {
                 this.loadAsyncData();
             }).catch(err => {
                 if (err.response.status === 422) {
