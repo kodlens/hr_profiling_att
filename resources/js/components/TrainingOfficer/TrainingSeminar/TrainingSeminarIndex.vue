@@ -3,48 +3,71 @@
         <div class="section">
             <div class="columns is-centered">
                 <div class="column is-6">
+
+                    <div class="columns">
+                        <div class="column">
+                            <div class="buttons is-right">
+                                <b-button
+                                    tag="a"
+                                    href="/training-officer/training-seminars/create"
+                                    class="is-primary"
+                                    icon-right="post" 
+                                    label="NEW TRAINING/SEMINAR"></b-button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
                     <div class="box box-post" v-for="(seminar, index) in data.data" :key="index">
                         <div class="box-post-heading">
-                            <div class="posted-text mb-4">Posted: {{ seminar.created_at }}</div>
+                            <div class="posted-text mb-4">Posted: {{ new Date(seminar.created_at).toLocaleString() }}</div>
                             <div class="post-action">
 
                             </div>
                         </div>
                         <div class="post-desc">
+                           
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Title: {{ seminar.seminar_title }}</div>
+                                    <span class="has-text-weight-bold attr-name">TITLE: </span>
+                                    <span>{{ seminar.seminar_title }}</span>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <span class="has-text-weight-bold">DESCRIPTION: </span>
+                                    <span>{{ seminar.seminar_desc }}</span>
+                                </div> <!--col--> 
+                            </div> <!--cols-->
+
+                            <div class="columns">
+                                <div class="column">
+                                    <span class="has-text-weight-bold">SEMINAR DATE: </span>
+                                    <span>{{ new Date(seminar.seminar_date).toDateString()  }}</span>
                                 </div>
                                 
                             </div>
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Serminar Date: {{ seminar.date_from  }}</div>
+                                    <span class="has-text-weight-bold">SPONSORED BY: </span>
+                                    <span>{{ seminar.sponsored_by  }}</span>
                                 </div>
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Learning Development: {{ seminar.ld_type }}</div>
-                                </div>
-                            </div>
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="has-text-weight-bold">Sponsored By: {{ seminar.sponsored_by  }}</div>
-                                </div>
-                                <div class="column">
-                                    <div class="has-text-weight-bold">No of Hours: {{ seminar.no_hours }}</div>
+                                    <span class="has-text-weight-bold">NO OF HOURS: </span>
+                                    <span>{{ seminar.no_hours }}</span>
                                 </div>
                             </div>
 
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Speaker: {{ seminar.speaker  }}</div>
+                                    <span class="has-text-weight-bold">SPEAKER: </span>
+                                    <span>{{ seminar.speaker  }}</span>
                                 </div>
-                              
                             </div>
-                          
                         </div>
                         
-                        <div class="post-img-container" v-if="seminar.attach_path">
-                            <img :src="`/storage/seminars/${seminar.attach_path}`" class="post-img" />
+                        <div class="post-img-container mt-3" v-if="seminar.attach_path">
+                            <img :src="`/storage/training_seminars/${seminar.attach_path}`" class="post-img" />
                         </div>
 
                     </div>

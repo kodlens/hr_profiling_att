@@ -9,54 +9,41 @@
                     <div>
                         <div class="columns">
                             <div class="column">
-                                <b-field label="Title" label-position="on-border">
-                                    <b-input type="input" placeholder="Title" v-model="fields.title">
+                                <b-field label="Title" label-position="on-border"
+                                    :type="this.errors.seminar_title ? 'is-danger':''"
+                                    :message="this.errors.seminar_title ? this.errors.seminar_title[0] : ''">
+                                    <b-input type="input" 
+                                        placeholder="Title" 
+                                        v-model="fields.seminar_title">
                                     </b-input>
                                 </b-field>
                             </div>
                         </div>
+
                         <div class="columns">
                             <div class="column">
-                                <b-field label="Skills" label-position="on-border">
-                                    <b-input type="input" placeholder="Skills" v-model="fields.skills">
+                                <b-field label="Description" label-position="on-border"
+                                    :type="this.errors.seminar_desc ? 'is-danger':''"
+                                    :message="this.errors.seminar_desc ? this.errors.seminar_desc[0] : ''">
+                                    <b-input type="textarea" v-model="fields.seminar_desc" placeholder="Description">
                                     </b-input>
                                 </b-field>
                             </div>
+                        </div>
+
+                        <div class="columns">
                             <div class="column">
-                                <b-field label="Seminar Date" label-position="on-border">
+                                <b-field label="Seminar Date" label-position="on-border"
+                                    :type="this.errors.seminar_date ? 'is-danger':''"
+                                    :message="this.errors.seminar_date ? this.errors.seminar_date[0] : ''">
                                     <b-datepicker placeholder="Seminar Date" :min-date="minDate" v-model="fields.seminar_date">
                                     </b-datepicker>
                                 </b-field>
                             </div>
-                        </div>
-                        <div class="columns">
                             <div class="column">
-                                <b-field label="Learning Development" label-position="on-border"
-                                    expanded>
-                                    <b-select v-model="fields.ld_type" expanded>
-                                        <option v-for="(item, index) in ld_types" :key="index"
-                                            :value="item.ld_type">{{ item.ld_type }}</option>
-                                    </b-select>
-                                </b-field>
-                            </div>
-                            <div class="column">
-                                <b-field label="Conducted/Sponsored By" label-position="on-border">
-                                    <b-input type="input" placeholder="Conducted/Sponsored By"
-                                        v-model="fields.conducted_by">
-                                    </b-input>
-                                </b-field>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <b-field label="CPD Units" label-position="on-border">
-                                    <b-input type="input" placeholder="CPD Units"
-                                        v-model="fields.cpd_units">
-                                    </b-input>
-                                </b-field>
-                            </div>
-                            <div class="column">
-                                <b-field label="No. of hours" label-position="on-border">
+                                <b-field label="No. of hours" label-position="on-border"
+                                    :type="this.errors.no_hours ? 'is-danger':''"
+                                    :message="this.errors.no_hours ? this.errors.no_hours[0] : ''">
                                     <b-numberinput type="number" placeholder="No. of hours"
                                         :controls="false"
                                         v-model="fields.no_hours">
@@ -64,29 +51,37 @@
                                 </b-field>
                             </div>
                         </div>
-
+                       
                         <div class="columns">
                             <div class="column">
-                                <b-field label="Specialization" label-position="on-border">
-                                    <b-select v-model="fields.specialization" placeholder="Specialization">
-                                        <option v-for="(item, index) in specializations" :key="index"
-                                            :value="item.specialization">{{ item.specialization }}</option>
-                                    </b-select>
-                                </b-field>
-                            </div>
-                        </div>
-
-                        <div class="columns">
-                            <div class="column">
-                                <b-field label="Description" label-position="on-border">
-                                    <b-input type="textarea" v-model="fields.description" placeholder="Description">
+                                <b-field label="Conducted/Sponsored By" label-position="on-border"
+                                    :type="this.errors.sponsored_by ? 'is-danger':''"
+                                    :message="this.errors.sponsored_by ? this.errors.sponsored_by[0] : ''">
+                                    <b-input type="input" placeholder="Conducted/Sponsored By"
+                                        v-model="fields.sponsored_by">
                                     </b-input>
                                 </b-field>
                             </div>
                         </div>
 
+                        <div class="columns">
+                            <div class="column">
+                                <b-field label="Speaker" label-position="on-border">
+                                    <b-input type="input"
+                                        placeholder="Speaker" v-model="fields.speaker">
+                                    </b-input>
+                                </b-field>
+                            </div> <!--col--> 
+                        </div> <!--cols-->
 
-                        <b-field class="file is-primary" :class="{'has-name': !!file}">
+
+                     
+
+                      
+
+                        <b-field class="file is-primary" :class="{'has-name': !!file}"
+                            :type="this.errors.file ? 'is-danger':''"
+                            :message="this.errors.file ? this.errors.file[0] : ''">
                             <b-upload v-model="file" class="file-label">
                                 <span class="file-cta">
                                     <b-icon class="file-icon" icon="upload"></b-icon>
@@ -122,6 +117,7 @@ export default{
             desc: '',
 
             fields: {},
+            errors: {},
 
             seminar_id: 0,
 
@@ -160,25 +156,19 @@ export default{
 
         submit(){
             let ndate = new Date(this.fields.seminar_date);
-
             let newDate = ndate.getFullYear() + '-' + (ndate.getMonth() + 1) + '-' + ndate.getDate();
 
             let formData = new FormData();
-
-
-            formData.append('title', this.fields.title);
+            formData.append('seminar_title', this.fields.seminar_title ? this.fields.seminar_title : '');
             formData.append('seminar_date', newDate);
-            formData.append('ld_type', this.fields.ld_type);
-            formData.append('skills', this.fields.skills);
-            formData.append('conducted_by', this.fields.conducted_by);
-            formData.append('cpd_units', this.fields.cpd_units);
-            formData.append('no_hours', this.fields.no_hours);
-            formData.append('specialization', this.fields.specialization);
+            formData.append('seminar_desc', this.fields.seminar_desc ? this.fields.seminar_desc : '');
+            formData.append('sponsored_by', this.fields.sponsored_by ? this.fields.sponsored_by : '');
+            formData.append('no_hours', this.fields.no_hours ? this.fields.no_hours: '');
+            formData.append('speaker', this.fields.speaker ? this.fields.speaker: '');
             formData.append('file', this.file);
-            formData.append('description', this.fields.description); //optional
 
             if(this.seminar_id > 0){
-                axios.post('/hrld/seminar-posts-update/' + this.seminar_id, formData).then(res=>{
+                axios.post('/training-officer/training-seminars-update/' + this.seminar_id, formData).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: "Updated!",
@@ -192,10 +182,13 @@ export default{
                         });
                     }
                 }).catch(err=>{
+                    if(err.response.status == 422){
 
+                        this.errors = err.response.data.errors
+                    }
                 })
             }else{
-                axios.post('/hrld/seminar-posts-store', formData).then(res=>{
+                axios.post('/training-officer/training-seminars', formData).then(res=>{
                     if(res.data.status === 'saved'){
                         this.$buefy.dialog.alert({
                             title: "Posted!",
@@ -203,19 +196,20 @@ export default{
                             type: 'is-success',
                             onConfirm: ()=>  {
                                 //this.loadSeminars()
+                                window.location = '/training-officer/training-seminars'
                                 this.clearFields()
                             }
                         });
                     }
                 }).catch(err=>{
-
+                    if(err.response.status == 422)
+                        this.errors = err.response.data.errors
                 })
             }
 
         },
 
         clearFields(){
-            this.seminar_id = 0
             this.fields = {}
             this.file = null
         },
@@ -244,8 +238,8 @@ export default{
 
     mounted(){
         //this.loadSeminars()
-        this.loadLearningDevelopmentTypes()
-        this.loadSpecializations()
+        //this.loadLearningDevelopmentTypes()
+        //this.loadSpecializations()
     }
 }
 </script>

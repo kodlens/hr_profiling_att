@@ -42,7 +42,7 @@
                     HOME
                 </b-navbar-item>
 
-                <b-dropdown
+                {{-- <b-dropdown
                     append-to-body
                     aria-role="menu"
                     scrollable
@@ -63,7 +63,7 @@
                         <b-input placeholder="search" expanded />
                   </b-dropdown-item>
 
-                </b-dropdown>
+                </b-dropdown> --}}
 
                 <b-navbar-item href="/admin/events" class="{{ request()->is('admin/events*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
