@@ -75,10 +75,6 @@
                         </div> <!--cols-->
 
 
-                     
-
-                      
-
                         <b-field class="file is-primary" :class="{'has-name': !!file}"
                             :type="this.errors.file ? 'is-danger':''"
                             :message="this.errors.file ? this.errors.file[0] : ''">
@@ -116,7 +112,9 @@ export default{
             file: null,
             desc: '',
 
-            fields: {},
+            fields: {
+                seminar_date: new Date()
+            },
             errors: {},
 
             seminar_id: 0,
@@ -125,7 +123,9 @@ export default{
             specializations: [],
             ld_types: [],
 
-            minDate: new Date()
+            minDate: new Date(),
+
+          
         }
     },
 
@@ -155,8 +155,9 @@ export default{
 
 
         submit(){
+
             let ndate = new Date(this.fields.seminar_date);
-            let newDate = ndate.getFullYear() + '-' + (ndate.getMonth() + 1) + '-' + ndate.getDate();
+            let newDate = this.$formatDate(ndate);
 
             let formData = new FormData();
             formData.append('seminar_title', this.fields.seminar_title ? this.fields.seminar_title : '');
@@ -168,7 +169,7 @@ export default{
             formData.append('file', this.file);
 
             if(this.seminar_id > 0){
-                axios.post('/training-officer/training-seminars-update/' + this.seminar_id, formData).then(res=>{
+                axios.post('/admin/training-developments-update/' + this.seminar_id, formData).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: "Updated!",
@@ -188,7 +189,8 @@ export default{
                     }
                 })
             }else{
-                axios.post('/training-officer/training-seminars', formData).then(res=>{
+
+                axios.post('/admin/training-developments', formData).then(res=>{
                     if(res.data.status === 'saved'){
                         this.$buefy.dialog.alert({
                             title: "Posted!",
@@ -196,7 +198,7 @@ export default{
                             type: 'is-success',
                             onConfirm: ()=>  {
                                 //this.loadSeminars()
-                                window.location = '/training-officer/training-seminars'
+                                window.location = '/admin/training-developments'
                                 this.clearFields()
                             }
                         });
@@ -206,15 +208,12 @@ export default{
                         this.errors = err.response.data.errors
                 })
             }
-
         },
 
         clearFields(){
             this.fields = {}
             this.file = null
         },
-
-
 
         // updatePost(seminarPostId){
         //     this.seminar_id = seminarPostId

@@ -83,9 +83,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/get-events', [App\Http\Controllers\Administrator\AdminEventController::class, 'getData']);
 
 
-    Route::resource('/admin/training-developments', App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class);
-    Route::post('/admin/training-developments/{id}', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'updateTrainingDev']);
-    Route::get('/admin/get-training-developments', [App\Http\Controllers\Administrator\AdminTrainingDevelopmentController::class, 'getData']);
+    Route::resource('/admin/training-seminars', App\Http\Controllers\Administrator\AdminTrainingSeminarController::class);
+    Route::post('/admin/training-seminars-update/{id}', [App\Http\Controllers\Administrator\AdminTrainingSeminarController::class, 'updateTrainingDSeminar']);
+    Route::get('/admin/get-training-seminars', [App\Http\Controllers\Administrator\AdminTrainingSeminarController::class, 'getData']);
 
 
     Route::resource('/admin/users', App\Http\Controllers\Administrator\UserController::class);
