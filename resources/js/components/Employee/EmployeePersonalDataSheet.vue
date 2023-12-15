@@ -1519,7 +1519,7 @@ export default {
                         title: "UPDATED!",
                         message: 'Profile updated successfully',
                         type: 'is-success',
-                        onConfirm: ()=>  window.location = '/employee-personal-data-sheet'
+                        onConfirm: ()=>  window.location = '/employee/personal-data-sheet'
                     });
                 }
             }).catch(err=>{
