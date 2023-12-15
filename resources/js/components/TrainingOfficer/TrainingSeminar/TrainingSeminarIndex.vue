@@ -30,7 +30,7 @@
                                 <div class="level-item">
                                     <b-field label="Search">
                                         <b-input type="text"
-                                                 v-model="search.seminar" placeholder="Search Event"
+                                                 v-model="search.seminar" placeholder="Search Seminar"
                                                  @keyup.native.enter="loadAsyncData"/>
                                         <p class="control">
                                              <b-tooltip label="Search" type="is-success">
@@ -44,7 +44,7 @@
 
                         <div class="buttons mt-3 is-right">
                             <b-button tag="a"
-                                href="/admin/training-seminars/create" 
+                                href="/admin/training-seminars/create"
                                 outlined
                                 icon-left="plus"
                                 class="is-primary is-small">NEW</b-button>
@@ -72,34 +72,42 @@
                             </b-table-column>
 
                             <b-table-column field="seminar_date" label="Date & Time" v-slot="props">
-                                {{ new Date(props.row.seminar_date).toLocaleString() }}
+                                {{ new Date(props.row.date_from).toLocaleString() }}
+                                -
+                                {{ new Date(props.row.date_to).toLocaleString() }}
+
                             </b-table-column>
 
                             <b-table-column field="seminar_title" label="Title" v-slot="props">
                                 {{ props.row.seminar_title }}
                             </b-table-column>
 
-                            <b-table-column field="sponsored_by" label="Desccription" v-slot="props">
+                            <b-table-column field="sponsored_by" label="Sponsor" v-slot="props">
                                 {{ props.row.sponsored_by }}
                             </b-table-column>
+
+                            <b-table-column field="speaker" label="Speaker" v-slot="props">
+                                {{ props.row.speaker }}
+                            </b-table-column>
+
 
 
                             <b-table-column label="Action" v-slot="props">
                                 <div class="is-flex">
                                     <b-tooltip label="Edit" type="is-warning">
-                                        <b-button class="button is-small is-warning mr-1" 
-                                            tag="a" 
+                                        <b-button class="button is-small is-warning mr-1"
+                                            tag="a"
                                             icon-right="pencil" :href="`/admin/training-seminars/${props.row.training_seminar_id}/edit`" ></b-button>
                                     </b-tooltip>
                                     <b-tooltip label="Delete" type="is-danger">
-                                        <b-button class="button is-small is-danger mr-1" 
-                                            icon-right="delete" 
+                                        <b-button class="button is-small is-danger mr-1"
+                                            icon-right="delete"
                                             @click="confirmDelete(props.row.training_seminar_id)"></b-button>
                                     </b-tooltip>
                                 </div>
                             </b-table-column>
 
-                            
+
                             <template #detail="props">
                                 <img :src="`/storage/trainings/${props.row.attach_path}`"/>
                             </template>
@@ -122,6 +130,7 @@
 <script>
 export default {
 
+
     data(){
         return{
             data: [],
@@ -136,7 +145,7 @@ export default {
             search: {
                 seminar: '',
             },
-          
+
             btnClass: {
                 'is-success': true,
                 'button': true,
@@ -229,18 +238,7 @@ export default {
             });
         },
 
-        //update code here
-        getData: function(data_id){
-            this.clearFields();
-            this.global_id = data_id;
-            this.isModalCreate = true;
-
-
-            // //nested axios for getting the address 1 by 1 or request by request
-            // axios.get('/offices/'+data_id).then(res=>{
-            //     this.fields = res.data;
-            // });
-        },
+    
 
         clearFields(){
             this.fields.event_title = ''
@@ -250,9 +248,9 @@ export default {
 
 
         submit: function(){
-            if(this.global_id > 0){
+            if(this.propId > 0){
                 //update
-                axios.put('/admin/training-developments/'+this.global_id, this.fields).then(res=>{
+                axios.put('/admin/training-seminars/'+this.propId, this.fields).then(res=>{
                     if(res.data.status === 'updated'){
                         this.$buefy.dialog.alert({
                             title: 'UPDATED!',
@@ -284,7 +282,6 @@ export default {
                                 this.isModalCreate = false;
                                 this.loadAsyncData();
                                 this.clearFields();
-                                this.global_id = 0;
                             }
                         })
                     }
@@ -299,8 +296,8 @@ export default {
     },
 
     mounted() {
-
         this.loadAsyncData();
+      
     }
 
 }

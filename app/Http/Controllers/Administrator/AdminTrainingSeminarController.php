@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use App\Models\TrainingSeminar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminTrainingSeminarController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminTrainingSeminarController extends Controller
 
 
     public function show($id){
-
+        return TrainingSeminar::find($id);
     }
 
 
@@ -37,35 +38,36 @@ class AdminTrainingSeminarController extends Controller
     }
 
     public function edit($id){
-        $event = TrainingSeminar::find($id);
+        $data = TrainingSeminar::find($id);
         return view('administrator.training_seminar.training-seminar-create-edit')
-            ->with('id', $event->event_id)
-            ->with('data', $event);
+            ->with('id', $id)
+            ->with('data', $data);
     }
 
 
     public function store(Request $req){
-       
+
         $req->validate([
             'seminar_title' => ['required'],
-            'seminar_date' => ['required'],
+            'date_from' => ['required'],
+            'date_to' => ['required'],
             'seminar_desc' => ['required'],
             'sponsored_by' => ['required'],
         ]);
-    
+
         $n = [];
         if($req->hasFile('file')) {
             $pathFile = $req->file->store('public/trainings'); //get path of the file
             $n = explode('/', $pathFile); //split into array using /
         }
-
         TrainingSeminar::create([
-            'seminar_title' => $req->seminar_title,
-            'seminar_date' => $req->seminar_date,
+            'seminar_title' => strtoupper($req->seminar_title),
+            'date_from' => $req->date_from,
+            'date_to' => $req->date_to,
             'seminar_desc' => $req->seminar_desc,
             'sponsored_by' => $req->sponsored_by,
             'no_hours' => $req->no_hours,
-            'speaker' => $req->speaker,
+            'speaker' => strtoupper($req->speaker),
             'attach_path' => $req->hasFile('file') ? $n[2] : ''
         ]);
 
@@ -76,8 +78,45 @@ class AdminTrainingSeminarController extends Controller
 
     }
 
-    public function updateTrainingDev(Request $req){
+    public function updateTrainingDSeminar(Request $req, $id){
 
+
+        $req->validate([
+            'seminar_title' => ['required'],
+            'date_from' => ['required'],
+            'date_to' => ['required'],
+            'seminar_desc' => ['required'],
+            'sponsored_by' => ['required'],
+        ]);
+
+        $data = TrainingSeminar::find($id);
+        $n = [];
+        if($req->hasFile('file')) {
+
+            $pathFile = $req->file->store('public/trainings'); //get path of the file
+            $n = explode('/', $pathFile); //split into array using /
+
+            //if an image has already in database, it will delete from events folder to avoid redundancy
+            if(Storage::exists('public/events/' .$data->attach_path)) {
+                Storage::delete('public/events/' . $data->attach_path);
+            }
+        }
+
+        $data->seminar_title = strtoupper($req->seminar_title);
+        $data->date_from = $req->date_from;
+        $data->date_to = $req->date_to;
+        $data->seminar_desc = $req->seminar_desc;
+        $data->sponsored_by = $req->sponsored_by;
+        $data->no_hours = $req->no_hours;
+        $data->speaker = strtoupper($req->speaker);
+        if($req->hasFile('file')) {
+            $data->attach_path = $n[2];
+        }
+        $data->save();
+
+        return response()->json([
+            'status' => 'updated'
+        ], 200);
     }
 
 

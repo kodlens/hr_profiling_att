@@ -94,7 +94,7 @@ Vue.filter('truncate', function (text, stop, clamp) {
 //create function
 Vue.prototype.$formatDateAndTime = function(value) {
     if (!value) return '';
-    
+
     const date = new Date(value);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -102,8 +102,8 @@ Vue.prototype.$formatDateAndTime = function(value) {
 
     const h = String(date.getHours()).padStart(2, '0'); // => 9
     const min = String(date.getMinutes()).padStart(2, '0'); // => 9
-    ; // =>  30
-     
+    // =>  30
+
     return `${year}-${month}-${day} ${h}:${min}:00`;
 };
 
@@ -130,7 +130,6 @@ Vue.prototype.$formatDate = function(value) {
 
     return `${year}-${month}-${day}`;
 };
-
 
 
 

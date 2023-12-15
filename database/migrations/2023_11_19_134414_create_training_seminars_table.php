@@ -20,14 +20,15 @@ class CreateTrainingSeminarsTable extends Migration
             // $table->foreign('user_id')->references('user_id')->on('users')
             //     ->onUpdate('cascade')->onDelete('cascade');
             $table->string('seminar_title')->nullable();
-            $table->string('seminar_date')->nullable();
-            $table->string('no_hours')->nullable();
-            $table->string('seminar_desc')->nullable();
-            $table->string('sponsored_by')->nullable();
-            $table->string('speaker')->nullable();
+            $table->text('seminar_desc')->nullable();
+            $table->dateTime('date_from')->nullable();
+            $table->dateTime('date_to')->nullable();
+            $table->string('no_hours', 15)->nullable();
+            $table->string('sponsored_by', 100)->nullable();
+            $table->string('speaker', 100)->nullable();
             $table->string('attach_path')->nullable();
             $table->timestamps();
-            
+
         });
     }
 

@@ -16,7 +16,8 @@ class TrainingSeminar extends Model
     protected $fillable = [
         'seminar_title',
         'seminar_desc',
-        'seminar_date',
+        'date_from',
+        'date_to',
         'no_hours',
         'sponsored_by',
         'speaker',
