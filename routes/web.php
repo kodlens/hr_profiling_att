@@ -90,6 +90,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/admin/users', App\Http\Controllers\Administrator\UserController::class);
     Route::get('/admin/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
+    Route::post('/admin/users-set-archive/{user}/{value}', [App\Http\Controllers\Administrator\UserController::class, 'setArchive']);
 
 
 

@@ -78,7 +78,7 @@
                 </b-navbar-item>
 
 
-                <b-navbar-item href="/admin/users" class="{{ request()->is('users*') ? 'active' : '' }}">
+                <b-navbar-item href="/admin/users" class="{{ request()->is('admin/users*') ? 'active' : '' }}">
                     <b-icon icon="account"></b-icon>
                     &nbsp;
                     USER

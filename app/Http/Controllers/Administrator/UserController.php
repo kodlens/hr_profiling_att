@@ -29,6 +29,7 @@ class UserController extends Controller
         $sort = explode('.', $req->sort_by);
 
         $users = User::where('lname', 'like', $req->lname . '%')
+            ->where('is_archive', $req->archive)
             ->orderBy($sort[0], $sort[1])
             ->paginate($req->perpage);
 
@@ -156,5 +157,16 @@ class UserController extends Controller
         return response()->json([
             'status' => 'deleted'
         ],200);
+    }
+
+
+    public function setArchive($id, $value){
+        $data = User::find($id);
+        $data->is_archive = $value;
+        $data->save();
+
+        return response()->json([
+            'status' => $value
+        ], 200);
     }
 }
