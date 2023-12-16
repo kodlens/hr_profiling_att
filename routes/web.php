@@ -133,10 +133,19 @@ Route::middleware(['auth', 'employee'])->group(function () {
 
     Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);
     Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
+    Route::post('/employee/participate-me', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'participateMe']);
+
+    Route::get('/employee/my-seminars', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'index']);
+    Route::get('/employee/get-my-seminars', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'getMySeminars']);
+    Route::post('/employee/my-seminars-remove-me/{id}', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'removeMe']);
 
 
+
+
+
+
+    //attendance for event
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
-
 
     Route::resource('/employee/educational-backgrounds', App\Http\Controllers\Employee\EmployeeEducationalBackgroundController::class);
     Route::resource('/employee/children', App\Http\Controllers\Employee\EmployeeChildController::class);
@@ -166,8 +175,11 @@ Route::middleware(['auth', 'training_officer'])->group(function () {
     Route::get('/get-training-seminars', [App\Http\Controllers\ControlPanel\TrainingSeminarController::class, 'getData']);
 
 
+    Route::get('/training-seminar-participants/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'index']);
+    Route::get('/get-training-seminar-participants', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'getData']);
+    Route::post('/t  training-seminar-participant-approve/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'approve']);
 
-
+  
 });
 
 Route::middleware(['auth', 'point_person'])->group(function () {

@@ -5,7 +5,7 @@
                 <div class="column is-6">
                     <div class="box box-post" v-for="(seminar, index) in data.data" :key="index">
                         <div class="box-post-heading">
-                            <div class="posted-text mb-4">Posted: {{ seminar.created_at }}</div>
+                            <div class="posted-text mb-4">Posted: {{ new Date(seminar.created_at).toLocaleString() }}</div>
                             <div class="post-action">
 
                             </div>
@@ -13,38 +13,59 @@
                         <div class="post-desc">
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Title: {{ seminar.seminar_title }}</div>
+                                    <div class="seminar-label">TITLE: </div>
+                                    <div>
+                                        {{ seminar.seminar_title }}
+                                    </div>
                                 </div>
                                 
                             </div>
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Serminar Date: {{ seminar.date_from  }}</div>
-                                </div>
-                                <div class="column">
-                                    <div class="has-text-weight-bold">Learning Development: {{ seminar.ld_type }}</div>
+                                    <div class="seminar-label">SEMINAR DATE: </div>
+                                    <div>
+                                        {{ new Date(seminar.date_from).toLocaleString()  }} - {{ new Date(seminar.date_to).toLocaleString() }} 
+                                    </div>
                                 </div>
                             </div>
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Sponsored By: {{ seminar.sponsored_by  }}</div>
+                                    <div class="seminar-label">SPONSORED BY:</div>
+                                    <div>
+                                        {{ seminar.sponsored_by  }}
+                                    </div>
                                 </div>
+
                                 <div class="column">
-                                    <div class="has-text-weight-bold">No of Hours: {{ seminar.no_hours }}</div>
+                                    <div class="seminar-label"></div> 
+                                    
+                                    <div>
+                                        {{ seminar.no_hours }}
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="columns">
                                 <div class="column">
-                                    <div class="has-text-weight-bold">Speaker: {{ seminar.speaker  }}</div>
+                                    <div class="seminar-label">SPEAKER: </div>
+                                    <div>
+                                        {{ seminar.speaker  }}
+                                    </div>
                                 </div>
                               
                             </div>
+
+                            <hr>
                           
                         </div>
                         
                         <div class="post-img-container" v-if="seminar.attach_path">
-                            <img :src="`/storage/seminars/${seminar.attach_path}`" class="post-img" />
+                            <img :src="`/storage/trainings/${seminar.attach_path}`" class="post-img" />
+                        </div>
+
+
+                        <div class="buttons mt-4">
+                            <b-button label="Participate" @click="participateMe(seminar)" type="is-primary"></b-button>
                         </div>
 
                     </div>
@@ -99,6 +120,29 @@ export default{
         },
 
 
+        participateMe(row){
+            axios.post('/employee/participate-me', row).then(res=>{
+
+                if(res.data.status === 'participated'){
+                    this.$buefy.toast.open({
+                        message: 'Successfully registered.',
+                        type: 'is-success'
+                    })
+                }
+            }).catch(err => {
+                if(err.response.status === 422){
+                    let errors = err.response.data.errors
+                    
+                    this.$buefy.dialog.alert({
+                        title: 'EXIST!',
+                        message: errors.exist[0],
+                        type: 'is-danger',
+                     
+                    })
+                }
+            })
+        }
+
     },
 
     mounted(){
@@ -109,11 +153,8 @@ export default{
 </script>
 
 <style scoped>
-.home-hero{
-    height: 100vh;
-}
-
-.box-post-footer{
-    padding: 25px;
-}
+    .seminar-label{
+        font-weight: bold;
+        color: gray;
+    }
 </style>

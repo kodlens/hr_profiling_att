@@ -46,9 +46,18 @@
                     Personal Data Sheet
                 </b-navbar-item>
 
-                <b-navbar-item href="/employee/training-seminars">
-                    Training/Seminars
-                </b-navbar-item>
+
+                <b-navbar-dropdown label="Training & Seminars">
+                    <b-navbar-item href="/employee/training-seminars">
+                        Training/Seminars
+                    </b-navbar-item>
+                    <b-navbar-item href="/employee/my-seminars">
+                        My Seminars
+                    </b-navbar-item>
+                </b-navbar-dropdown>
+
+
+            
 
                 <b-navbar-dropdown label="{{ auth()->user()->lname }}">
                     <b-navbar-item href="/change-password">

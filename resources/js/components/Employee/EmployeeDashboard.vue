@@ -177,12 +177,10 @@
                         @click="uploadAttachment"
                         icon-right="view-gallery-outline">OK</b-button>
                 </footer>
-
             </div>
       
         </b-modal>
         <!--close modal-->
-
 
 
     </div>
@@ -216,7 +214,7 @@ export default{
 
     methods: {
         loadEvents(){
-            axios.get('/employee-get-posted-events').then(res=>{
+            axios.get('/employee/get-posted-events').then(res=>{
                 this.events = res.data
             })
         },
