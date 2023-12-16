@@ -45,15 +45,14 @@ class EmployeePDSController extends Controller
 
 
     public function update(Request $req, $id){
-
         $req->validate([
             'surname' => ['required'],
             'fname' => ['required'],
             'sex' => ['required'],
             'email' => ['required', 'unique:users,email,'. $id . ',user_id'],
-            'agency_idno' => ['required']
+            'engagement_status_id' => ['required']
         ],[
-            'agency_idno.required' => 'Agency no. or Id no. is required.'
+            'engagement_status_id.required' => 'Engagement status is required.'
         ]);
 
         $dob = date("Y-m-d", strtotime($req->date_birth)); //convert to date format UNIX
@@ -79,6 +78,7 @@ class EmployeePDSController extends Controller
         $data->tin = $req->tin;
         $data->agency_idno = $req->agency_idno;
         $data->citizenship = strtoupper($req->citizenship);
+        $data->engagement_status_id = $req->engagement_status_id;
 
 
         //spouse
@@ -254,6 +254,7 @@ class EmployeePDSController extends Controller
         $data->is_solo_parent = $req->is_solo_parent;
         $data->is_solo_parent_yes = $req->is_solo_parent_yes;
 
+        
         $data->save();
 
         return response()->json([

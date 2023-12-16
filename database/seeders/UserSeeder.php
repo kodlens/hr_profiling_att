@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
 
                 'email' => 'admin@dev.com',
                 'contact_no' => '09167789585',
-                'role' => 'administrator',
+                'role' => 'control-panel',
                 'password' => Hash::make('a')
             ],
 
@@ -307,7 +307,7 @@ class UserSeeder extends Seeder
                 'role' => 'employee',
                 'password' => Hash::make('a')
             ],
-            
+
 
         ];
 

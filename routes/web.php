@@ -33,6 +33,7 @@ Route::get('/get-open-learning-dev-types', [App\Http\Controllers\OpenController:
 Route::get('/get-open-specializations', [App\Http\Controllers\OpenController::class, 'loadSpecializations']);
 Route::get('/get-open-cid-sub-roles', [App\Http\Controllers\OpenController::class, 'loadSubRoles']);
 Route::get('/load-open-degrees', [App\Http\Controllers\OpenController::class, 'loadDegrees']);
+Route::get('/load-engagement-status', [App\Http\Controllers\OpenController::class, 'loadEngagementStatus']);
 
 
 
@@ -71,39 +72,32 @@ Route::get('/load-barangays', [App\Http\Controllers\AddressController::class, 'l
 
 
 /*     ADMINSITRATOR          */
+Route::resource('/dashboard', App\Http\Controllers\ControlPanel\DashboardController::class);
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::resource('/admin/dashboard', App\Http\Controllers\Administrator\AdminDashboardController::class);
+
+    Route::resource('/engagement-status', App\Http\Controllers\ControlPanel\EngagementStatusController::class);
+    Route::get('/get-engagement-status', [App\Http\Controllers\ControlPanel\EngagementStatusController::class, 'getData']);
 
 
-    Route::resource('/admin/events', App\Http\Controllers\Administrator\AdminEventController::class);
-    Route::post('/admin/events-update/{id}', [App\Http\Controllers\Administrator\AdminEventController::class, 'updateEvent']);
-    Route::get('/admin/get-events', [App\Http\Controllers\Administrator\AdminEventController::class, 'getData']);
-
-
-    Route::resource('/admin/training-seminars', App\Http\Controllers\Administrator\AdminTrainingSeminarController::class);
-    Route::post('/admin/training-seminars-update/{id}', [App\Http\Controllers\Administrator\AdminTrainingSeminarController::class, 'updateTrainingDSeminar']);
-    Route::get('/admin/get-training-seminars', [App\Http\Controllers\Administrator\AdminTrainingSeminarController::class, 'getData']);
-
-
-    Route::resource('/admin/users', App\Http\Controllers\Administrator\UserController::class);
-    Route::get('/admin/get-users', [App\Http\Controllers\Administrator\UserController::class, 'getUsers']);
-    Route::post('/admin/users-set-archive/{user}/{value}', [App\Http\Controllers\Administrator\UserController::class, 'setArchive']);
+    Route::resource('/users', App\Http\Controllers\ControlPanel\UserController::class);
+    Route::get('/get-users', [App\Http\Controllers\ControlPanel\UserController::class, 'getUsers']);
+    Route::post('/users-set-archive/{user}/{value}', [App\Http\Controllers\ControlPanel\UserController::class, 'setArchive']);
 
 
 
 
-    Route::resource('/learning-dev', App\Http\Controllers\LearningDevelopmentTypeController::class);
-    Route::get('/get-learning-dev', [App\Http\Controllers\LearningDevelopmentTypeController::class, 'getLearningDevelopmentTypes']);
-
-    Route::resource('/specialization', App\Http\Controllers\Administrator\SpecializationController::class);
-    Route::get('/get-specialization', [App\Http\Controllers\Administrator\SpecializationController::class, 'getSpecialization']);
-
-    Route::resource('/cid-sub-role', App\Http\Controllers\Administrator\CidSubRoleController::class);
-    Route::get('/get-cid-sub-roles', [App\Http\Controllers\Administrator\CidSubRoleController::class, 'getCidSubRoles']);
-
+//    Route::resource('/learning-dev', App\Http\Controllers\LearningDevelopmentTypeController::class);
+//    Route::get('/get-learning-dev', [App\Http\Controllers\LearningDevelopmentTypeController::class, 'getLearningDevelopmentTypes']);
+//
+//    Route::resource('/specialization', App\Http\Controllers\ControlPanel\SpecializationController::class);
+//    Route::get('/get-specialization', [App\Http\Controllers\ControlPanel\SpecializationController::class, 'getSpecialization']);
+//
+//    Route::resource('/cid-sub-role', App\Http\Controllers\ControlPanel\CidSubRoleController::class);
+//    Route::get('/get-cid-sub-roles', [App\Http\Controllers\ControlPanel\CidSubRoleController::class, 'getCidSubRoles']);
+//
 
 
 });
@@ -128,7 +122,7 @@ Route::get('/pending-page', function(){
 
 
 Route::middleware(['auth', 'employee'])->group(function () {
-    
+
     Route::resource('/employee/dashboard', App\Http\Controllers\Employee\EmployeeDashboardController::class);
     Route::get('/employee/get-posted-events', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'getPostedEvents']);
     Route::post('/employee/dashboard-upload-attachment', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'uploadAttachment']);
@@ -140,7 +134,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);
     Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
 
-    
+
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
 
 
@@ -165,24 +159,32 @@ Route::middleware(['auth', 'employee'])->group(function () {
 
 //Training dev officer moidule
 Route::middleware(['auth', 'training_officer'])->group(function () {
-    Route::resource('/training-officer/dashboard', App\Http\Controllers\TrainingOfficer\TrainingSeminarDashboard::class);
-    
-    Route::resource('/training-officer/training-seminars', App\Http\Controllers\TrainingOfficer\TrainingSeminarController::class);
-    Route::get('/training-officer/get-training-seminars', [App\Http\Controllers\TrainingOfficer\TrainingSeminarController::class, 'getData']);
+    Route::resource('/training-officer-dashboard', App\Http\Controllers\TrainingOfficer\TrainingSeminarDashboard::class);
 
-    
+    Route::resource('/training-seminars', App\Http\Controllers\ControlPanel\TrainingSeminarController::class);
+    Route::post('/training-seminars-update/{id}', [App\Http\Controllers\ControlPanel\TrainingSeminarController::class, 'updateTrainingDSeminar']);
+    Route::get('/get-training-seminars', [App\Http\Controllers\ControlPanel\TrainingSeminarController::class, 'getData']);
+
+
+
+
 });
 
 Route::middleware(['auth', 'point_person'])->group(function () {
-    Route::resource('/point-person/dashboard', App\Http\Controllers\PointPerson\PointPersonDashboarcController::class);
-    
+    Route::resource('/point-person-dashboard', App\Http\Controllers\PointPerson\PointPersonDashboarcController::class);
+
+    Route::resource('/events', App\Http\Controllers\ControlPanel\EventController::class);
+    Route::post('/events-update/{id}', [App\Http\Controllers\ControlPanel\EventController::class, 'updateEvent']);
+    Route::get('/get-events', [App\Http\Controllers\ControlPanel\EventController::class, 'getData']);
+    Route::get('/events-view/{id}', [App\Http\Controllers\ControlPanel\EventController::class, 'eventView']);
+
     Route::resource('/point-person/events', App\Http\Controllers\PointPerson\PointPersonEventController::class);
     Route::get('/point-person/get-events', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'getData']);
     Route::get('/point-person/events-view/{id}', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventView']);
     Route::post('/point-person/events-attachment-set-status', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventAttachmentSetStatus']);
     //load list of attendees base on event id
     Route::get('/point-person/load-attendees-events-view', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'loadAttendees']);
-    
+
 
 });
 //HRLD

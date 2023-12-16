@@ -16,7 +16,7 @@ class LearningDevelopmentTypeController extends Controller
 
 
     public function index(){
-        return view('administrator.learning-dev-type');
+        return view('control-panel.learning-dev-type');
     }
 
     public function getLearningDevelopmentTypes(Request $req){

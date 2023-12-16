@@ -20,7 +20,7 @@ class TrainingOfficerMiddleware
     {
 
         $role = Auth::user()->role;
-        if(strtolower($role) === 'training_officer'){
+        if(in_array($role, ['training_officer', 'administrator'])){
             $response = $next($request);
             $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
             $response->headers->set('Pragma', 'no-cache');

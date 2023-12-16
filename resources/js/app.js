@@ -32,13 +32,13 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-//Vue.component('navbar-component', require('./components/Administrator/AdminNavbarComponent.vue').default);
+//Vue.component('navbar-component', require('./components/ControlPanel/AdminNavbarComponent.vue').default);
 //Vue.component('home-page', require('./components/HomePage.vue').default);
 //Vue.component('register-components', require('./components/SignupComponent.vue').default);
 
 
 //USER
-//Vue.component('user-page', require('./components/Administrator/User/UserPage.vue').default);
+//Vue.component('user-page', require('./components/ControlPanel/User/UserPage.vue').default);
 
 
 

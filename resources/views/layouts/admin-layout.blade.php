@@ -21,83 +21,114 @@
 <body>
 <div id="app">
 
+    @php
+        $role = Auth::user()->role;
+    @endphp
+
     <b-navbar>
-            <template #brand>
-                <b-navbar-item>
-                    <img
-                        src="/img/logo.png"
-                        alt="Tangub City Logo"
-                    >
-                </b-navbar-item>
-            </template>
-            <template #start>
-                
-            </template>
+        <template #brand>
+            <b-navbar-item>
+                <img
+                    src="/img/logo.png"
+                    alt="Tangub City Logo"
+                >
+            </b-navbar-item>
+        </template>
+        <template #start>
 
-            <template #end>
+        </template>
 
-                <b-navbar-item href="/admin/dashboard" class="{{ request()->is('admin/dashboard*') ? 'active' : '' }}">
+        <template #end>
+
+            <!-- ADMINISTRATOR ROLE -->
+            @if($role == 'administrator')
+                <b-navbar-item href="/dashboard" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
                     <b-icon icon="home"></b-icon>
                     &nbsp;
                     HOME
                 </b-navbar-item>
 
-                {{-- <b-dropdown
-                    append-to-body
-                    aria-role="menu"
-                    scrollable
-                    max-height="200"
-                    trap-focus
-                >
-                    <template #trigger>
-                        <a
-                            class="navbar-item"
-                            role="button">
-                            <b-icon icon="cog"></b-icon> &nbsp;
-                            <span>SETTING</span>
-                            <b-icon icon="menu-down"></b-icon>
-                        </a>
-                    </template>
+                <b-navbar-dropdown label="MANAGE" class="{{ request()->is('engagement-status*') ? 'active' : '' }}">
+                    <b-navbar-item
+                        href="/engagement-status">
+                        Engagement Status
+                    </b-navbar-item>
+                    <b-navbar-item href="#">
+                        Contact
+                    </b-navbar-item>
+                </b-navbar-dropdown>
 
-                    <b-dropdown-item custom aria-role="listitem">
-                        <b-input placeholder="search" expanded />
-                  </b-dropdown-item>
 
-                </b-dropdown> --}}
-
-                <b-navbar-item href="/admin/events" class="{{ request()->is('admin/events*') ? 'active' : '' }}">
+                <b-navbar-item href="/events" class="{{ request()->is('events*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
                     &nbsp;
                     EVENTS
                 </b-navbar-item>
 
-                <b-navbar-item href="/admin/training-seminars" class="{{ request()->is('admin/training-seminars*') ? 'active' : '' }}">
+                <b-navbar-item href="/training-seminars" class="{{ request()->is('training-seminars*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
                     &nbsp;
                     TRAININGS
                 </b-navbar-item>
-
-
-                <b-navbar-item href="/admin/users" class="{{ request()->is('admin/users*') ? 'active' : '' }}">
+            
+                <b-navbar-item href="/users" class="{{ request()->is('admin/users*') ? 'active' : '' }}">
                     <b-icon icon="account"></b-icon>
                     &nbsp;
                     USER
                 </b-navbar-item>
-                <b-navbar-item tag="div">
-                    <div class="buttons">
 
-                        <button class="button is-danger is-outlined" 
-                            onclick="document.getElementById('logout').submit()">
-                            LOGOUT
-                            &nbsp; &nbsp;
-                            <b-icon icon="logout"></b-icon>
-                        </button>
-                    </div>
+            @endif
+
+            <!-- TRAINING OFFICER ROLE -->
+            @if($role == 'training_officer')
+                <b-navbar-item href="/dashboard" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
+                    <b-icon icon="home"></b-icon>
+                    &nbsp;
+                    HOME
                 </b-navbar-item>
-            </template>
-        </b-navbar>
 
-        <form action="/logout" method="post" id="logout">@csrf</form>
+
+                <b-navbar-item href="/training-seminars" class="{{ request()->is('training-seminars*') ? 'active' : '' }}">
+                    <b-icon icon="calendar"></b-icon>
+                    &nbsp;
+                    TRAININGS
+                </b-navbar-item>
+   
+            @endif
+
+
+             <!-- POINT PERSON -->
+             @if($role == 'point_person')
+                <b-navbar-item href="/dashboard" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
+                    <b-icon icon="home"></b-icon>
+                    &nbsp;
+                    HOME
+                </b-navbar-item>
+
+
+                <b-navbar-item href="/events" class="{{ request()->is('events*') ? 'active' : '' }}">
+                    <b-icon icon="calendar"></b-icon>
+                    &nbsp;
+                    EVENTS
+                </b-navbar-item>
+   
+            @endif
+            
+            <b-navbar-item tag="div">
+                <div class="buttons">
+
+                    <button class="button is-danger is-outlined"
+                        onclick="document.getElementById('logout').submit()">
+                        LOGOUT
+                        &nbsp; &nbsp;
+                        <b-icon icon="logout"></b-icon>
+                    </button>
+                </div>
+            </b-navbar-item>
+        </template>
+    </b-navbar>
+
+    <form action="/logout" method="post" id="logout">@csrf</form>
 
 
     <div>

@@ -8,6 +8,7 @@ use App\Models\Specialization;
 use App\Models\CidSubRole;
 
 use App\Models\Degree;
+use App\Models\EngagementStatus;
 
 class OpenController extends Controller
 {
@@ -37,5 +38,12 @@ class OpenController extends Controller
         return Degree::orderBy('degree_program', 'asc')
             ->get();
     }
+
+    public function loadEngagementStatus(){
+        return EngagementStatus::orderBy('engagement_status', 'asc')
+            ->get();
+    }
+
+    
 
 }

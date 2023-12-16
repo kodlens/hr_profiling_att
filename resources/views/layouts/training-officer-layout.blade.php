@@ -32,7 +32,7 @@
                 </b-navbar-item>
             </template>
             <template #start>
-                
+
             </template>
 
             <template #end>
@@ -63,21 +63,21 @@
                     <b-dropdown-item custom aria-role="listitem">
                         <b-input placeholder="search" expanded />
                   </b-dropdown-item>
-                  
+
 
                 </b-dropdown> -->
 
-                <b-navbar-item href="/training-officer/training-seminars" class="{{ request()->is('training-officer/training-seminars*') ? 'active' : '' }}">
+                <b-navbar-item href="/training-seminars" class="{{ request()->is('training-seminars*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
                     &nbsp;
                     TRAINING/SEMINARS
                 </b-navbar-item>
 
-                
+
                 <b-navbar-item tag="div">
                     <div class="buttons">
 
-                        <button class="button is-danger is-outlined" 
+                        <button class="button is-danger is-outlined"
                             onclick="document.getElementById('logout').submit()">
                             LOGOUT
                             &nbsp; &nbsp;
@@ -88,7 +88,7 @@
             </template>
         </b-navbar>
 
-        <form action="/logout" method="post" id="logout">@csrf</form>
+    <form action="/logout" method="post" id="logout">@csrf</form>
 
 
     <div>

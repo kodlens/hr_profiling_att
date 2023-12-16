@@ -175,8 +175,8 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="CITIZENSHIP" expanded label-position="on-border"
-                                        :type="this.errors.citizenship ? 'is-danger':''"
-                                        :message="this.errors.citizenship ? this.errors.citizenship[0] : ''">
+                                        :type="errors.citizenship ? 'is-danger':''"
+                                        :message="errors.citizenship ? errors.citizenship[0] : ''">
                                         <b-select placeholder="Citizenship" v-model="fields.citizenship" icon="account-switch" expanded>
                                             <option value="FILIPINO">FILIPINO</option>
                                             <option value="DUAL CITIZENSHIP">DUAL CITIZENSHIP</option>
@@ -201,15 +201,28 @@
                             </div>
 
                             <div class="columns" v-if="fields.citizenship === 'DUAL CITIZENSHIP'">
-
-                                
                                 <div class="column">
                                     <b-field label="SELECT CITIZENSHIP" expanded label-position="on-border"
-                                            :type="this.errors.select_citizenship ? 'is-danger':''"
-                                            :message="this.errors.select_citizenship ? this.errors.select_citizenship[0] : ''">
+                                            :type="errors.select_citizenship ? 'is-danger':''"
+                                            :message="errors.select_citizenship ? errors.select_citizenship[0] : ''">
                                         <b-select placeholder="Citizenship" v-model="fields.select_citizenship" icon="account-switch" expanded>
                                             <option v-for="(item, index) in citizenships" :key="index" :value="item.citizenship">
                                                 {{ item.citizenship }}</option>
+                                        </b-select>
+                                    </b-field>
+                                </div>
+                            </div>
+
+                            <div class="columns">
+                                <div class="column">
+                                    <b-field label="ENGAGEMENT STATUS" label-position="on-border"
+                                        :type="errors.engagement_status_id ? 'is-danger':''"
+                                        :message="errors.engagement_status_id ? errors.engagement_status_id[0] : ''">
+                                        <b-select v-model="fields.engagement_status_id"
+                                            placeholder="Engagement Status">
+                                            <option v-for="(item, index) in engagementStatus"
+                                                :key="`es${index}`" 
+                                                :value="item.engagement_status_id">{{ item.engagement_status }}</option>
                                         </b-select>
                                     </b-field>
                                 </div>
@@ -220,8 +233,8 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="PROVINCE" expanded label-position="on-border"
-                                            :type="this.errors.res_province ? 'is-danger':''"
-                                            :message="this.errors.res_province ? this.errors.res_province[0] : ''">
+                                            :type="errors.res_province ? 'is-danger':''"
+                                            :message="errors.res_province ? errors.res_province[0] : ''">
                                         <b-select v-model="fields.res_province" expanded placeholder="Province" @input="loadResCity">
                                             <option v-for="(item, index) in resProvinces" :key="index" :value="item.provCode">{{ item.provDesc }}</option>
                                         </b-select>
@@ -229,8 +242,8 @@
                                 </div>
                                 <div class="column">
                                     <b-field label="CITY/MUNICIPALITY" expanded label-position="on-border"
-                                            :type="this.errors.res_city ? 'is-danger':''"
-                                            :message="this.errors.res_city ? this.errors.res_city[0] : ''">
+                                            :type="errors.res_city ? 'is-danger':''"
+                                            :message="errors.res_city ? errors.res_city[0] : ''">
                                         <b-select expanded v-model="fields.res_city" placeholder="City" @input="loadResBarangay">
                                             <option v-for="(item, index) in resCities" :key="index" :value="item.citymunCode">{{ item.citymunDesc }}</option>
                                         </b-select>
@@ -241,8 +254,8 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="BARANGAY" expanded label-position="on-border"
-                                            :type="this.errors.res_barangay ? 'is-danger':''"
-                                            :message="this.errors.res_barangay ? this.errors.res_barangay[0] : ''">
+                                            :type="errors.res_barangay ? 'is-danger':''"
+                                            :message="errors.res_barangay ? errors.res_barangay[0] : ''">
                                         <b-select v-model="fields.res_barangay" expanded placeholder="Barangay">
                                             <option v-for="(item, index) in resBarangays" :key="index" :value="item.brgyCode">{{ item.brgyDesc }}</option>
                                         </b-select>
@@ -1242,6 +1255,7 @@ export default {
             mobileMode: 'minimalist',
 
             fields: {
+                engagement_status_id: null,
                 dual_citizenship: '',
                 citizenship: '',
                 select_citizenship: '',
@@ -1274,11 +1288,12 @@ export default {
             specializations: [],
 
             degress: [],
+            engagementStatus: [],
         }
     },
     methods: {
         //ADDRESS
-        loadProvince: function(){
+        loadProvinces: function(){
             axios.get('/load-provinces').then(res=>{
                 this.resProvinces = res.data;
                 this.perProvinces = res.data;
@@ -1339,6 +1354,7 @@ export default {
             this.fields.citizenship = this.user.citizenship;
             this.fields.dual_citizenship = this.user.dual_citizenship;
             this.fields.select_citizenship = this.user.select_citizenship;
+            this.fields.engagement_status_id = this.user.engagement_status_id;
 
             //spouse
             this.fields.spouse_surname = this.user.spouse_surname;
@@ -1801,26 +1817,23 @@ export default {
                 this.specializations = res.data
             })
         },
-        loadDegrees(level){
-            axios.get('/load-open-degrees?level=').then(res=>{
-                this.degrees = res.data
+       
+        loadEngagementStatus(level){
+            axios.get('/load-engagement-status').then(res=>{
+                this.engagementStatus = res.data
             })
         },
 
     },
     mounted() {
         //this.initData();
-        this.loadProvince();
+        this.loadProvinces();
        // this.loadLearningDevelopments()
        // this.loadSpecializations()
-        this.loadDegrees()
+       this.loadEngagementStatus()
+        //this.loadDegrees()
     },
 
-    computed: {
-        dateToDisable(){
-            
-        }
-    }
 }
 </script>
 
