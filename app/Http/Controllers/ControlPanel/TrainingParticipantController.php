@@ -23,7 +23,7 @@ class TrainingParticipantController extends Controller
     public function getData(Request $req){
         $sort = explode('.', $req->sort_by);
 
-        $data = TrainingParticipant::with(['training_seminar', 'user'])
+        $data = TrainingParticipant::with(['training_seminar', 'user', 'attendances'])
             ->where('training_seminar_id', $req->trainingid . '%')
             ->whereHas('user', function($q) use ($req){
                 $q->where('lname', 'like', $req->name . '%');

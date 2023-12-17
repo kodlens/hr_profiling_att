@@ -94,6 +94,13 @@
                                         </b-button>
                                     </b-tooltip>
 
+                                    <b-tooltip v-if="props.row.approval_status === 1" label="QR Code" type="is-info">
+                                        <b-button class="button is-small mr-1"
+                                            icon-right="qrcode"
+                                            @click="openQrModal(props.row)">
+                                        </b-button>
+                                    </b-tooltip>
+
                                 </div>
                             </b-table-column>
 
@@ -105,6 +112,49 @@
             </div>
 
         </div><!--section div-->
+
+
+
+        
+        <!--modal qr-->
+        <b-modal v-model="modalQRForm" has-modal-card
+                 trap-focus
+                 :width="640"
+                 aria-role="dialog"
+                 aria-label="Modal"
+                 aria-modal>
+
+
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">QR Code</p>
+                    <button
+                        type="button"
+                        class="delete"
+                        @click="modalQRForm = false"/>
+                </header>
+                <section class="modal-card-body">
+                    <div class="">
+                        <div class="columns">
+                            <qrcode v-if="qrCode"
+                                class="qr-code"
+                                :value="qrCode" 
+                                :options="{ width: 200 }"></qrcode>
+
+                        </div>
+
+                    </div> <!-- div class-->
+                </section>
+                <footer class="modal-card-foot">
+                    <button
+                        @click="modalQRForm = false"
+                        class="button is-primary">OK</button>
+                </footer>
+            </div>
+        </b-modal>
+        <!--close modal-->
+
+
 
     </div>
 </template>
@@ -127,6 +177,8 @@ export default {
                 training: '',
             },
 
+            modalQRForm: false,
+            qrCode: '',
 
         }
     },
@@ -213,7 +265,13 @@ export default {
                 }
             });
         },
+        
 
+        openQrModal(row){
+            console.log(row);
+            this.modalQRForm = true
+            this.qrCode = `{"user_id":"${row.user_id}","training_seminar_id":"${row.training_seminar_id}"}`
+        }
     
     },
 
@@ -237,5 +295,10 @@ export default {
     .declined{
         font-weight: bold;
         color: #af4a31;
+    }
+
+    .qr-code{
+        display: block;
+        margin: auto;
     }
 </style>

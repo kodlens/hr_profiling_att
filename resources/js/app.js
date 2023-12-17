@@ -14,9 +14,9 @@ import Buefy from 'buefy'
 // import 'buefy/dist/buefy.css'
 
 //QR Scanner
-//import VueQrcodeReader from "vue-qrcode-reader";
+import VueQrcodeReader from "vue-qrcode-reader";
 //for QR CODE Generation
-//import VueQrcode from '@chenfengyuan/vue-qrcode';
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 
 /**
@@ -66,8 +66,8 @@ import ElementUI from 'element-ui';
 Vue.use(Buefy)
 Vue.use(ElementUI)
 
-//Vue.use(VueQrcodeReader); //https://gruhn.github.io/vue-qrcode-reader/demos/CustomTracking.html
-//Vue.component(VueQrcode.name, VueQrcode);
+Vue.use(VueQrcodeReader); //https://gruhn.github.io/vue-qrcode-reader/demos/CustomTracking.html
+Vue.component(VueQrcode.name, VueQrcode);
 
 
 Vue.filter('formatTime', function(value) {

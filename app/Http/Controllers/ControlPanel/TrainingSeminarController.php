@@ -11,7 +11,6 @@ class TrainingSeminarController extends Controller
 {
     //
 
-
     public function index(){
         return view('control-panel.training_seminar.training-seminar-index');
     }

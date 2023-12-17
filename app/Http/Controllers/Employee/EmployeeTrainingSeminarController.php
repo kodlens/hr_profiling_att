@@ -28,7 +28,6 @@ class EmployeeTrainingSeminarController extends Controller
 
     public function participateMe(Request $req){
         $user = Auth::user();
-
         // $req->validate([
         //     'status' => ['required']
         // ]);
@@ -46,7 +45,10 @@ class EmployeeTrainingSeminarController extends Controller
             ], 422);
         }
 
+        //$qr_code = substr(md5(time() . $user->lname . $req->fname), -8);
+
         TrainingParticipant::create([
+            //'qr_ref' => $qr_code,
             'user_id' => $user->user_id,
             'date_register' => date('Y-m-d H:i:s'),
             'training_seminar_id' => $req->training_seminar_id,

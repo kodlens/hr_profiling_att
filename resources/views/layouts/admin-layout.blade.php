@@ -93,6 +93,12 @@
                     &nbsp;
                     TRAININGS
                 </b-navbar-item>
+
+                <b-navbar-item href="/qr-scanner" class="{{ request()->is('qr-scanner*') ? 'active' : '' }}">
+                    <b-icon icon="qrcode"></b-icon>
+                    &nbsp;
+                    SCANNER
+                </b-navbar-item>
    
             @endif
 
