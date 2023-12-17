@@ -216,13 +216,27 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="ENGAGEMENT STATUS" label-position="on-border"
+                                        expanded
                                         :type="errors.engagement_status_id ? 'is-danger':''"
                                         :message="errors.engagement_status_id ? errors.engagement_status_id[0] : ''">
                                         <b-select v-model="fields.engagement_status_id"
-                                            placeholder="Engagement Status">
+                                            placeholder="Engagement Status" expanded>
                                             <option v-for="(item, index) in engagementStatus"
                                                 :key="`es${index}`" 
                                                 :value="item.engagement_status_id">{{ item.engagement_status }}</option>
+                                        </b-select>
+                                    </b-field>
+                                </div>
+                                <div class="column">
+                                    <b-field label="EDUCATION LEVEL" label-position="on-border"
+                                        expanded
+                                        :type="errors.education_level ? 'is-danger':''"
+                                        :message="errors.education_level ? errors.education_level[0] : ''">
+                                        <b-select v-model="fields.education_level" expanded
+                                            placeholder="Education Level">
+                                            <option v-for="(item, index) in educationLevels"
+                                                :key="`es${index}`" 
+                                                :value="item.education_level">{{ item.education_level }}</option>
                                         </b-select>
                                     </b-field>
                                 </div>
@@ -1289,6 +1303,7 @@ export default {
 
             degress: [],
             engagementStatus: [],
+            educationLevels: [],
         }
     },
     methods: {
@@ -1355,6 +1370,7 @@ export default {
             this.fields.dual_citizenship = this.user.dual_citizenship;
             this.fields.select_citizenship = this.user.select_citizenship;
             this.fields.engagement_status_id = this.user.engagement_status_id;
+            this.fields.education_level = this.user.education_level;
 
             //spouse
             this.fields.spouse_surname = this.user.spouse_surname;
@@ -1823,6 +1839,11 @@ export default {
                 this.engagementStatus = res.data
             })
         },
+        loadEducationLevels(level){
+            axios.get('/load-education-levels').then(res=>{
+                this.educationLevels = res.data
+            })
+        },
 
     },
     mounted() {
@@ -1831,6 +1852,7 @@ export default {
        // this.loadLearningDevelopments()
        // this.loadSpecializations()
        this.loadEngagementStatus()
+       this.loadEducationLevels()
         //this.loadDegrees()
     },
 

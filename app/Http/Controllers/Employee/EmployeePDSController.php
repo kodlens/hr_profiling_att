@@ -79,8 +79,9 @@ class EmployeePDSController extends Controller
         $data->agency_idno = $req->agency_idno;
         $data->citizenship = strtoupper($req->citizenship);
         $data->engagement_status_id = $req->engagement_status_id;
+        $data->education_level = $req->education_level;
 
-
+        
         //spouse
         $data->spouse_surname = strtoupper($req->spouse_surname);
         $data->spouse_fname = strtoupper($req->spouse_fname);

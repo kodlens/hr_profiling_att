@@ -27,6 +27,7 @@ class User extends Authenticatable
         'pagibig', 'philhealth', 'sss', 'tin', 'agency_idno', 'citizenship',
         'dual_citizenship', 'select_citizenship',
         'engagement_status_id',
+        'education_level',
         'res_province', 'res_city', 'res_barangay', 'res_street', 'res_houseno_blockno', 'res_zipcode',
         'per_province', 'per_city', 'per_barangay', 'per_street', 'per_houseno_blockno', 'per_zipcode',
         'tel_no', 'contact_no', 'email',

@@ -34,8 +34,7 @@ Route::get('/get-open-specializations', [App\Http\Controllers\OpenController::cl
 Route::get('/get-open-cid-sub-roles', [App\Http\Controllers\OpenController::class, 'loadSubRoles']);
 Route::get('/load-open-degrees', [App\Http\Controllers\OpenController::class, 'loadDegrees']);
 Route::get('/load-engagement-status', [App\Http\Controllers\OpenController::class, 'loadEngagementStatus']);
-
-
+Route::get('load-education-levels', [App\Http\Controllers\OpenController::class, 'loadEducationLevels']);
 
 Auth::routes([
     'login' => 'false'
