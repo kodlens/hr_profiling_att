@@ -19,7 +19,8 @@ class TrainingSeminarSeeder extends Seeder
             [
                 'seminar_title' => 'Data Analytics for Librarians in partnership with Nutrinet',
                 'seminar_desc' => 'Data Analytics for Librarians in partnership with Nutrinet',
-                'seminar_date' => '2023-11-15',
+                'date_to' => '2023-11-15',
+                'date_from' => '2023-11-15',
                 'no_hours' => '4',
                 'sponsored_by' => 'NATIONAL LIBRARY',
                 'speaker' => 'DR. JUAN DELA CRUZ',
@@ -29,7 +30,8 @@ class TrainingSeminarSeeder extends Seeder
             [
                 'seminar_title' => 'Back-to-back Startup Workshop Series for Northern Mindanao Meentes',
                 'seminar_desc' => '',
-                'seminar_date' => '2023-11-16',
+                'date_to' => '2023-11-15',
+                'date_from' => '2023-11-15',
                 'no_hours' => '4',
                 'sponsored_by' => 'DICT',
                 'speaker' => 'ENGR. JOHN BUENDIA',
@@ -39,7 +41,8 @@ class TrainingSeminarSeeder extends Seeder
             [
                 'seminar_title' => 'Educational Technology Towards New Era',
                 'seminar_desc' => '',
-                'seminar_date' => '2023-11-18',
+                'date_to' => '2023-11-15',
+                'date_from' => '2023-11-15',
                 'no_hours' => '24',
                 'sponsored_by' => 'DepEd',
                 'speaker' => 'DR. SHEEN ROMEREZ, DR. SHEILA MENDEZ, DR. ASTILLERA GABO',
