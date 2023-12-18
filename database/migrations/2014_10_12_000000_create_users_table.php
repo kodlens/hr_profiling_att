@@ -123,6 +123,7 @@ class CreateUsersTable extends Migration
 
             $table->tinyInteger('is_archive')->nullable()->default(0);
             $table->unsignedBigInteger('engagement_status_id')
+                ->default(0)
                 ->nullable();
            
 
