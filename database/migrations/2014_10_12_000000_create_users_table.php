@@ -122,9 +122,9 @@ class CreateUsersTable extends Migration
             $table->string('is_solo_parent_yes')->nullable();
 
             $table->tinyInteger('is_archive')->nullable()->default(0);
-            $table->unsignedBigInteger('engagement_status_id');
-            $table->foreign('engagement_status_id')->references('engagement_status_id')->on('engagement_status_id')
-                ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('engagement_status_id')
+                ->nullable();
+           
 
 
             $table->string('password');
