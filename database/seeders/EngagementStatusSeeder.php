@@ -29,6 +29,6 @@ class EngagementStatusSeeder extends Seeder
             ],
         ];
 
-        \App\Models\Degree::insertOrIgnore($data);
+        \App\Models\EngagementStatus::insertOrIgnore($data);
     }
 }
