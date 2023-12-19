@@ -563,7 +563,7 @@
                                             <div class="column">
                                                 <b-field label="Level" expanded label-position="on-border">
                                                     <b-select v-model="item.level" placeholder="Level" required expanded
-                                                        @input="loadDegrees()">
+                                                        @input="loadDegrees">
                                                         <option value="ELEMENTARY">ELEMENTARY</option>
                                                         <option value="SECONDARY">SECONDARY</option>
                                                         <option value="VOCATIONAL/TRADE COURSE">VOCATIONAL/TRADE COURSE</option>
@@ -1845,6 +1845,11 @@ export default {
             })
         },
 
+        loadDegrees(){
+            axios.get('/load-degress').then(res=>{
+                this.degress = res.data
+            })
+        },
     },
     mounted() {
         //this.initData();
