@@ -43,6 +43,30 @@ class EmployeePDSController extends Controller
     }
 
 
+    public function printPDS(){
+        $user = Auth::user()->load([
+            'children',
+            'eligibilities',
+            'work_experiences',
+            'educational_backgrounds',
+            'voluntary_works',
+            'learning_developments',
+            'other_informations',
+            'engagement',
+            'residential_province',
+            'residential_city',
+            'residential_barangay',
+
+            'permanent_province',
+            'permanent_city',
+            'permanent_barangay'
+        ]);
+
+        //return $user;
+        return view('pds')
+            ->with('user', $user);
+    }
+
 
     public function update(Request $req, $id){
         $req->validate([
@@ -79,7 +103,7 @@ class EmployeePDSController extends Controller
         $data->agency_idno = $req->agency_idno;
         $data->citizenship = strtoupper($req->citizenship);
         $data->engagement_status_id = $req->engagement_status_id;
-        $data->education_level = $req->education_level;
+        //$data->education_level = $req->education_level;
 
         
         //spouse

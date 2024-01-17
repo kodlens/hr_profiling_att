@@ -19,7 +19,11 @@
                         :label-position="labelPosition"
                         :mobile-mode="mobileMode">
                         <b-step-item step="1" label="Account" :clickable="isStepsClickable">
-
+                            <div class="buttons mb-2">
+                                <b-button type="is-primary" tag="a" 
+                                    href="/employee/print-pds"
+                                    icon-left="printer"></b-button>
+                            </div>
                             <div class="separator">
                                 PERSONAL INFORMATION
                             </div>

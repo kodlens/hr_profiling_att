@@ -129,6 +129,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
 
 
     Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Employee\EmployeePDSController::class);
+    Route::get('/employee/print-pds', [App\Http\Controllers\Employee\EmployeePDSController::class, 'printPDS']);
 
     Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);
     Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
