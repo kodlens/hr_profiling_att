@@ -107,8 +107,8 @@ class User extends Authenticatable
     }
 
     public function learning_developments(){
-        return $this->HasMany(LearningDevelopment::class, 'user_id', 'user_id')
-            ->with(['certificates']);
+        return $this->HasMany(LearningDevelopment::class, 'user_id', 'user_id');
+           // ->with(['certificates']);
     }
 
     public function other_informations(){

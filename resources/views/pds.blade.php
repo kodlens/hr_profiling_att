@@ -177,7 +177,7 @@
 						<td colspan="1" class="s-label border-bottom-0">
 							<span class="count">22.</span> SPOUSE SURNAME
 						</td>
-						<td colspan="5"></td>
+						<td colspan="5">{{$user->spouse_surname}}</td>
 						<td colspan="3" class="s-label">
 							<span class="count">23.</span> NAME of CHILDREN (Write full name and list all)
 						</td>
@@ -187,113 +187,198 @@
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> FIRST NAME
 						</td>
-						<td colspan="4"></td>
+						<td colspan="4">{{$user->spouse_fname}}</td>
 						<td colspan="1" class="align-top s-label">
 							<small>
 								NAME EXTENSION (JR.,SR)
 							</small>
 						</td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="3">
+							@if(isset($user->children[0]))
+								{{ $user->children[0]->fullname}}
+							@endisset
+						</td>
+						<td colspan="3">
+							@if(isset($user->children[0]))
+								{{ date('m-d-Y', strtotime($user->children[0]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> MIDDLE NAME
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->spuse_mname}}</td>
+						<td colspan="3">
+							@if(isset($user->children[1]))
+								{{ $user->children[1]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[1]))
+								{{ date('m-d-Y', strtotime($user->children[1]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label">
 							<span class="count"></span> OCCUPATION
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->spouse_occupation}}</td>
+						<td colspan="3">
+							@if(isset($user->children[2]))
+								{{ $user->children[2]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[2]))
+								{{ date('m-d-Y', strtotime($user->children[2]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label">
 							<span class="count"></span> EMPLOYER/BUSINESS NAME
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->business_name}}</td>
+						<td colspan="3">
+							@if(isset($user->children[3]))
+								{{ $user->children[3]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[3]))
+								{{ date('m-d-Y', strtotime($user->children[3]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label">
 							<span class="count"></span> BUSINESS ADDRESS
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->business_address}}</td>
+						<td colspan="3">
+							@if(isset($user->children[4]))
+								{{ $user->children[4]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[4]))
+								{{ date('m-d-Y', strtotime($user->children[4]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label">
 							<span class="count"></span> TELEPHONE NO.
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->business_contact_no}}</td>
+						<td colspan="3">
+							@if(isset($user->children[5]))
+								{{ $user->children[5]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[5]))
+								{{ date('m-d-Y', strtotime($user->children[5]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-bottom-0">
 							<span class="count">24.</span> FATHER'S SURNAME
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->father_surname}}</td>
+						<td colspan="3">
+							@if(isset($user->children[6]))
+								{{ $user->children[6]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[6]))
+								{{ date('m-d-Y', strtotime($user->children[6]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> FIRST NAME
 						</td>
-						<td colspan="4"></td>
+						<td colspan="4">{{$user->father_fname}}</td>
 						<td colspan="1" class="align-top s-label">
 							<small>
 								NAME EXTENSION (JR.,SR)
 							</small>
 						</td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="3">
+							@if(isset($user->children[7]))
+								{{ $user->children[7]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[7]))
+								{{ date('m-d-Y', strtotime($user->children[7]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> MIDDLE NAME
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->father_mname}}</td>
+						<td colspan="3">
+							@if(isset($user->children[8]))
+								{{ $user->children[8]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[8]))
+								{{ date('m-d-Y', strtotime($user->children[8]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-bottom-0">
 							<span class="count">25.</span> MOTHERS MAIDEN NAME
 						</td>
 						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="3">
+							@if(isset($user->children[9]))
+								{{ $user->children[9]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[9]))
+								{{ date('m-d-Y', strtotime($user->children[9]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> SURNAME
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->mother_maiden_name}}</td>
+						<td colspan="3">
+							@if(isset($user->children[10]))
+								{{ $user->children[10]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[10]))
+								{{ date('m-d-Y', strtotime($user->children[10]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> FIRST NAME
 						</td>
-						<td colspan="5"></td>
-						<td colspan="3"></td>
-						<td colspan="3"></td>
+						<td colspan="5">{{$user->mother_fname}}</td>
+						<td colspan="3">
+							@if(isset($user->children[11]))
+								{{ $user->children[11]->fullname}}
+							@endisset</td>
+						<td colspan="3">
+							@if(isset($user->children[11]))
+								{{ date('m-d-Y', strtotime($user->children[11]->child_bdate)) }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> MIDDLE NAME
 						</td>
-						<td colspan="5"></td>
+						<td colspan="5">{{$user->mother_mname}}</td>
 						<td colspan="6" class="s-label text-danger text-center"><i><b>(Continue on seperate sheet if necessary)</b></i></td>
 					</tr>
 				</tbody>
@@ -335,24 +420,56 @@
 						<td colspan="1" class="s-label">
 							<span class="count"></span> ELEMENTARY
 						</td>
-						<td colspan="4"></td>
+						<td colspan="4">
+							@if(isset($user->educational_backgrounds[0]))
+								{{ $user->educational_backgrounds[0]->name_of_school}}
+							@endisset
+						</td>
 						<td colspan="2"></td>
 						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[0]))
+								{{$user->educational_backgrounds[0]->period_att_from}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[0]))
+								{{$user->educational_backgrounds[0]->period_att_to}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[0]))
+							{{date('Y/m/d', strtotime($user->educational_backgrounds[0]->year_graduated))}}
+							@endisset
+						</td>
 						<td colspan="1"></td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label">
 							<span class="count"></span> SECONDARY
 						</td>
-						<td colspan="4"></td>
+						<td colspan="4">
+							@if(isset($user->educational_backgrounds[1]))
+								{{ $user->educational_backgrounds[1]->name_of_school}}
+							@endisset
+						</td>
 						<td colspan="2"></td>
 						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[1]))
+								{{$user->educational_backgrounds[1]->period_att_from}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[1]))
+								{{$user->educational_backgrounds[1]->period_att_to}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[1]))
+							{{date('Y/m/d', strtotime($user->educational_backgrounds[1]->year_graduated))}}
+							@endisset
+						</td>
 						<td colspan="1"></td>
 					</tr>
 					<tr>
@@ -363,9 +480,21 @@
 						<td colspan="4"></td>
 						<td colspan="2"></td>
 						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[2]))
+								{{$user->educational_backgrounds[2]->period_att_from}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[2]))
+								{{$user->educational_backgrounds[2]->period_att_to}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[2]))
+							{{date('Y/m/d', strtotime($user->educational_backgrounds[2]->year_graduated))}}
+							@endisset
+						</td>
 						<td colspan="1"></td>
 					</tr>
 					<tr>
@@ -375,9 +504,21 @@
 						<td colspan="4"></td>
 						<td colspan="2"></td>
 						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[3]))
+								{{$user->educational_backgrounds[3]->period_att_from}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[3]))
+								{{$user->educational_backgrounds[3]->period_att_to}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[3]))
+							{{date('Y/m/d', strtotime($user->educational_backgrounds[3]->year_graduated))}}
+							@endisset
+						</td>
 						<td colspan="1"></td>
 					</tr>
 					<tr>
@@ -387,9 +528,21 @@
 						<td colspan="4"></td>
 						<td colspan="2"></td>
 						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[4]))
+								{{$user->educational_backgrounds[4]->period_att_from}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[4]))
+								{{$user->educational_backgrounds[4]->period_att_to}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->educational_backgrounds[4]))
+							{{date('Y/m/d', strtotime($user->educational_backgrounds[4]->year_graduated))}}
+							@endisset
+						</td>
 						<td colspan="1"></td>
 					</tr>
 				</tbody>
@@ -434,36 +587,132 @@
 						<td colspan="1" class="s-label">Date of Validity</td>
 					</tr>
 					<tr>
-						<td colspan="5"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->eligibilities[0]))
+								{{$user->eligibilities[0]->career_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[0]))
+								{{$user->eligibilities[0]->rating}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[0]))
+								{{$user->eligibilities[0]->date_exam}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[0]))
+								{{$user->eligibilities[0]->place_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[0]))
+								{{$user->eligibilities[0]->license_no}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[0]))
+								{{$user->eligibilities[0]->license_validity}}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="5"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->eligibilities[1]))
+								{{$user->eligibilities[1]->career_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[1]))
+								{{$user->eligibilities[1]->rating}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[1]))
+								{{$user->eligibilities[1]->date_exam}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[1]))
+								{{$user->eligibilities[1]->place_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[1]))
+								{{$user->eligibilities[1]->license_no}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[1]))
+								{{$user->eligibilities[1]->license_validity}}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="5"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->eligibilities[2]))
+								{{$user->eligibilities[2]->career_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[2]))
+								{{$user->eligibilities[2]->rating}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[2]))
+								{{$user->eligibilities[2]->date_exam}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[2]))
+								{{$user->eligibilities[2]->place_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[2]))
+								{{$user->eligibilities[2]->license_no}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[2]))
+								{{$user->eligibilities[2]->license_validity}}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="5"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->eligibilities[3]))
+								{{$user->eligibilities[3]->career_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[3]))
+								{{$user->eligibilities[3]->rating}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[3]))
+								{{$user->eligibilities[3]->date_exam}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->eligibilities[3]))
+								{{$user->eligibilities[3]->place_exam}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[3]))
+								{{$user->eligibilities[3]->license_no}}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->eligibilities[3]))
+								{{$user->eligibilities[3]->license_validity}}
+							@endisset
+						</td>
 					</tr>
 				</tbody>
 
@@ -525,72 +774,208 @@
 						<table class="w-100 border-0">
 							<tbody class="border-0">
 								<tr>
-									<td class="border-0 border-bottom-0" style="width: 50%;"></td>
-									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
+									<td class="border-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[0]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[0]->work_ex_from)) }}
+										@endisset
+									</td>
+									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[0]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[0]->work_ex_to)) }}
+										@endisset
+									</td>
 								</tr>
 							</tbody>
 						</table>
 						</td>
-						<td colspan="5"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->work_experiences[0]))
+								{{ $user->work_experiences[0]->position_title }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->work_experiences[0]))
+								{{ $user->work_experiences[0]->department_agency }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[0]))
+								{{ $user->work_experiences[0]->salary }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[0]))
+								{{ $user->work_experiences[0]->pay_grade }}
+							@endisset
+						</td>
+						<td colspan="1">@if(isset($user->work_experiences[0]))
+							{{ $user->work_experiences[0]->status_appointment }}
+						@endisset</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[0]))
+								@if ($user->work_experiences[0]->is_govt)
+									YES
+								@else
+									NO
+								@endif
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="p-0">
 						<table class="w-100 border-0">
 							<tbody class="border-0">
 								<tr>
-									<td class="border-0 border-bottom-0" style="width: 50%;"></td>
-									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
+									<td class="border-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[1]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[1]->work_ex_from)) }}
+										@endisset
+									</td>
+									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[1]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[1]->work_ex_to)) }}
+										@endisset
+									</td>
 								</tr>
 							</tbody>
 						</table>
 						</td>
-						<td colspan="5"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->work_experiences[1]))
+								{{ $user->work_experiences[1]->position_title }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->work_experiences[1]))
+								{{ $user->work_experiences[1]->department_agency }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[1]))
+								{{ $user->work_experiences[1]->salary }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[1]))
+								{{ $user->work_experiences[1]->pay_grade }}
+							@endisset
+						</td>
+						<td colspan="1">@if(isset($user->work_experiences[1]))
+							{{ $user->work_experiences[1]->status_appointment }}
+						@endisset</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[1]))
+								@if ($user->work_experiences[1]->is_govt)
+									YES
+								@else
+									NO
+								@endif
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="p-0">
 						<table class="w-100 border-0">
 							<tbody class="border-0">
 								<tr>
-									<td class="border-0 border-bottom-0" style="width: 50%;"></td>
-									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
+									<td class="border-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[2]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[2]->work_ex_from)) }}
+										@endisset
+									</td>
+									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[2]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[2]->work_ex_to)) }}
+										@endisset
+									</td>
 								</tr>
 							</tbody>
 						</table>
 						</td>
-						<td colspan="5"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->work_experiences[2]))
+								{{ $user->work_experiences[2]->position_title }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->work_experiences[2]))
+								{{ $user->work_experiences[2]->department_agency }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[2]))
+								{{ $user->work_experiences[2]->salary }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[2]))
+								{{ $user->work_experiences[2]->pay_grade }}
+							@endisset
+						</td>
+						<td colspan="1">@if(isset($user->work_experiences[2]))
+							{{ $user->work_experiences[2]->status_appointment }}
+						@endisset</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[2]))
+								@if ($user->work_experiences[2]->is_govt)
+									YES
+								@else
+									NO
+								@endif
+							@endisset
+						</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="p-0">
 						<table class="w-100 border-0">
 							<tbody class="border-0">
 								<tr>
-									<td class="border-0 border-bottom-0" style="width: 50%;"></td>
-									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
+									<td class="border-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[3]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[3]->work_ex_from)) }}
+										@endisset
+									</td>
+									<td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;">
+										@if(isset($user->work_experiences[3]))
+											{{ date('m/d/Y', strtotime($user->work_experiences[3]->work_ex_to)) }}
+										@endisset
+									</td>
 								</tr>
 							</tbody>
 						</table>
 						</td>
-						<td colspan="5"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
+						<td colspan="5">
+							@if(isset($user->work_experiences[3]))
+								{{ $user->work_experiences[3]->position_title }}
+							@endisset
+						</td>
+						<td colspan="3">
+							@if(isset($user->work_experiences[3]))
+								{{ $user->work_experiences[3]->department_agency }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[3]))
+								{{ $user->work_experiences[3]->salary }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[3]))
+								{{ $user->work_experiences[3]->pay_grade }}
+							@endisset
+						</td>
+						<td colspan="1">@if(isset($user->work_experiences[3]))
+							{{ $user->work_experiences[3]->status_appointment }}
+						@endisset</td>
+						<td colspan="1">
+							@if(isset($user->work_experiences[3]))
+								@if ($user->work_experiences[3]->is_govt)
+									YES
+								@else
+									NO
+								@endif
+							@endisset
+						</td>
 					</tr>
 				</tbody>
 
@@ -631,32 +1016,112 @@
 						<td colspan="3" class="s-label border-top-0"></td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="3"></td>
+						<td colspan="6">
+							@if(isset($user->voluntary_works[0]))
+								{{ $user->voluntary_works[0]->name_address_org }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[0]))
+								{{ $user->voluntary_works[0]->work_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[0]))
+								{{ $user->voluntary_works[0]->work_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[0]))
+								{{ $user->voluntary_works[0]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="3">
+							@if(isset($user->voluntary_works[0]))
+								{{ $user->voluntary_works[0]->nature_work }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="3"></td>
+						<td colspan="6">
+							@if(isset($user->voluntary_works[1]))
+								{{ $user->voluntary_works[1]->name_address_org }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[1]))
+								{{ $user->voluntary_works[1]->work_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[1]))
+								{{ $user->voluntary_works[1]->work_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[1]))
+								{{ $user->voluntary_works[1]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="3">
+							@if(isset($user->voluntary_works[1]))
+								{{ $user->voluntary_works[1]->nature_work }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="3"></td>
+						<td colspan="6">
+							@if(isset($user->voluntary_works[2]))
+								{{ $user->voluntary_works[2]->name_address_org }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[2]))
+								{{ $user->voluntary_works[2]->work_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[2]))
+								{{ $user->voluntary_works[2]->work_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[2]))
+								{{ $user->voluntary_works[2]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="3">
+							@if(isset($user->voluntary_works[2]))
+								{{ $user->voluntary_works[2]->nature_work }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="3"></td>
+						<td colspan="6">
+							@if(isset($user->voluntary_works[3]))
+								{{ $user->voluntary_works[3]->name_address_org }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[3]))
+								{{ $user->voluntary_works[3]->work_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[3]))
+								{{ $user->voluntary_works[3]->work_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->voluntary_works[3]))
+								{{ $user->voluntary_works[3]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="3">
+							@if(isset($user->voluntary_works[3]))
+								{{ $user->voluntary_works[3]->nature_work }}
+							@endisset
+						</td>
 					</tr>
 				</tbody>
 
@@ -693,44 +1158,164 @@
 						<td colspan="2" class="s-label border-top-0"></td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
+						<td colspan="6">
+							@if(isset($user->learning_developments[0]))
+								{{ $user->learning_developments[0]->title_learning_dev }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[0]))
+								{{ $user->learning_developments[0]->date_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[0]))
+								{{ $user->learning_developments[0]->date_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[0]))
+								{{ $user->learning_developments[0]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[0]))
+								{{ $user->learning_developments[0]->type_ld }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->learning_developments[0]))
+								{{ $user->learning_developments[0]->sponsored_by }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
+						<td colspan="6">
+							@if(isset($user->learning_developments[1]))
+								{{ $user->learning_developments[1]->title_learning_dev }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[1]))
+								{{ $user->learning_developments[1]->date_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[1]))
+								{{ $user->learning_developments[1]->date_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[1]))
+								{{ $user->learning_developments[1]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[1]))
+								{{ $user->learning_developments[1]->type_ld }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->learning_developments[1]))
+								{{ $user->learning_developments[1]->sponsored_by }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
+						<td colspan="6">
+							@if(isset($user->learning_developments[2]))
+								{{ $user->learning_developments[2]->title_learning_dev }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[2]))
+								{{ $user->learning_developments[2]->date_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[2]))
+								{{ $user->learning_developments[2]->date_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[2]))
+								{{ $user->learning_developments[2]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[2]))
+								{{ $user->learning_developments[2]->type_ld }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->learning_developments[2]))
+								{{ $user->learning_developments[2]->sponsored_by }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
+						<td colspan="6">
+							@if(isset($user->learning_developments[3]))
+								{{ $user->learning_developments[3]->title_learning_dev }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[3]))
+								{{ $user->learning_developments[3]->date_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[3]))
+								{{ $user->learning_developments[3]->date_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[3]))
+								{{ $user->learning_developments[3]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[3]))
+								{{ $user->learning_developments[3]->type_ld }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->learning_developments[3]))
+								{{ $user->learning_developments[3]->sponsored_by }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="1"></td>
-						<td colspan="2"></td>
+						<td colspan="6">
+							@if(isset($user->learning_developments[4]))
+								{{ $user->learning_developments[4]->title_learning_dev }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[4]))
+								{{ $user->learning_developments[4]->date_from }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[4]))
+								{{ $user->learning_developments[4]->date_to }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[4]))
+								{{ $user->learning_developments[4]->no_hours }}
+							@endisset
+						</td>
+						<td colspan="1">
+							@if(isset($user->learning_developments[4]))
+								{{ $user->learning_developments[4]->type_ld }}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->learning_developments[4]))
+								{{ $user->learning_developments[4]->sponsored_by }}
+							@endisset
+						</td>
 					</tr>
 				</tbody>
 
@@ -758,24 +1343,72 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
+						<td colspan="4">
+							@if(isset($user->other_informations[0]))
+								{{ $user->other_informations[0]->non_academic_distinction }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[0]))
+								{{ $user->other_informations[0]->member_association }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[0]))
+								{{ $user->other_informations[0]->skill_hobbies }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
+						<td colspan="4">
+							@if(isset($user->other_informations[1]))
+								{{ $user->other_informations[1]->non_academic_distinction }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[1]))
+								{{ $user->other_informations[1]->member_association }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[1]))
+								{{ $user->other_informations[1]->skill_hobbies }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
+						<td colspan="4">
+							@if(isset($user->other_informations[2]))
+								{{ $user->other_informations[2]->non_academic_distinction }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[2]))
+								{{ $user->other_informations[2]->member_association }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[2]))
+								{{ $user->other_informations[2]->skill_hobbies }}
+							@endisset
+						</td>
 					</tr>
 					<tr>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
-						<td colspan="4"></td>
+						<td colspan="4">
+							@if(isset($user->other_informations[3]))
+								{{ $user->other_informations[3]->non_academic_distinction }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[3]))
+								{{ $user->other_informations[3]->member_association }}
+							@endisset
+						</td>
+						<td colspan="4">
+							@if(isset($user->other_informations[3]))
+								{{ $user->other_informations[3]->skill_hobbies }}
+							@endisset
+						</td>
 					</tr>
 				</tbody>
 
@@ -809,27 +1442,43 @@
 						<td colspan="2">
 							
 						</td>
-						<td colspan="3"></td>
+						<td colspan="3">
+							
+						</td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span>a. within the third degree?<br>
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->related_with_third_degree)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span>b. within the fourth degree (for Local Government Unit - Career Employees)?
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->related_with_fourth_degree)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 						</td>
 						<td colspan="2">If YES, give details:</td>
-						<td colspan="3"></td>
+						<td colspan="3">
+							{{$user->related_with_fourth_degree_yes}}
+						</td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
@@ -844,7 +1493,11 @@
 							<span class="count">35.</span> a. Have you ever been found guilty of any administrative offense?
 						</td>
 						<td colspan="2">
-							
+							@if ($user->is_guilty_administrative_offense)
+								YES
+							@else
+								NO
+							@endif
 						</td>
 						<td colspan="3"></td>
 					</tr>
@@ -854,27 +1507,33 @@
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
-						<td colspan="5"></td>
+						<td colspan="5">{{$user->is_guilty_administrative_offense_yes}}</td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
-							<span class="count"></span> b. within the fourth degree (for Local Government Unit - Career Employees)?
+							<span class="count"></span> b. Have you been criminally charged before any court?
 						</td>
-						<td colspan="2" style="border-top-width: 1px !important;"></td>
+						<td colspan="2" style="border-top-width: 1px !important;">
+							@if ($user->is_criminally_charge)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3" style="border-top-width: 1px !important;"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
-						<td colspan="5">If YES, give details:</td>
+						<td colspan="5">If YES, give details: &nbsp; {{$user->is_criminally_charge_yes}}</td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
-						<td colspan="2">Date Filed:</td>
+						<td colspan="2">Date Filed: {{$user->date_filed}}</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
-						<td colspan="2">Status of Case/s:</td>
+						<td colspan="2">Status of Case/s: &nbsp; {{$user->case_status}}</td>
 						<td colspan="3"></td>
 					</tr>
 				</tbody>
@@ -885,12 +1544,18 @@
 						<td colspan="7" class="s-label border-bottom-0">
 							<span class="count">36.</span> Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_convicted)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
-						<td colspan="5">If YES, give details:</td>
+						<td colspan="5">If YES, give details: &nbsp; {{$user->is_convicted_yes}}</td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
@@ -906,14 +1571,20 @@
 							
 							
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_separated)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span> retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased<br>
 						</td>
-						<td colspan="5">If YES, give details:</td>
+						<td colspan="5">If YES, give details: &nbsp; {{$user->is_separated_yes_details}}</td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
@@ -930,28 +1601,40 @@
 						<td colspan="7" class="s-label border-bottom-0">
 							<span class="count">38.</span> a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_candidate_election)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span><br>
 						</td>
-						<td colspan="2">If YES, give details:</td>
+						<td colspan="2">If YES, give details: {{$user->is_candiadte_election_yes}}</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span> b. Have you resigned from the government service during the three (3)-month period before the last
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_resigned)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span> election to promote/actively campaign for a national or local candidate?
 						</td>
-						<td colspan="2">If YES, give details:</td>
+						<td colspan="2">If YES, give details: &nbsp; {{$user->is_resigned_yes}}</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
@@ -968,14 +1651,18 @@
 							<span class="count">39.</span> Have you acquired the status of an immigrant or permanent resident of another country?
 						</td>
 						<td colspan="2">
-							
+							@if ($user->is_immigrant)
+								YES
+							@else
+								NO
+							@endif
 						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 						</td>
-						<td colspan="2">if YES, give details (country):</td>
+						<td colspan="2">if YES, give details (country): &nbsp; {{$user->is_immigrant_yes}}</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
@@ -1002,39 +1689,57 @@
 						<td colspan="7" class="s-label">
 							<span class="count"></span>a. Are you a member of any indigenous group?<br>
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_indigenous)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span><br>
 						</td>
-						<td colspan="2">If YES, please specify:</td>
+						<td colspan="2">If YES, please specify: &nbsp; {{$user->is_indigenous_yes}}</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span>b. Are you a person with disability?
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_disable)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 						</td>
-						<td colspan="2">If YES, please specify:</td>
+						<td colspan="2">If YES, please specify: &nbsp; {{$user->is_disable_id_no}}</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label">
 							<span class="count"></span>c. Are you a solo parent?
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							@if ($user->is_solo_parent)
+								YES
+							@else
+								NO
+							@endif
+						</td>
 						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<td colspan="7" class="s-label"></td>
-						<td colspan="2">If YES, please specify:</td>
+						<td colspan="2">If YES, please specify: &nbsp; {{$user->is_solo_parent_yes}}</td>
 						<td colspan="3"></td>
 					</tr>
 				</tbody>

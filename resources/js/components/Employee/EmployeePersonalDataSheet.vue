@@ -864,14 +864,15 @@
 
                                     <div class="column">
                                         <b-field label="Type Learning Development" label-position="on-border">
-                                            <b-select v-model="item.type_ld"
+                                            <!-- <b-select v-model="item.type_ld"
                                                       placeholder="Type Learning Development"
                                                       expanded>
                                                 <option v-for="(i, ix) in learning_developments" :key="ix"
                                                         :value="i.ld_type">
                                                     {{ i.ld_type }}
                                                 </option>
-                                            </b-select>
+                                            </b-select> -->
+                                            <b-input v-model="item.type_ld" placeholder="Learning Development"></b-input>
                                         </b-field>
 
                                     </div>
@@ -885,8 +886,8 @@
 
                                 <div class="buttons is-right">
                                     <b-button @click="removeLearningDevelopment(index)" v-show="index || ( !index && fields.learning_developments.length > 0)"
-                                              type="is-danger"
-                                              icon-left="delete">
+                                        type="is-danger"
+                                        icon-left="delete">
                                     </b-button>
                                 </div>
                             </div>
@@ -910,14 +911,15 @@
                                 <div class="columns">
                                     <div class="column">
                                         <b-field label="Specialization" label-position="on-border">
-                                            <b-select v-model="item.skill_hobbies"
+                                            <!-- <b-select v-model="item.skill_hobbies"
                                                       placeholder="Special Skill & Hobbies"
                                                       expanded>
                                                 <option v-for="(i, ix) in specializations" :key="ix"
                                                         :value="i.specialization">
                                                     {{ i.specialization }}
                                                 </option>
-                                            </b-select>
+                                            </b-select> -->
+                                            <b-input v-model="item.skill_hobbies" placeholder="Specialization"></b-input>
                                         </b-field>
 
 <!--                                        <b-field label="" label-position="on-border">-->
