@@ -56,6 +56,7 @@ class SignUpController extends Controller
             'res_street' => strtoupper($req->res_street),
             'agency_idno' => $req->agency_idno,
             //'skill_hobbies' => $req->skill_hobbies,
+            'is_approve' => 0
         ]);
 
         // try{

@@ -126,6 +126,7 @@ class CreateUsersTable extends Migration
                 ->default(0)
                 ->nullable();
            
+            $table->tinyInteger('is_approve')->nullable()->default(0);
 
 
             $table->string('password');

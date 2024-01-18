@@ -21,7 +21,7 @@ class EmployeeMiddleware
         $user = Auth::user();
 
         if($user->is_verified === 0){
-            return redirect('/pending-page');
+            return redirect('/pending');
         }
 
 
