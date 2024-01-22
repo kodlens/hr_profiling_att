@@ -84,8 +84,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/users', App\Http\Controllers\ControlPanel\UserController::class);
     Route::get('/get-users', [App\Http\Controllers\ControlPanel\UserController::class, 'getUsers']);
     Route::post('/users-set-archive/{user}/{value}', [App\Http\Controllers\ControlPanel\UserController::class, 'setArchive']);
+    Route::post('/user-set-approve/{userId}', [App\Http\Controllers\ControlPanel\UserController::class, 'setApprove']);
 
-
+    
 
 
 //    Route::resource('/learning-dev', App\Http\Controllers\LearningDevelopmentTypeController::class);
@@ -115,8 +116,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 // FACULTY ROUTES
-Route::get('/pending-page', function(){
-    return view('faculty.pending-page');
+Route::get('/pending', function(){
+    return view('pending');
 });
 
 

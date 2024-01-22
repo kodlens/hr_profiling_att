@@ -176,4 +176,14 @@ class UserController extends Controller
             'status' => $value
         ], 200);
     }
+
+    public function setApprove($id){
+        $data = User::find($id);
+        $data->is_approve = 1;
+        $data->save();
+
+        return response()->json([
+            'status' => 'approved'
+        ], 200);
+    }
 }

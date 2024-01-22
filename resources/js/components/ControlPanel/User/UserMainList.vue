@@ -115,7 +115,7 @@
                                     :icon-right="active ? 'menu-up' : 'menu-down'" />
                             </template>
                             <b-dropdown-item aria-role="listitem">Reset Password</b-dropdown-item>
-                            <b-dropdown-item aria-role="listitem"></b-dropdown-item>
+                            <b-dropdown-item aria-role="listitem" @click="approve(props.row.user_id)">Activate</b-dropdown-item>
                             <b-dropdown-item aria-role="listitem"
                                 @click="setArchived(props.row.user_id, 1)">Archived</b-dropdown-item>
                         </b-dropdown>
@@ -126,9 +126,22 @@
             <template #detail="props">
                 <tr>
                     <th>Engagement</th>
+                    <th>Approve</th>
                 </tr>
                 <tr>
-                    <td>{{ props.row.engagement.engagement_status }}</td>
+                    <td>
+                        <span v-if="props.row.engagement">
+                            {{ props.row.engagement.engagement_status }}
+                        </span>
+                    </td>
+                    <td>
+                        <span v-if="props.row.is_approve > 0">
+                            YES
+                        </span>
+                        <span v-else>
+                            NO
+                        </span>
+                    </td>
                 </tr>
             </template>
         </b-table>
@@ -759,6 +772,18 @@ export default{
         setArchived(id, value){
             axios.post('/users-set-archive/'+id+'/' + value).then(res=>{
                 if(res.data.status == 1){
+                    this.$buefy.toast.open({
+                        message: 'Archived successfully',
+                        type: 'is-success'
+                    })
+                }
+                this.loadAsyncData()
+            })
+        },
+
+        approve(id){
+            axios.post('/user-set-approve/'+id).then(res=>{
+                if(res.data.status === 'approved'){
                     this.$buefy.toast.open({
                         message: 'Archived successfully',
                         type: 'is-success'

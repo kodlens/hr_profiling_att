@@ -20,7 +20,7 @@ class EmployeeMiddleware
     {
         $user = Auth::user();
 
-        if($user->is_verified === 0){
+        if($user->is_approve === 0){
             return redirect('/pending');
         }
 
