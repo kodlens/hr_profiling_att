@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="print-form debug">
+        <div class="print-form">
 
             <div class="columns m-2 nprint">
                 <div class="column nprint">
@@ -26,7 +26,23 @@
 
             </div>
             
-            <div class="has-text-weight-bold has-text-centered">REPORT BY SEX</div>
+            <div class="has-text-weight-bold has-text-centered">REPORT BY SEX 
+
+                <span v-if="search.designation === ''">ALL</span>
+                <span v-else="search.designation === 'FACULTY'">FACULTY</span>
+                <span v-else="search.designation === 'STAFF'">STAFF</span>
+            </div>
+
+            <table class="report-table">
+                <tr>
+                    <th>Sex</th>
+                    <th>Count</th>
+                </tr>
+                <tr v-for="(item,index) in data" :key="`sex${index}`">
+                    <td>{{ item.sex }}</td>
+                    <td>{{ item.count }}</td>
+                </tr>
+            </table>
         </div>
 
 
@@ -61,7 +77,24 @@ export default{
     },
 
     mounted(){
-
+        this.loadReporyBySex()
     }
 }
 </script>
+
+
+<style scoped>
+    .report-table{
+        max-width: 400px;
+        margin: 10px auto;
+    }
+
+    .report-table tr th{
+        padding: 3px 10px;
+    }
+
+    .report-table tr td{
+        padding: 3px 10px;
+    }
+
+</style>

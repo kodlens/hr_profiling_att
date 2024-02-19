@@ -20,11 +20,10 @@ class ReportBySexController extends Controller
         $designation = $req->designation == '' || $req->designation == null ? '' : $req->designation;
         
         $data = DB::select('
-            select
-            (select count(sex) from users where sex = `MALE`) as sum_male,
-            (select count(sex) from users where sex = `FEMALE`) as sum_female
-            from
+            SELECT sex, COUNT(*) as count
+            FROM users
             users where users.designation like ?
+            GROUP BY sex
         ', [$designation . '%']);
 
         return $data;
