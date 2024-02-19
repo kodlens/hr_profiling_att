@@ -36,6 +36,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@dev.com',
                 'contact_no' => '09167789585',
                 'role' => 'administrator',
+                'designation' => 'staff',
                 'password' => Hash::make('a')
             ],
 
@@ -58,6 +59,7 @@ class UserSeeder extends Seeder
                 'email' => 'junrey@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'staff',
                 'password' => Hash::make('a')
             ],
 
@@ -81,6 +83,7 @@ class UserSeeder extends Seeder
                 'email' => 'cj@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'point_person',
+                'designation' => 'staff',
                 'password' => Hash::make('a')
             ],
 
@@ -104,6 +107,7 @@ class UserSeeder extends Seeder
                 'email' => 'eman@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'training_officer',
+                'designation' => 'staff',
                 'password' => Hash::make('a')
             ],
 
@@ -134,6 +138,7 @@ class UserSeeder extends Seeder
                 'email' => 'reynaldo@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'staff',
                 'password' => Hash::make('a')
             ],
             [
@@ -153,6 +158,7 @@ class UserSeeder extends Seeder
                 'email' => 'ramon@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -172,6 +178,7 @@ class UserSeeder extends Seeder
                 'email' => 'romel@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -191,6 +198,7 @@ class UserSeeder extends Seeder
                 'email' => 'clarissa@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -210,6 +218,7 @@ class UserSeeder extends Seeder
                 'email' => 'juliet@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -229,6 +238,7 @@ class UserSeeder extends Seeder
                 'email' => 'mabel@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -248,6 +258,7 @@ class UserSeeder extends Seeder
                 'email' => 'choa@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -267,6 +278,7 @@ class UserSeeder extends Seeder
                 'email' => 'mj@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -286,6 +298,7 @@ class UserSeeder extends Seeder
                 'email' => 'cara@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'faculty',
                 'password' => Hash::make('a')
             ],
             [
@@ -305,6 +318,7 @@ class UserSeeder extends Seeder
                 'email' => 'jane@dev.com',
                 'contact_no' => '09683014598',
                 'role' => 'employee',
+                'designation' => 'staff',
                 'password' => Hash::make('a')
             ],
 

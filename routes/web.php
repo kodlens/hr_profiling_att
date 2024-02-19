@@ -120,6 +120,13 @@ Route::get('/pending', function(){
     return view('pending');
 });
 
+Route::middleware(['auth'])->group(function () {
+    //
+    Route::resource('/report-by-sex', App\Http\Controllers\Report\ReportBySexController::class);
+    Route::get('/report-load-report-by-sex', [App\Http\Controllers\Report\ReportBySexController::class, 'loadReportBySex']);
+
+
+});
 
 Route::middleware(['auth', 'employee'])->group(function () {
 

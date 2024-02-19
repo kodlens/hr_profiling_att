@@ -77,6 +77,19 @@
                     USER
                 </b-navbar-item>
 
+     
+
+                <b-navbar-dropdown label="REPORTS" class="{{ request()->is('reports*') ? 'active' : '' }}">
+                    <b-navbar-item
+                        href="/report-by-sex">
+                        Report By Sex
+                    </b-navbar-item>
+                    <b-navbar-item href="#">
+                        Contact
+                    </b-navbar-item>
+                </b-navbar-dropdown>
+
+
             @endif
 
             <!-- TRAINING OFFICER ROLE -->
@@ -117,7 +130,6 @@
                     &nbsp;
                     EVENTS
                 </b-navbar-item>
-   
             @endif
             
             <b-navbar-item tag="div">
