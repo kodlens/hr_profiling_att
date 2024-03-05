@@ -772,7 +772,7 @@ export default{
             axios.post('/user-set-approve/'+id).then(res=>{
                 if(res.data.status === 'approved'){
                     this.$buefy.toast.open({
-                        message: 'Archived successfully',
+                        message: 'Activated successfully',
                         type: 'is-success'
                     })
                 }
