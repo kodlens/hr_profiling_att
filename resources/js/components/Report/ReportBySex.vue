@@ -29,8 +29,8 @@
             <div class="has-text-weight-bold has-text-centered">REPORT BY SEX 
 
                 <span v-if="search.designation === ''">ALL</span>
-                <span v-else="search.designation === 'FACULTY'">FACULTY</span>
-                <span v-else="search.designation === 'STAFF'">STAFF</span>
+                <span v-else-if="search.designation === 'FACULTY'">FACULTY</span>
+                <span v-else-if="search.designation === 'STAFF'">STAFF</span>
             </div>
 
             <table class="report-table">
@@ -48,12 +48,7 @@
 
         <div class="section">
 
-            <Bar
-                id="my-chart-id"
-                :options="chartOptions"
-                :data="chartData"
-            />
-            
+        
         </div>
 
 
@@ -62,19 +57,7 @@
 
 <script>
 
-import { Bar } from 'vue-chartjs/legacy'
 
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-} from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default{
     data(){
@@ -110,25 +93,12 @@ export default{
                 this.data = res.data
             })
         },
-        renderChart() {
-            const ctx = this.$refs.myChart.getContext('2d');
-            const myChart = new Chart(ctx, {
-                // Chart configuration options
-                type: 'bar',
-                data: {
-                    labels: ['January', 'February', 'March', 'April', 'May'],
-                    datasets: [{
-                        label: 'My First Dataset',
-                        data: [65, 59, 80, 81, 56],
-                    }],
-                },
-            });
-        },
+        
     },
 
     mounted(){
         this.loadReporyBySex()
-        this.renderChart();
+       // this.renderChart();
     }
 }
 </script>

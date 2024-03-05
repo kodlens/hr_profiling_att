@@ -92,12 +92,13 @@ class UserController extends Controller
             'sex' => $req->sex,
             'email' => $req->email,
             'contact_no' => $req->contact_no,
+            'designation' => $req->designation,
             'role' => $req->role,
             'res_province' => $req->res_province,
             'res_city' => $req->res_city,
             'res_barangay' => $req->res_barangay,
             'res_street' => strtoupper($req->res_street),
-            'engagement_status_id' => 0
+            'engagement_status_id' => $req->engagement_status_id
         ]);
 
         return response()->json([
@@ -106,8 +107,7 @@ class UserController extends Controller
     }
 
     public function update(Request $req, $id){
-        //return $req;
-
+   
         $validate = $req->validate([
             'username' => ['required', 'max:50', 'unique:users,username,'.$id.',user_id'],
             'lname' => ['required', 'string', 'max:100'],
@@ -127,12 +127,13 @@ class UserController extends Controller
         $data->mname = strtoupper($req->mname);
         $data->sex = $req->sex;
         $data->email = $req->email;
+        $data->designation = $req->designation;
         $data->role = $req->role;
         $data->res_province = $req->res_province;
         $data->res_city = $req->res_city;
         $data->res_barangay = $req->res_barangay;
         $data->res_street = strtoupper($req->res_street);
-        $data->engagement_status_id = 0;
+        $data->engagement_status_id = $req->engagement_status_id;
 
         $data->save();
 

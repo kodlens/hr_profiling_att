@@ -27,20 +27,16 @@
             </div>
 
             <div class="column">
-                <div class="column">
-                    <b-field label="ENGAGEMENT STATUS"
-                        :type="errors.engagement_status_id ? 'is-danger':''"
-                        :message="errors.engagement_status_id ? errors.engagement_status_id[0] : ''">
-                        <b-select v-model="search.engagement"
-                            @input="loadAsyncData"
-                            placeholder="Engagement Status">
-                            <option value="">ALL</option>
-                            <option v-for="(item, index) in engagementStatuses"
-                                :key="`es${index}`" 
-                                :value="item.engagement_status_id">{{ item.engagement_status }}</option>
-                        </b-select>
-                    </b-field>
-                </div>
+                <b-field label="ENGAGEMENT STATUS">
+                    <b-select v-model="search.engagement"
+                        @input="loadAsyncData"
+                        placeholder="Engagement Status">
+                        <option value="">ALL</option>
+                        <option v-for="(item, index) in engagementStatuses"
+                            :key="`es${index}`" 
+                            :value="item.engagement_status_id">{{ item.engagement_status }}</option>
+                    </b-select>
+                </b-field>
             </div>
         </div>
 
@@ -126,12 +122,18 @@
             <template #detail="props">
                 <tr>
                     <th>Engagement</th>
+                    <th>Designation</th>
                     <th>Approve</th>
                 </tr>
                 <tr>
                     <td>
                         <span v-if="props.row.engagement">
                             {{ props.row.engagement.engagement_status }}
+                        </span>
+                    </td>
+                    <td>
+                        <span v-if="props.row.designation">
+                            {{ props.row.designation }}
                         </span>
                     </td>
                     <td>
@@ -233,6 +235,18 @@
                                         </b-input>
                                     </b-field>
                                 </div>
+
+                                <div class="column">
+                                    <b-field label="Sex" label-position="on-border" expanded
+                                             :type="errors.sex ? 'is-danger':''"
+                                             :message="errors.sex ? errors.sex[0] : ''"
+                                            >
+                                        <b-select v-model="fields.sex" expanded>
+                                            <option value="MALE">MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
+                                        </b-select>
+                                    </b-field>
+                                </div>
                             </div>
                             <div class="columns" v-if="global_id < 1">
                                 <div class="column">
@@ -258,13 +272,29 @@
 
                             <div class="columns">
                                 <div class="column">
-                                    <b-field label="Sex" label-position="on-border" expanded
-                                             :type="errors.sex ? 'is-danger':''"
-                                             :message="errors.sex ? errors.sex[0] : ''"
-                                            >
-                                        <b-select v-model="fields.sex" expanded>
-                                            <option value="MALE">MALE</option>
-                                            <option value="FEMALE">FEMALE</option>
+                                    <b-field label="ENGAGEMENT STATUS" expanded
+                                        label-position="on-border"
+                                        :type="errors.engagement_status_id ? 'is-danger':''"
+                                        :message="errors.engagement_status_id ? errors.engagement_status_id[0] : ''">
+                                        <b-select v-model="fields.engagement_status_id" expanded
+                                            placeholder="Engagement Status">
+                                            <option v-for="(item, index) in engagementStatuses"
+                                                :key="`es${index}`" 
+                                                :value="item.engagement_status_id">{{ item.engagement_status }}</option>
+                                        </b-select>
+                                    </b-field>
+                                </div>
+                            </div>
+
+
+                            <div class="columns">
+                                <div class="column">
+                                    <b-field label="Designation" label-position="on-border" expanded
+                                             :type="errors.designation ? 'is-danger':''"
+                                             :message="errors.designation ? errors.designation[0] : ''">
+                                        <b-select v-model="fields.designation" expanded>
+                                            <option value="FACULTY">FACULTY</option>
+                                            <option value="STAFF">STAFF</option>
                                         </b-select>
                                     </b-field>
                                 </div>
@@ -283,49 +313,6 @@
                                     </b-field>
                                 </div>
 
-                            </div>
-
-
-
-                            <div class="columns">
-                                <div class="column">
-                                    <b-field label="Province" label-position="on-border" expanded
-                                             :type="errors.res_province ? 'is-danger':''"
-                                             :message="errors.res_province ? errors.res_province[0] : ''">
-                                        <b-select v-model="fields.res_province" @input="loadCity" expanded>
-                                            <option v-for="(item, index) in provinces" :key="index" :value="item.provCode">{{ item.provDesc }}</option>
-                                        </b-select>
-                                    </b-field>
-                                </div>
-
-                                <div class="column">
-                                    <b-field label="City" label-position="on-border" expanded
-                                             :type="errors.res_city ? 'is-danger':''"
-                                             :message="errors.res_city ? errors.res_city[0] : ''">
-                                        <b-select v-model="fields.res_city" @input="loadBarangay" expanded>
-                                            <option v-for="(item, index) in cities" :key="index" :value="item.citymunCode">{{ item.citymunDesc }}</option>
-                                        </b-select>
-                                    </b-field>
-                                </div>
-                            </div>
-
-                            <div class="columns">
-                                <div class="column">
-                                    <b-field label="Barangay" label-position="on-border" expanded
-                                             :type="errors.res_barangay ? 'is-danger':''"
-                                             :message="errors.res_barangay ? errors.res_barangay[0] : ''">
-                                        <b-select v-model="fields.res_barangay" expanded>
-                                            <option v-for="(item, index) in barangays" :key="index" :value="item.brgyCode">{{ item.brgyDesc }}</option>
-                                        </b-select>
-                                    </b-field>
-                                </div>
-                                <div class="column">
-                                    <b-field label="Street" label-position="on-border">
-                                        <b-input v-model="fields.res_street"
-                                                 placeholder="Street">
-                                        </b-input>
-                                    </b-field>
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -507,7 +494,7 @@ export default{
 
             search: {
                 lname: '',
-                engagement: null
+                engagement: ''
             },
 
             isModalCreate: false,
