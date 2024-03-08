@@ -88,6 +88,12 @@
                 {{ props.row.role }}
             </b-table-column>
 
+            <b-table-column field="status" label="STATUS" v-slot="props">
+                <span v-if="props.row.is_partime === 1">PARTIME</span>
+                <span v-else>FULLTIME</span>
+
+            </b-table-column>
+
             <b-table-column label="ACTION" v-slot="props">
                 <div class="is-flex">
                     <b-tooltip label="Edit" type="is-warning">
@@ -110,7 +116,6 @@
                                     size="is-small"
                                     :icon-right="active ? 'menu-up' : 'menu-down'" />
                             </template>
-                            <b-dropdown-item aria-role="listitem">Reset Password</b-dropdown-item>
                             <b-dropdown-item aria-role="listitem" @click="approve(props.row.user_id)">Activate</b-dropdown-item>
                             <b-dropdown-item aria-role="listitem"
                                 @click="setArchived(props.row.user_id, 1)">Archived</b-dropdown-item>
@@ -281,6 +286,18 @@
                                             <option v-for="(item, index) in engagementStatuses"
                                                 :key="`es${index}`" 
                                                 :value="item.engagement_status_id">{{ item.engagement_status }}</option>
+                                        </b-select>
+                                    </b-field>
+                                </div>
+                                <div class="column">
+                                    <b-field label="STATUS" expanded
+                                        label-position="on-border"
+                                        :type="errors.is_partime ? 'is-danger':''"
+                                        :message="errors.is_partime ? errors.is_partime[0] : ''">
+                                        <b-select v-model="fields.is_partime" expanded
+                                            placeholder="Status">
+                                           <option :value="0">FULLTIME</option>
+                                           <option :value="1">PARTIME</option>
                                         </b-select>
                                     </b-field>
                                 </div>
@@ -712,15 +729,15 @@ export default{
                 tempData = res.data;
             });
 
-            await axios.get('/load-cities?prov=' + this.fields.res_province).then(res=>{
-                    //load barangay
-                this.cities = res.data;   
-            });
+            // await axios.get('/load-cities?prov=' + this.fields.res_province).then(res=>{
+            //         //load barangay
+            //     this.cities = res.data;   
+            // });
 
-            await axios.get('/load-barangays?prov=' + this.fields.res_province + '&city_code='+this.fields.res_city).then(res=>{
-                this.barangays = res.data;
-                this.fields = tempData
-            });
+            // await axios.get('/load-barangays?prov=' + this.fields.res_province + '&city_code='+this.fields.res_city).then(res=>{
+            //     this.barangays = res.data;
+            //     this.fields = tempData
+            // });
         },
 
        
@@ -791,7 +808,7 @@ export default{
 
     mounted() {
         this.loadAsyncData();
-        this.loadProvince();
+       // this.loadProvince();
         this.loadEngagementStatuses();
     }
 

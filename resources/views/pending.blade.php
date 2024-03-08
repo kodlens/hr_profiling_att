@@ -8,9 +8,9 @@
             <form action="/logout" method="post">
                 @csrf
 
-                <di class="buttons is-centered">
+                <div class="buttons is-centered">
                     <button class="button is-link">LOGOUT</button>
-                </di>
+                </div>
             </form>
         </div>
     </div>

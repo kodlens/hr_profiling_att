@@ -76,7 +76,8 @@ class UserController extends Controller
             'sex' => ['required', 'string', 'max:20'],
             'email' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'confirmed'],
-            'role' => ['required', 'string'],
+            'is_partime' => ['required'],
+            'role' => ['required'],
             'res_province' => ['required', 'string'],
             'res_city' => ['required', 'string'],
             'res_barangay' => ['required', 'string'],
@@ -94,6 +95,7 @@ class UserController extends Controller
             'contact_no' => $req->contact_no,
             'designation' => $req->designation,
             'role' => $req->role,
+            'is_partime' => $req->is_partime,
             'res_province' => $req->res_province,
             'res_city' => $req->res_city,
             'res_barangay' => $req->res_barangay,
@@ -115,6 +117,7 @@ class UserController extends Controller
             'sex' => ['required', 'string', 'max:20'],
             'email' => ['required', 'unique:users,email,'.$id.',user_id'],
             'role' => ['required', 'string'],
+            'is_partime' => ['required'],
             'res_province' => ['required', 'string'],
             'res_city' => ['required', 'string'],
             'res_barangay' => ['required', 'string'],
@@ -129,6 +132,7 @@ class UserController extends Controller
         $data->email = $req->email;
         $data->designation = $req->designation;
         $data->role = $req->role;
+        $data->is_partime = $req->is_partime;
         $data->res_province = $req->res_province;
         $data->res_city = $req->res_city;
         $data->res_barangay = $req->res_barangay;

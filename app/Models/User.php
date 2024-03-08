@@ -64,7 +64,8 @@ class User extends Authenticatable
         'is_disable_id_no',
         'is_solo_parent',
         'is_solo_parent_yes',
-        'is_approve'
+        'is_approve',
+        'is_partime'
     ];
 
     /**

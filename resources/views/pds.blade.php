@@ -98,14 +98,27 @@
 						<td colspan="2" class="s-label align-top border-bottom-0 small">
 							<span class="count">17.</span> RESIDENTIAL ADDRESS
 						</td>
-						<td colspan="2">{{$user->residential_province->provDesc}}</td>
-						<td colspan="2">{{$user->residential_city->citymunDesc}}</td>
+						<td colspan="2">
+							@if($user->residential_province)
+								<span>{{$user->residential_province->provDesc}}</span>
+							@endif	
+						</td>
+						<td colspan="2">
+							@if($user->residential_city)
+								<span>{{$user->residential_city->citymunDesc}}</span>
+								@endif	
+							</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-top-0"><span class="count"></span></td>
 						<td colspan="5"></td>
 						<td colspan="2" class="s-label align-top border-0"></td>
-						<td colspan="2">{{$user->residential_barangay->brgyDesc}}</td>
+						<td colspan="2">
+							@if($user->residential_barangay)
+								<span>{{$user->residential_barangay->brgyDesc}}</span>
+								@endif	
+							</td>	
+						</td>
 						<td colspan="2">{{$user->res_street}}</td>
 					</tr>
 					<tr>
