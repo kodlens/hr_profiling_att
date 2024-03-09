@@ -6,9 +6,15 @@ use App\Models\Office;
 use App\Models\OtherInformation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Env;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AccountApprovalMail;
+
+
 
 class UserController extends Controller
 {
@@ -186,6 +192,12 @@ class UserController extends Controller
         $data = User::find($id);
         $data->is_approve = 1;
         $data->save();
+
+        if(Env::get('MAIL_OPEN') == 1){
+            $when = now()->addSeconds(10);
+            Mail::to($data->email)
+                ->later($when, new AccountApprovalMail($data));
+        }
 
         return response()->json([
             'status' => 'approved'

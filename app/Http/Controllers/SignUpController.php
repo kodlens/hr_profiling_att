@@ -24,7 +24,7 @@ class SignUpController extends Controller
             'lname' => ['required', 'string', 'max:100'],
             'fname' => ['required', 'string', 'max:100'],
             'sex' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'unique:users'],
+            'email' => ['required', 'email',  'unique:users'],
             'password' => ['required', 'string', 'confirmed'],
             'res_province' => ['required', 'string'],
             'res_city' => ['required', 'string'],
@@ -38,7 +38,7 @@ class SignUpController extends Controller
 
        // $qr_code = substr(md5(time() . $req->lname . $req->fname), -8);
 
-        User::create([
+        $user = User::create([
             //'qr_ref' => $qr_code,
             'username' => $req->username,
             'password' => Hash::make($req->password),
@@ -64,6 +64,8 @@ class SignUpController extends Controller
         //         'Content-Type' => 'text/plain'
         //     ])->post('http://'. env('IP_SMS_GATEWAY') .'/services/api/messaging?Message='.$msg.'&To='.$req->contact_no.'&Slot=1', []);
         // }catch(Exception $e){} //just hide the error
+
+     
 
         return response()->json([
             'status' => 'saved'
