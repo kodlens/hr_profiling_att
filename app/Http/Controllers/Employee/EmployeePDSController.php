@@ -202,6 +202,7 @@ class EmployeePDSController extends Controller
                     'salary' => $work['salary'],
                     'pay_grade' => strtoupper($work['pay_grade']),
                     'status_appointment' => strtoupper($work['status_appointment']),
+                    'is_present' => strtoupper($work['is_present']),
                     'is_govt' => $work['is_govt'],
                 ]
             );

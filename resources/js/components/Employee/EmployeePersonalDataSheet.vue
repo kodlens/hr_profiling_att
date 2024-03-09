@@ -583,7 +583,7 @@
                                            </div>
                                         </div><!--cols-->
                                         <div class="columns">
-                                            <div class="column is-8">
+                                            <!-- <div class="column is-8">
                                                 <b-field label="Degree" label-position="on-border">
                                                     <b-select v-model="item.degree" 
                                                         placeholder="Degree" required>
@@ -591,15 +591,13 @@
                                                                 :key="`deg${ix}`">{{  deg.degree_program }}</option>
                                                     </b-select>
                                                 </b-field>
-                                            </div>
+                                            </div> -->
                                             <div class="column is-4">
                                                 <b-field label="Period of Attendance From/To" label-position="on-border">
                                                     <b-input type="text" v-model="item.period_att_from" placeholder="From"></b-input>
                                                     <b-input type="text" v-model="item.period_att_to" placeholder="To"></b-input>
                                                 </b-field>
                                             </div>
-                                        </div>
-                                        <div class="columns">
                                             <div class="column">
                                                 <b-field label="Heighest Unit Earned" label-position="on-border">
                                                     <b-numberinput  v-model="item.highest_level_unit" 
@@ -613,6 +611,7 @@
                                                 </b-field>
                                             </div>
                                         </div>
+                                      
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Scholarship" expanded label-position="on-border">
@@ -715,11 +714,11 @@
                                                 <b-field label="Experience From/To" label-position="on-border">
                                                     <b-datepicker editable v-model="item.work_ex_from"
                                                         placeholder="From"> </b-datepicker>
-                                                    <b-datepicker editable :disabled="item.is_present == 1" v-model="item.work_ex_to"
+                                                    <b-datepicker editable :disabled="item.is_present === 1" v-model="item.work_ex_to"
                                                         placeholder="To"> </b-datepicker>
                                                     <b-checkbox class="ml-5" 
-                                                        true-value=1
-                                                        false-value=0
+                                                        :true-value=1
+                                                        :false-value=0
                                                         v-model="item.is_present">Present</b-checkbox>
                                                 </b-field>
                                             </div>
@@ -1457,7 +1456,7 @@ export default {
                     period_att_from: ed.period_att_from,
                     period_att_to: ed.period_att_to,
                     highest_level_unit: ed.highest_level_unit,
-                    year_graduated: ed.year_graduated,
+                    year_graduated: new Date(ed.year_graduated),
                     scholarship: ed.scholarship
                 });
             })
@@ -1478,7 +1477,7 @@ export default {
                 this.fields.work_experiences.push({
                     work_ex_id: work.work_ex_id,
                     work_ex_from: new Date(work.work_ex_from),
-                    work_ex_to: work.is_present == 1 ? '' : new Date(work.work_ex_to),
+                    work_ex_to: work.is_present === 1 ? null : new Date(work.work_ex_to),
                     is_present: work.is_present,
                     position_title: work.position_title,
                     department_agency: work.department_agency,
@@ -1689,6 +1688,7 @@ export default {
                 salary: '',
                 pay_grade: '',
                 status_appointment: '',
+                is_present: null,
                 is_govt: 0,
             });
         },

@@ -21,6 +21,7 @@ class WorkExperience extends Model
         'salary', 
         'pay_grade', 
         'status_appointment', 
+        'is_present',
         'is_govt'
     ];
 
