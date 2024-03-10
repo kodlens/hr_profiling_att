@@ -25,8 +25,8 @@
             <div class="columns">
 
             </div>
-            
-            <div class="has-text-weight-bold has-text-centered">REPORT BY SEX 
+
+            <div class="has-text-weight-bold has-text-centered">REPORT BY SEX
 
                 <span v-if="search.designation === ''">ALL</span>
                 <span v-else-if="search.designation === 'FACULTY'">FACULTY</span>
@@ -48,7 +48,8 @@
 
         <div class="section">
 
-        
+            <BarChart />
+
         </div>
 
 
@@ -57,9 +58,11 @@
 
 <script>
 
+import BarChart from '../Bar.vue;
 
 
 export default{
+
     data(){
         return {
             search: {
@@ -74,26 +77,27 @@ export default{
             },
             chartOptions: {
                 responsive: true
-            }
+            },
 
-            
+
+
         }
     },
 
     methods: {
         loadReporyBySex(){
             const params = [
-                
+
                 `designation=${this.search.designation}`,
-       
+
             ].join('&')
 
-            
+
             axios.get(`/report-load-report-by-sex?${params}`).then(res=>{
                 this.data = res.data
             })
         },
-        
+
     },
 
     mounted(){

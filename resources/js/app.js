@@ -61,13 +61,13 @@ Vue.use(VueQuillEditor, /* { default global options } */)
 import ElementUI from 'element-ui';
 
 
-
-
 Vue.use(Buefy)
 Vue.use(ElementUI)
 
 Vue.use(VueQrcodeReader); //https://gruhn.github.io/vue-qrcode-reader/demos/CustomTracking.html
 Vue.component(VueQrcode.name, VueQrcode);
+
+
 
 
 Vue.filter('formatTime', function(value) {

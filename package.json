@@ -30,10 +30,11 @@
         "animate.css": "^4.1.1",
         "buefy": "^0.9.13",
         "bulma": "^0.9.3",
+        "chart.js": "^3.9.1",
         "element-ui": "^2.15.14",
         "font-awesome": "^4.7.0",
         "qrcode": "^1.4.4",
-        "vue-chartjs": "^4.0.0",
+        "vue-chartjs": "^4.1.2",
         "vue-qrcode-reader": "^3.1.0",
         "vue-quill-editor": "^3.0.6"
     }
