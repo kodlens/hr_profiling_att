@@ -210,10 +210,37 @@ Route::middleware(['auth', 'point_person'])->group(function () {
 
 
 });
+
+
+
+
+//RECORD OFFICER
+Route::middleware(['auth', 'record_officer'])->group(function () {
+    Route::resource('/record-officer/dashboard', App\Http\Controllers\RecordOfficer\RODashboardController::class);
+    
+    Route::resource('/record-officer/employee', App\Http\Controllers\RecordOfficer\ROEmployeeRecordController::class);
+
+
+    Route::resource('/events', App\Http\Controllers\ControlPanel\EventController::class);
+    Route::post('/events-update/{id}', [App\Http\Controllers\ControlPanel\EventController::class, 'updateEvent']);
+    Route::get('/get-events', [App\Http\Controllers\ControlPanel\EventController::class, 'getData']);
+    Route::get('/events-view/{id}', [App\Http\Controllers\ControlPanel\EventController::class, 'eventView']);
+
+    Route::resource('/point-person/events', App\Http\Controllers\PointPerson\PointPersonEventController::class);
+    Route::get('/point-person/get-events', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'getData']);
+    Route::get('/point-person/events-view/{id}', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventView']);
+    Route::post('/point-person/events-attachment-set-status', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'eventAttachmentSetStatus']);
+    //load list of attendees base on event id
+    Route::get('/point-person/load-attendees-events-view', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'loadAttendees']);
+
+
+});
+
+
 //HRLD
 Route::resource('/hrld/home', App\Http\Controllers\Hrld\HrldHomeController::class);
 
-//Route::get('/hrld/seminar-posts',[App\Http\Controllers\Hrld\HrldSeminarPostController::class. 'index']); YAWA KA PERIODA KA!!!!
+//Route::get('/hrld/seminar-posts',[App\Http\Controllers\Hrld\HrldSeminarPostController::class. 'index']); !!!
 Route::get('/hrld/seminar-posts', [App\Http\Controllers\Hrld\HrldSeminarPostController::class, 'index']);
 Route::get('/hrld/get-seminars', [App\Http\Controllers\Hrld\HrldSeminarPostController::class, 'getSeminars']);
 Route::delete('/hrld/seminar-posts/{id}', [App\Http\Controllers\Hrld\HrldSeminarPostController::class, 'destroy']);
@@ -306,7 +333,7 @@ Route::get('/collect', function(){
 });
 
 
-Route::get('/applogout', function(Request $req){
+Route::get('/debug/logout', function(Request $req){
     \Auth::logout();
     $req->session()->invalidate();
     $req->session()->regenerateToken();

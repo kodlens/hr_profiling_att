@@ -35,6 +35,9 @@ class RedirectIfAuthenticated
                 }
                 if(strtolower($user->role) === 'training_officer'){
                     return redirect('/dashboard');
+                } 
+                if(strtolower($user->role) === 'record_officer'){
+                    return redirect('/record-officer/dashboard');
                 }
 
                 //return redirect(RouteServiceProvider::HOME);

@@ -131,6 +131,24 @@
                     EVENTS
                 </b-navbar-item>
             @endif
+
+            <!-- RECORD OFFICER -->
+            @if($role == 'record_officer')
+            <b-navbar-item href="/record-officer/dashboard" class="{{ request()->is('record-officer/dashboard') ? 'active' : '' }}">
+                    <b-icon icon="home"></b-icon>
+                    &nbsp;
+                    HOME
+                </b-navbar-item>
+            <b-navbar-dropdown label="EMPLOYEE" class="{{ request()->is('record-officer/employee/employee/*') ? 'active' : '' }}">
+                <b-navbar-item
+                    href="/record-officer/employee">
+                    Employee
+                </b-navbar-item>
+                <b-navbar-item href="#">
+                    Contact
+                </b-navbar-item>
+            </b-navbar-dropdown>
+            @endif
             
             <b-navbar-item tag="div">
                 <div class="buttons">
