@@ -77,8 +77,7 @@
                     USER
                 </b-navbar-item>
 
-     
-
+                
                 <b-navbar-dropdown label="REPORTS" class="{{ request()->is('reports*') ? 'active' : '' }}">
                     <b-navbar-item
                         href="/report-by-sex">
@@ -130,6 +129,9 @@
                     &nbsp;
                     EVENTS
                 </b-navbar-item>
+
+
+
             @endif
 
             <!-- RECORD OFFICER -->
@@ -145,9 +147,20 @@
                     Employee
                 </b-navbar-item>
                 <b-navbar-item href="#">
+                    
+                </b-navbar-item>
+            </b-navbar-dropdown>
+
+            <b-navbar-dropdown label="REPORTS" class="{{ request()->is('reports*') ? 'active' : '' }}">
+                <b-navbar-item
+                    href="/report-by-sex">
+                    Report By Sex
+                </b-navbar-item>
+                <b-navbar-item href="#">
                     Contact
                 </b-navbar-item>
             </b-navbar-dropdown>
+
             @endif
             
             <b-navbar-item tag="div">
