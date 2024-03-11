@@ -108,18 +108,7 @@ export default{
 
             data: [],
 
-            labels: [
-                'MALE',
-                'FEMALE', 
-            ],
-                
-            datasets: [
-                {
-                    label: 'Data One',
-                    backgroundColor: '#f87979',
-                    data: [10,30]
-                }
-            ],
+        
 
         }
     },
@@ -143,6 +132,32 @@ export default{
     mounted(){
         this.loadReporyBySex()
        // this.renderChart();
+    },
+    
+    computed: {
+        datasets: function(){
+            //console.log(this.data);
+            let arr = this.data.map(function(i){
+                return i.count
+            });
+            //console.log(arr)
+            let obj = {
+                label: 'Sex',
+                backgroundColor: '#f87979',
+                data: arr
+            };
+
+            return [obj];
+        },
+
+        labels: function() {
+            let arr = this.data.map(function(i){
+                return i.sex
+            });
+
+            return arr;
+        }
+            
     }
 }
 </script>
