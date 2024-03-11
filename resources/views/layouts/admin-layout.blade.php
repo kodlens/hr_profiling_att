@@ -71,6 +71,12 @@
                     TRAININGS
                 </b-navbar-item>
             
+                <b-navbar-item href="/employees" class="{{ request()->is('admin/employees*') ? 'active' : '' }}">
+                    <b-icon icon="account"></b-icon>
+                    &nbsp;
+                    EMPLOYEES
+                </b-navbar-item>
+
                 <b-navbar-item href="/users" class="{{ request()->is('admin/users*') ? 'active' : '' }}">
                     <b-icon icon="account"></b-icon>
                     &nbsp;

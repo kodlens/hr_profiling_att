@@ -79,6 +79,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/engagement-status', App\Http\Controllers\ControlPanel\EngagementStatusController::class);
     Route::get('/get-engagement-status', [App\Http\Controllers\ControlPanel\EngagementStatusController::class, 'getData']);
+    
+    
+    
+    Route::resource('/employees', App\Http\Controllers\ControlPanel\EmployeeController::class);
+    Route::get('/get-employees', [App\Http\Controllers\ControlPanel\EmployeeController::class, 'getEmployees']);
 
 
     Route::resource('/users', App\Http\Controllers\ControlPanel\UserController::class);
@@ -137,8 +142,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
 
 
     Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Employee\EmployeePDSController::class);
-    Route::get('/employee/print-pds', [App\Http\Controllers\Employee\EmployeePDSController::class, 'printPDS']);
-
+ 
     Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);
     Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
     Route::post('/employee/participate-me', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'participateMe']);
@@ -297,6 +301,9 @@ Route::resource('/deped/home', App\Http\Controllers\Deped\DepedHomeController::c
 Route::get('/deped/teacher-list', [App\Http\Controllers\Deped\DepedTeacherListController::class, 'index']);
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/employee/print-pds', [App\Http\Controllers\Employee\EmployeePDSController::class, 'printPDS']);
+});
 
 
 Route::get('/session', function(){
