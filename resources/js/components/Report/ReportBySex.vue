@@ -16,7 +16,7 @@
                 </div>
                 <div class="column">
                     <div class="buttons">
-                        <b-button icon-right="printer" label="PRINT PREVIEW">
+                        <b-button icon-right="printer" label="PRINT PREVIEW"   @click="printPreview">
                         </b-button>
                     </div>
                 </div>
@@ -126,6 +126,10 @@ export default{
                 this.data = res.data
             })
         },
+
+        printPreview(){
+            window.print()
+        }
 
     },
 

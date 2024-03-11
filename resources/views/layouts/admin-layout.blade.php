@@ -89,8 +89,8 @@
                         href="/report-by-sex">
                         Report By Sex
                     </b-navbar-item>
-                    <b-navbar-item href="#">
-                        Contact
+                    <b-navbar-item href="/report-by-educational-backgrounds">
+                        Report Educational Background
                     </b-navbar-item>
                 </b-navbar-dropdown>
 
@@ -163,7 +163,7 @@
                     Report By Sex
                 </b-navbar-item>
                 <b-navbar-item href="#">
-                    Contact
+                    Report Educational Background
                 </b-navbar-item>
             </b-navbar-dropdown>
 
