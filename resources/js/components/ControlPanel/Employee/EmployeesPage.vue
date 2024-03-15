@@ -22,7 +22,7 @@
                                 <div class="column">
                                     <b-field label="Search">
                                         <b-input type="text"
-                                                    v-model="search.lname" placeholder="Search Lastname"
+                                                    v-model="search.key" placeholder="Search something here ..."
                                                     @keyup.native.enter="loadAsyncData"/>
                                         <p class="control">
                                                 <b-tooltip label="Search" type="is-success">
@@ -497,7 +497,7 @@ export default{
             data: [],
             total: 0,
             loading: false,
-            sortField: 'user_id',
+            sortField: 'lname',
             sortOrder: 'desc',
             page: 1,
             perPage: 20,
@@ -507,7 +507,7 @@ export default{
             global_id : 0,
 
             search: {
-                lname: '',
+                key: '',
                 engagement: ''
             },
 
@@ -556,7 +556,7 @@ export default{
         loadAsyncData() {
             const params = [
                 `sort_by=${this.sortField}.${this.sortOrder}`,
-                `lname=${this.search.lname}`,
+                `key=${this.search.key}`,
                 `engagement=${this.search.engagement}`,
                 `archive=0`,
                 `perpage=${this.perPage}`,

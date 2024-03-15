@@ -96,7 +96,7 @@ class User extends Authenticatable
     public function eligibilities(){
         return $this->HasMany(CivilServiceEligibility::class, 'user_id', 'user_id');
     }
-
+    
     public function work_experiences(){
         return $this->HasMany(WorkExperience::class, 'user_id', 'user_id');
     }

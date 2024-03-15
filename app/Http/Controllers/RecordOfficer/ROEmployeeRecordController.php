@@ -21,8 +21,15 @@ class ROEmployeeRecordController extends Controller
     public function getData(Request $req){
         $sort = explode('.', $req->sort_by);
 
+        //return $req;
+
         $users = User::with(['engagement'])
-            ->where('lname', 'like', $req->lname . '%')
+            ->where(function($q) use ($req){
+                $q->where('lname', 'like', $req->key . '%')
+                ->orWhere('fname', 'like', $req->key . '%')
+                ->orWhere('sex', 'like', $req->key . '%');
+                
+            })
             ->where('is_archive', 0)
             ->where('role', 'EMPLOYEE')
 
