@@ -19,7 +19,8 @@ class RecordOfficerMiddleware
     public function handle(Request $request, Closure $next)
     {
         $role = Auth::user()->role;
-        if(strtolower($role) === 'record_officer'){
+
+        if(in_array(strtolower($role), ['record_officer', 'training_officer'])){
             $response = $next($request);
             $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
             $response->headers->set('Pragma', 'no-cache');

@@ -116,7 +116,7 @@
                                                 </template>
                                                 <b-dropdown-item aria-role="listitem"
                                                     @click="openModalResetPassword(props.row.user_id)">Reset Password</b-dropdown-item>
-                                                <b-dropdown-item aria-role="listitem" @click="showPDS(props.row.user_id)">PDS</b-dropdown-item>
+                                                <b-dropdown-item aria-role="listitem" @click="showPDS(props.row)">PDS</b-dropdown-item>
                                                 <!-- <b-dropdown-item aria-role="listitem"
                                                     @click="setArchived(props.row.user_id, 1)">Archived</b-dropdown-item> -->
                                             </b-dropdown>
@@ -800,6 +800,11 @@ export default{
                 this.engagementStatuses = res.data
             })
         },
+
+        showPDS(row){
+            //console.log(row);
+            window.location = '/print-pds/' + row.user_id;
+        }
 
     },
 

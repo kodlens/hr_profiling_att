@@ -231,6 +231,9 @@ Route::middleware(['auth', 'record_officer'])->group(function () {
 
 });
 
+Route::get('/print-pds/{id}', [App\Http\Controllers\PrintPDSController::class, 'index']);
+
+
 
 
 

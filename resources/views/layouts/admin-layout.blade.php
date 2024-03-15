@@ -105,6 +105,17 @@
                     HOME
                 </b-navbar-item>
 
+                <b-navbar-dropdown label="EMPLOYEE" class="{{ request()->is('record-officer/employee/employee/*') ? 'active' : '' }}">
+                    <b-navbar-item
+                        href="/record-officer/employee">
+                        Employee
+                    </b-navbar-item>
+                    <b-navbar-item href="#">
+                        
+                    </b-navbar-item>
+                </b-navbar-dropdown>
+
+
 
                 <b-navbar-item href="/training-seminars" class="{{ request()->is('training-seminars*') ? 'active' : '' }}">
                     <b-icon icon="calendar"></b-icon>
@@ -143,10 +154,10 @@
             <!-- RECORD OFFICER -->
             @if($role == 'record_officer')
             <b-navbar-item href="/record-officer/dashboard" class="{{ request()->is('record-officer/dashboard') ? 'active' : '' }}">
-                    <b-icon icon="home"></b-icon>
-                    &nbsp;
-                    HOME
-                </b-navbar-item>
+                <b-icon icon="home"></b-icon>
+                &nbsp;
+                HOME
+            </b-navbar-item>
             <b-navbar-dropdown label="EMPLOYEE" class="{{ request()->is('record-officer/employee/employee/*') ? 'active' : '' }}">
                 <b-navbar-item
                     href="/record-officer/employee">
