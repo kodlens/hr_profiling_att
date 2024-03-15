@@ -325,7 +325,7 @@
                                             <option value="employee">EMPLOYEE</option>
                                             <option value="point_person">POINT-PERSON</option>
                                             <option value="record_officer">RECORD OFFICER</option>
-                                            <option value="training_dev_officer">TRAINING/DEVELOPMENT OFFICER</option>
+                                            <option value="training_officer">TRAINING/DEVELOPMENT OFFICER</option>
                                         </b-select>
                                     </b-field>
                                 </div>
