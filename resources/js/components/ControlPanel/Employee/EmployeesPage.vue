@@ -6,7 +6,7 @@
 
                     <div class="box">
                         <div>
-        
+
                             <div class="is-flex mb-2" style="font-size: 20px; font-weight: bold;">EMPLOYEE LIST</div>
                             <hr>
                             <div class="columns">
@@ -39,7 +39,7 @@
                                             placeholder="Engagement Status">
                                             <option value="">ALL</option>
                                             <option v-for="(item, index) in engagementStatuses"
-                                                :key="`es${index}`" 
+                                                :key="`es${index}`"
                                                 :value="item.engagement_status_id">{{ item.engagement_status }}</option>
                                         </b-select>
                                     </b-field>
@@ -97,14 +97,14 @@
                                 <b-table-column label="ACTION" v-slot="props">
                                     <div class="is-flex">
                                         <b-tooltip label="Edit" type="is-warning">
-                                            <b-button class="button is-small mr-1" tag="a" 
-                                                icon-right="pencil" 
+                                            <b-button class="button is-small mr-1" tag="a"
+                                                icon-right="pencil"
                                                 @click="getData(props.row.user_id)"></b-button>
                                         </b-tooltip>
                                         <!-- <b-tooltip label="Delete" type="is-danger">
                                             <b-button class="button is-small mr-1" icon-right="delete" @click="confirmDelete(props.row.user_id)"></b-button>
                                         </b-tooltip> -->
-                                      
+
                                         <b-tooltip label="More options..." type="is-info">
                                                 <b-dropdown aria-role="list">
                                                 <template #trigger="{ active }">
@@ -129,6 +129,7 @@
                                         <th>Engagement</th>
                                         <th>Designation</th>
                                         <th>Approve</th>
+                                        <th>Created At</th>
                                     </tr>
                                     <tr>
                                         <td>
@@ -149,11 +150,21 @@
                                                 NO
                                             </span>
                                         </td>
+                                        <td>
+                                            {{ new Date(props.row.created_at).toLocaleDateString() }}
+                                        </td>
                                     </tr>
                                 </template>
                             </b-table>
 
 
+                            <div class="buttons">
+                                <b-button
+                                    type="is-success"
+                                    icon-left="archive-arrow-down-outline"
+                                    @click="archiveEmployee"
+                                    label="ARCHIVE EMPLOYEE"></b-button>
+                            </div>
 
                             <!--modal create-->
                             <b-modal v-model="isModalCreate" has-modal-card
@@ -284,7 +295,7 @@
                                                             <b-select v-model="fields.engagement_status_id" expanded
                                                                 placeholder="Engagement Status">
                                                                 <option v-for="(item, index) in engagementStatuses"
-                                                                    :key="`es${index}`" 
+                                                                    :key="`es${index}`"
                                                                     :value="item.engagement_status_id">{{ item.engagement_status }}</option>
                                                             </b-select>
                                                         </b-field>
@@ -478,7 +489,7 @@
 
 
                         </div>
-                       
+
 
                     </div>
                 </div><!--col -->
@@ -528,7 +539,7 @@ export default{
             errors: {},
             errorOthers: {},
 
-        
+
 
             btnClass: {
                 'is-success': true,
@@ -719,7 +730,7 @@ export default{
             this.clearFields();
             this.global_id = data_id;
             this.isModalCreate = true;
-            let tempData 
+            let tempData
             //nested axios for getting the address 1 by 1 or request by request
             await axios.get('/users/'+data_id).then(res=>{
                 this.fields = res.data;
@@ -728,7 +739,7 @@ export default{
 
             await axios.get('/load-cities?prov=' + this.fields.res_province).then(res=>{
                     //load barangay
-                this.cities = res.data;   
+                this.cities = res.data;
             });
 
             await axios.get('/load-barangays?prov=' + this.fields.res_province + '&city_code='+this.fields.res_city).then(res=>{
@@ -737,7 +748,7 @@ export default{
             });
         },
 
-       
+
 
 
         //CHANGE PASSWORD
@@ -794,7 +805,7 @@ export default{
             })
         },
 
-          
+
         loadEngagementStatuses(level){
             axios.get('/load-engagement-status').then(res=>{
                 this.engagementStatuses = res.data
@@ -804,6 +815,22 @@ export default{
         showPDS(row){
             //console.log(row);
             window.location = '/print-pds/' + row.user_id;
+        },
+
+
+        archiveEmployee(){
+            axios.post('/archive-employees').then(res=>{
+                if(res.data.status === 'archived'){
+                    this.$buefy.dialog.alert({
+                        title: 'Archived!',
+                        type: 'is-success',
+                        message: 'Employees successfully archived.',
+                        onConfirm: ()=>{
+                            this.loadAsyncData()
+                        }
+                    })
+                }
+            })
         }
 
     },

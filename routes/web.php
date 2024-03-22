@@ -79,19 +79,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/engagement-status', App\Http\Controllers\ControlPanel\EngagementStatusController::class);
     Route::get('/get-engagement-status', [App\Http\Controllers\ControlPanel\EngagementStatusController::class, 'getData']);
-    
-    
-    
+
+
+
     Route::resource('/employees', App\Http\Controllers\ControlPanel\EmployeeController::class);
     Route::get('/get-employees', [App\Http\Controllers\ControlPanel\EmployeeController::class, 'getEmployees']);
 
+    Route::post('/archive-employees', [App\Http\Controllers\ControlPanel\EmployeeController::class, 'archiveEmployees']);
 
     Route::resource('/users', App\Http\Controllers\ControlPanel\UserController::class);
     Route::get('/get-users', [App\Http\Controllers\ControlPanel\UserController::class, 'getUsers']);
     Route::post('/users-set-archive/{user}/{value}', [App\Http\Controllers\ControlPanel\UserController::class, 'setArchive']);
     Route::post('/user-set-approve/{userId}', [App\Http\Controllers\ControlPanel\UserController::class, 'setApprove']);
 
-    
+
 
 
 //    Route::resource('/learning-dev', App\Http\Controllers\LearningDevelopmentTypeController::class);
@@ -142,7 +143,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
 
 
     Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Employee\EmployeePDSController::class);
- 
+
     Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);
     Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
     Route::post('/employee/participate-me', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'participateMe']);
@@ -194,7 +195,7 @@ Route::middleware(['auth', 'training_officer'])->group(function () {
     //qrscanner
     Route::get('/qr-scanner', [App\Http\Controllers\ControlPanel\QrScannerController::class, 'index']);
     Route::post('/qr-scanner', [App\Http\Controllers\ControlPanel\QrScannerController::class, 'store']);
-    
+
 });
 
 Route::middleware(['auth', 'point_person'])->group(function () {
@@ -227,7 +228,7 @@ Route::middleware(['auth', 'record_officer'])->group(function () {
     Route::get('/record-officer/print-pds/{id}', [App\Http\Controllers\RecordOfficer\ROEmployeeRecordController::class, 'printPDS']);
 
     Route::get('/record-officer/get-employees', [App\Http\Controllers\RecordOfficer\ROEmployeeRecordController::class, 'getData']);
-   
+
 
 });
 

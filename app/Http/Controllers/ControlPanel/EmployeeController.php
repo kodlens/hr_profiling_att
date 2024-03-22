@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ControlPanel;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -22,7 +23,7 @@ class EmployeeController extends Controller
         //         $q->where('lname', 'like', $req->key . '%')
         //         ->orWhere('fname', 'like', $req->key . '%')
         //         ->orWhere('sex', 'like', $req->key . '%');
-                
+
         //     })
         //     // ->where(function($q) use ($req) {
         //     //     $q->whereHas('eligibilities', function($q) use ($req) {
@@ -41,7 +42,7 @@ class EmployeeController extends Controller
         //     //         // ->orWhereNull('career_exam')
         //     //         // ->orWhereNull('place_exam');
         //     // })
-        
+
         $users = User::leftJoin('civil_service_eligibilities', 'users.user_id', 'civil_service_eligibilities.user_id')
             ->leftJoin('learning_developments', 'users.user_id', 'learning_developments.user_id')
             ->leftJoin('work_experiences', 'users.user_id', 'work_experiences.user_id')
@@ -146,7 +147,7 @@ class EmployeeController extends Controller
                 'civil_service_eligibilities.rating',
                 'civil_service_eligibilities.date_exam',
                 'civil_service_eligibilities.place_exam',
-               
+
                 'civil_service_eligibilities.license_no',
                 'civil_service_eligibilities.license_validity',
 
@@ -156,6 +157,8 @@ class EmployeeController extends Controller
                 'learning_developments.no_hours',
                 'learning_developments.type_ld',
                 'learning_developments.sponsored_by',
+                'users.created_at',
+                'users.updated_at'
 
             )
             ->where(function($q) use ($req){
@@ -169,7 +172,7 @@ class EmployeeController extends Controller
                     ->orWhere('career_exam', 'like', $req->key . '%')
                     ->orWhere('position_title', 'like', $req->key . '%')
                     ->orWhere('department_agency', 'like', $req->key . '%');
-                    
+
             })
            // ->where('career_exam', 'like', '%'. $req->key . '%')
             ->where('is_archive', 0)
@@ -181,6 +184,22 @@ class EmployeeController extends Controller
         }
 
         return $users->paginate($req->perpage);
+    }
+
+
+    public function archiveEmployees(Request $req){
+
+        $yearAfter = Carbon::now()->addYears(3)->toDateString();
+
+        $archivedData = User::where('role', 'employee')
+            ->whereDate('created_at', '>=', $yearAfter)
+            ->update([
+                'is_archive' => 1
+            ]);
+
+        return response()->json([
+            'status' => 'archived'
+        ], 200);
     }
 
 }
