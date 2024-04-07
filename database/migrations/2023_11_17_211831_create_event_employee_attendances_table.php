@@ -27,6 +27,9 @@ class CreateEventEmployeeAttendancesTable extends Migration
             $table->text('img_description')->nullable();
             $table->string('img_path')->nullable();
 
+            $table->string('remarks')->nullable();
+
+            
             $table->tinyInteger('attendance_status')->default(0);
             $table->timestamps();
         });

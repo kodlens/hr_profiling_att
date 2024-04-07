@@ -131,7 +131,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/report-by-sex', App\Http\Controllers\Report\ReportBySexController::class);
     Route::get('/report-load-report-by-sex', [App\Http\Controllers\Report\ReportBySexController::class, 'loadReportBySex']);
 
+    Route::get('/report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'index']);
+    Route::get('/get-report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'loadReportEducationalBackground']);
 
+    
 });
 
 Route::middleware(['auth', 'employee'])->group(function () {
@@ -140,8 +143,10 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::get('/employee/get-posted-events', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'getPostedEvents']);
     Route::post('/employee/dashboard-upload-attachment', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'uploadAttachment']);
     Route::get('/employee/get-by-user-event-attachment', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'getByUserEventAttachment']);
+    //submit explanation if attachment is rejected
+    Route::post('employee/submit-explanation', [App\Http\Controllers\Employee\EmployeeDashboardController::class, 'submitExplanation']);
 
-
+    
     Route::resource('/employee/personal-data-sheet', App\Http\Controllers\Employee\EmployeePDSController::class);
 
     Route::resource('/employee/training-seminars', App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class);

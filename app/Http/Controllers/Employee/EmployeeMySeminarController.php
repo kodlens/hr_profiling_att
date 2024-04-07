@@ -23,7 +23,7 @@ class EmployeeMySeminarController extends Controller
 
         $user = Auth::user();
 
-        $data = TrainingParticipant::with(['training_seminar', 'user'])
+        $data = TrainingParticipant::with(['training_seminar', 'user', 'attendances'])
             ->whereHas('training_seminar', function($q) use ($req){
                 $q->where('seminar_title', 'like', $req->training . '%');
             })

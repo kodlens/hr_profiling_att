@@ -99,11 +99,11 @@
                                             tag="a"
                                             icon-right="pencil" :href="`/training-seminars/${props.row.training_seminar_id}/edit`" ></b-button>
                                     </b-tooltip>
-                                    <b-tooltip label="Delete" type="is-danger">
+                                    <!-- <b-tooltip label="Delete" type="is-danger">
                                         <b-button class="button is-small mr-1"
                                             icon-right="delete"
                                             @click="confirmDelete(props.row.training_seminar_id)"></b-button>
-                                    </b-tooltip>
+                                    </b-tooltip> -->
 
                                     <b-tooltip label="More options" type="is-danger">
                                         <b-dropdown aria-role="list">

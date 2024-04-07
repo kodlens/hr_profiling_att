@@ -114,14 +114,14 @@
                                         <b-dropdown-item aria-role="listitem"
                                             @click="setArchived(props.row.user_id, 1)">Archived</b-dropdown-item>-->
 
-                                        <b-dropdown-item aria-role="listitem"
+                                        <!-- <b-dropdown-item aria-role="listitem"
                                             tag="a"
-                                            :href="`/record-officer/employee/${props.row.user_id}`">Edit</b-dropdown-item>
+                                            :href="`/record-officer/employee/${props.row.user_id}`">Edit</b-dropdown-item> -->
                                         <b-dropdown-item aria-role="listitem"
                                             tag="a"
                                             :href="`/record-officer/print-pds/${props.row.user_id}`">Show PDS</b-dropdown-item>
-                                        <b-dropdown-item aria-role="listitem" 
-                                            @click="openModalResetPassword(props.row.user_id)">Reset Password</b-dropdown-item>
+                                        <!-- <b-dropdown-item aria-role="listitem" 
+                                            @click="openModalResetPassword(props.row.user_id)">Reset Password</b-dropdown-item> -->
                                     </b-dropdown>
                                 </b-tooltip>
                             </div>

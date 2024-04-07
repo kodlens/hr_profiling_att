@@ -84,6 +84,24 @@ class EmployeeDashboardController extends Controller
         $eventId = $req->eventid;
         $userId = $req->userid;
 
+       
+    }
+
+
+    public function submitExplanation(Request $req){
+        
+        $req->validate([
+            'event_employee_attendance_id' => ['required']
+        ]);
+
+        $data = EventEmployeeAttendance::find($req->event_employee_attendance_id);
+        $data->remarks = $req->remarks;
+        $data->save();
+
+
+        return response()->json([
+            'status' => 'updated'
+        ], 200);
     }
 
 }

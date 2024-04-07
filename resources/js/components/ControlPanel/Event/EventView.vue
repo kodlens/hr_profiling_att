@@ -82,6 +82,17 @@
                             </div>
                         </div>
 
+                        <div class="columns">
+                            <div class="column">
+                                <b-field label="Remarks/Explanation">
+                                    <b-input type="text"
+                                        readonly 
+                                        v-model="attachment.remarks" 
+                                        placeholder="Remarks/Explanation"></b-input>
+                                </b-field>
+                            </div>
+                        </div>
+
                     </div> <!-- div class-->
                 </section>
                 <footer class="modal-card-foot">
@@ -120,6 +131,7 @@ export default{
             attachment: {
                 img_path: '',
                 event_employee_attachment_id: null,
+                remarks: '',
             },
 
             attendees: [],
@@ -143,6 +155,9 @@ export default{
 
             this.attachment.img_path = row.img_path
             this.attachment.event_employee_attachment_id = row.event_employee_attendance_id
+            this.attachment.remarks = row.remarks;
+
+            console.log(row);
         },
 
         submit(n){

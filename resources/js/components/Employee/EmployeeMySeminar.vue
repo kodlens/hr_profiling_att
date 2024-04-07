@@ -47,6 +47,7 @@
                             :data="data"
                             :loading="loading"
                             paginated
+                            detailed
                             backend-pagination
                             :total="total"
                             :per-page="perPage"
@@ -103,6 +104,23 @@
 
                                 </div>
                             </b-table-column>
+
+
+                            <template #detail="props">
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                </tr>
+                                <tr v-for="(item, index) in props.row.attendances" :key="`att${index}`">
+                                    <td>{{ new Date(item.datetime_scanned).toLocaleString() }}</td>
+                                    <td>
+                                        <span v-if="item.attendance_status === 'in_am'">IN AM</span>
+                                        <span v-if="item.attendance_status === 'out_am'">OUT AM</span>
+                                        <span v-if="item.attendance_status === 'in_pm'">IN PM</span>
+                                        <span v-if="item.attendance_status === 'out_pm'">OUT PM</span>
+                                    </td>
+                                </tr>
+                            </template>
 
                         </b-table>
 
