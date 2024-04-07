@@ -82,7 +82,8 @@ class CreateUsersTable extends Migration
             $table->string('mother_suffix', 10)->nullable();
 
             $table->string('role', 30)->nullable();
-
+            $table->string('institute', 30)->nullable();
+            
             $table->tinyInteger('related_with_third_degree')->nullable();
 
             $table->tinyInteger('related_with_fourth_degree')->nullable();

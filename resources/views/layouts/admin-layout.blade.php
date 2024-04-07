@@ -53,8 +53,8 @@
                         href="/engagement-status">
                         Engagement Status
                     </b-navbar-item>
-                    <b-navbar-item href="#">
-                        Contact
+                    <b-navbar-item href="/institutes">
+                        Institutes
                     </b-navbar-item>
                 </b-navbar-dropdown>
 

@@ -101,6 +101,7 @@ class UserController extends Controller
             'contact_no' => $req->contact_no,
             'designation' => $req->designation,
             'role' => $req->role,
+            'institute' => $req->institute,
             'is_partime' => $req->is_partime,
             'res_province' => $req->res_province,
             'res_city' => $req->res_city,
@@ -138,6 +139,7 @@ class UserController extends Controller
         $data->email = $req->email;
         $data->designation = $req->designation;
         $data->role = $req->role;
+        $data->institute = $req->institute;
         $data->is_partime = $req->is_partime;
         $data->res_province = $req->res_province;
         $data->res_city = $req->res_city;

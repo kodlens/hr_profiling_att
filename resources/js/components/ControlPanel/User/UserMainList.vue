@@ -128,6 +128,7 @@
                 <tr>
                     <th>Engagement</th>
                     <th>Designation</th>
+                    <th>Institute</th>
                     <th>Approve</th>
                 </tr>
                 <tr>
@@ -139,6 +140,11 @@
                     <td>
                         <span v-if="props.row.designation">
                             {{ props.row.designation }}
+                        </span>
+                    </td>
+                    <td>
+                        <span v-if="props.row.institute">
+                            {{ props.row.institute }}
                         </span>
                     </td>
                     <td>
@@ -317,6 +323,18 @@
                                 </div>
 
                                 <div class="column">
+                                    <b-field label="Institute" label-position="on-border" expanded
+                                             :type="errors.institute ? 'is-danger':''"
+                                             :message="errors.institute ? errors.institute[0] : ''">
+                                        <b-select v-model="fields.institute" expanded>
+                                            <option :value="item.code" v-for="(item, index) in institutes" :key="`ins${index}`">
+                                                {{ item.code }} - {{ item.institute}}
+                                            </option>
+                                        </b-select>
+                                    </b-field>
+                                </div>
+
+                                <div class="column">
                                     <b-field label="Role" label-position="on-border" expanded
                                              :type="errors.role ? 'is-danger':''"
                                              :message="errors.role ? errors.role[0] : ''">
@@ -329,7 +347,6 @@
                                         </b-select>
                                     </b-field>
                                 </div>
-
                             </div>
                         </div>
                     </section>
@@ -523,6 +540,7 @@ export default{
                 lname: '', fname: '', mname: '',
                 password: '', password_confirmation : '',
                 sex : '', role: '',  cid_sub_role: '',
+                institute: '',
                 email : '', contact_no : '',
                 province: '', city: '', barangay: '', street: ''
             },
@@ -546,7 +564,7 @@ export default{
             specializations: [],
             cid_sub_roles: [],
             engagementStatuses: [],
-
+            institutes: [],
 
         }
 
@@ -807,12 +825,19 @@ export default{
             })
         },
 
+        loadInstitutes(level){
+            axios.get('/load-institutes').then(res=>{
+                this.institutes = res.data
+            })
+        },
+
     },
 
     mounted() {
         this.loadAsyncData();
        // this.loadProvince();
         this.loadEngagementStatuses();
+        this.loadInstitutes()
     }
 
 }

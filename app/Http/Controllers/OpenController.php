@@ -10,6 +10,8 @@ use App\Models\CidSubRole;
 use App\Models\Degree;
 use App\Models\EngagementStatus;
 use App\Models\Educationlevel;
+use App\Models\Institute;
+
 
 class OpenController extends Controller
 {
@@ -47,6 +49,11 @@ class OpenController extends Controller
 
     public function loadEducationLevels(){
         return Educationlevel::orderBy('education_level', 'asc')
+            ->get();
+    }
+
+    public function loadInstitutes(){
+        return Institute::orderBy('institute', 'asc')
             ->get();
     }
 
