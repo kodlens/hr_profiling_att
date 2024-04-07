@@ -581,17 +581,23 @@
                                                     <b-input type="text" v-model="item.name_of_school" placeholder="Name of School" required></b-input>
                                                 </b-field>
                                            </div>
-                                        </div><!--cols-->
-                                        <div class="columns">
-                                            <!-- <div class="column is-8">
-                                                <b-field label="Degree" label-position="on-border">
+                                           <div class="column">
+                                                <!-- <b-field label="Degree" label-position="on-border">
                                                     <b-select v-model="item.degree" 
                                                         placeholder="Degree" required>
                                                             <option :value="deg.degree_program" v-for="(deg, ix) in degrees"
                                                                 :key="`deg${ix}`">{{  deg.degree_program }}</option>
                                                     </b-select>
+                                                </b-field> -->
+                                                <b-field label="Degree" label-position="on-border">
+                                                    <b-input v-model="item.degree" 
+                                                        placeholder="Degree">
+                                                    </b-input>
                                                 </b-field>
-                                            </div> -->
+                                            </div>
+                                        </div><!--cols-->
+                                        <div class="columns">
+                                            
                                             <div class="column is-4">
                                                 <b-field label="Period of Attendance From/To" label-position="on-border">
                                                     <b-input type="text" v-model="item.period_att_from" placeholder="From"></b-input>

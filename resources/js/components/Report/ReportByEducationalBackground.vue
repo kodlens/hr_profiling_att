@@ -26,7 +26,7 @@
 
             </div>
 
-            <div class="has-text-weight-bold has-text-centered">REPORT BY SEX
+            <div class="has-text-weight-bold has-text-centered">REPORT BY EDUCATIONAL BACKGROUND
 
                 <span v-if="search.designation === ''">ALL</span>
                 <span v-else-if="search.designation === 'FACULTY'">FACULTY</span>
@@ -122,7 +122,7 @@ export default{
             ].join('&')
 
 
-            axios.get(`/report-load-report-by-sex?${params}`).then(res=>{
+            axios.get(`/report-load-report-by-educational-background?${params}`).then(res=>{
                 this.data = res.data
             })
         },

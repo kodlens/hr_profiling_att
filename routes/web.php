@@ -135,7 +135,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report-load-report-by-sex', [App\Http\Controllers\Report\ReportBySexController::class, 'loadReportBySex']);
 
     Route::get('/report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'index']);
-    Route::get('/get-report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'loadReportEducationalBackground']);
+    Route::get('/get-report-by-educational-background', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'loadReportEducationalBackground']);
 
     
 });

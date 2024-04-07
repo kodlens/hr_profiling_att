@@ -12,5 +12,9 @@ class ReportByEducationalBackgroundController extends Controller
         return view('report.report-educational-background');
     }
 
+    public function loadReportEducationalBackground(Request $req){
+        
+    }
+
     
 }
