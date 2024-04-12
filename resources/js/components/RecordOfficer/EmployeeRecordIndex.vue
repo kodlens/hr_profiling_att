@@ -120,6 +120,9 @@
                                         <b-dropdown-item aria-role="listitem"
                                             tag="a"
                                             :href="`/record-officer/print-pds/${props.row.user_id}`">Show PDS</b-dropdown-item>
+                                        <b-dropdown-item aria-role="listitem"
+                                            tag="a"
+                                            :href="`/record-officer/files-manager/${props.row.user_id}`">Files</b-dropdown-item>
                                         <!-- <b-dropdown-item aria-role="listitem" 
                                             @click="openModalResetPassword(props.row.user_id)">Reset Password</b-dropdown-item> -->
                                     </b-dropdown>

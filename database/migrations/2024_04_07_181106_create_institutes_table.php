@@ -14,7 +14,10 @@ class CreateInstitutesTable extends Migration
     public function up()
     {
         Schema::create('institutes', function (Blueprint $table) {
-            $table->id();
+            $table->id('institute_id');
+            $table->string('code', 30)->nullable();
+            $table->string('institute')->nullable();
+            $table->tinyInteger('active')->nullable()->default(1);
             $table->timestamps();
         });
     }

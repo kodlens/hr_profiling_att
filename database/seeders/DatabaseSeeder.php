@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             EventEmployeeAttendanceSeeder::class,
             TrainingSeminarSeeder::class,
-            EngagementStatusSeeder::class
+            EngagementStatusSeeder::class,
+            InstituteSeeder::class
         ]);
     }
 }

@@ -237,7 +237,10 @@ Route::middleware(['auth', 'record_officer'])->group(function () {
 
     Route::get('/record-officer/get-employees', [App\Http\Controllers\RecordOfficer\ROEmployeeRecordController::class, 'getData']);
 
+    // FIle manager
+    Route::get('/record-officer/files-manager/{id}', [App\Http\Controllers\RecordOfficer\FileManagerController::class, 'index']);
 
+    
 });
 
 Route::get('/print-pds/{id}', [App\Http\Controllers\PrintPDSController::class, 'index']);
