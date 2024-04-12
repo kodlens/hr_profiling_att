@@ -3,7 +3,7 @@
 @section('content')
 
     <file-manager-index
-        prop-employee-id="{{ $id }}"></file-manager-index>
+        :prop-data='@json($data)'></file-manager-index>
 
 @endsection
 

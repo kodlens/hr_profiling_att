@@ -20,8 +20,10 @@ class CreateFileManagersTable extends Migration
             $table->foreign('user_id')->references('user_id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('file_name')->nullable();
+            $table->string('file_description', 100)->nullable();
             $table->string('file_dir')->nullable();
+            $table->string('file_type', 20)->nullable();
+            
             $table->timestamps();
         });
     }

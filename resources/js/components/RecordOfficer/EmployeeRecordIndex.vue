@@ -381,15 +381,15 @@
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Password" label-position="on-border"
-                                                        :type="this.errors.password ? 'is-danger':''"
-                                                        :message="this.errors.password ? this.errors.password[0] : ''">
+                                                        :type="errors.password ? 'is-danger':''"
+                                                        :message="errors.password ? errors.password[0] : ''">
                                                     <b-input type="password" v-model="fields.password" password-reveal
                                                             placeholder="Password" required>
                                                     </b-input>
                                                 </b-field>
                                                 <b-field label="Confirm Password" label-position="on-border"
-                                                        :type="this.errors.password_confirmation ? 'is-danger':''"
-                                                        :message="this.errors.password_confirmation ? this.errors.password_confirmation[0] : ''">
+                                                        :type="errors.password_confirmation ? 'is-danger':''"
+                                                        :message="errors.password_confirmation ? errors.password_confirmation[0] : ''">
                                                     <b-input type="password" v-model="fields.password_confirmation"
                                                             password-reveal
                                                             placeholder="Confirm Password" required>
@@ -414,7 +414,7 @@
                     <!--close modal-->
 
 
-                    <!--modal reset password-->
+                    <!--modal other information-->
                     <b-modal v-model="modalOtherInformation" has-modal-card
                             trap-focus
                             :width="640"
@@ -503,8 +503,8 @@
 </template>
 
 <script>
-
 export default{
+
     data() {
         return{
             data: [],

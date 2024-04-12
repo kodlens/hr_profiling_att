@@ -317,7 +317,7 @@ class UserSeeder extends Seeder
                 'per_street' => 'P-6',
                 'email' => 'jane@dev.com',
                 'contact_no' => '09683014598',
-                'role' => 'employee',
+                'role' => 'record_officer',
                 'designation' => 'staff',
                 'password' => Hash::make('a')
             ],

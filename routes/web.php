@@ -239,6 +239,7 @@ Route::middleware(['auth', 'record_officer'])->group(function () {
 
     // FIle manager
     Route::get('/record-officer/files-manager/{id}', [App\Http\Controllers\RecordOfficer\FileManagerController::class, 'index']);
+    Route::get('/record-officer/get-list-files/{id}', [App\Http\Controllers\RecordOfficer\FileManagerController::class, 'getData']);
 
     
 });
