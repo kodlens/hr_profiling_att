@@ -73,9 +73,17 @@ Route::get('/load-cities', [App\Http\Controllers\AddressController::class, 'load
 Route::get('/load-barangays', [App\Http\Controllers\AddressController::class, 'loadBarangays']);
 
 
+
+
+
 /*     ADMINSITRATOR          */
 Route::resource('/dashboard', App\Http\Controllers\ControlPanel\DashboardController::class);
 
+/*
+|--------------------------------------------------------------------------
+| ADMINISTRATOR MODULE
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
@@ -87,6 +95,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/employees', App\Http\Controllers\ControlPanel\EmployeeController::class);
     Route::get('/get-employees', [App\Http\Controllers\ControlPanel\EmployeeController::class, 'getEmployees']);
+
+    
+    Route::resource('/institutes', App\Http\Controllers\ControlPanel\InstituteController::class);
+    Route::get('/get-institutes', [App\Http\Controllers\ControlPanel\InstituteController::class, 'getData']);
+
 
     Route::post('/archive-employees', [App\Http\Controllers\ControlPanel\EmployeeController::class, 'archiveEmployees']);
 
