@@ -92,6 +92,9 @@
                     <b-navbar-item href="/report-by-educational-backgrounds">
                         Report Educational Background
                     </b-navbar-item>
+                    <b-navbar-item href="/report-by-age-ranges">
+                        Report Age Range
+                    </b-navbar-item>
                 </b-navbar-dropdown>
 
 

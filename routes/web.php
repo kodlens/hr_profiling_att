@@ -148,9 +148,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report-load-report-by-sex', [App\Http\Controllers\Report\ReportBySexController::class, 'loadReportBySex']);
 
     Route::get('/report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'index']);
-    Route::get('/get-report-by-educational-background', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'loadReportEducationalBackground']);
+    Route::get('/report-load-report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'loadReportEducationalBackground']);
 
-    
+    Route::get('/report-by-age-ranges', [App\Http\Controllers\Report\ReportByAgeRangeController::class, 'index']);
+    Route::get('/report-load-report-by-age-ranges', [App\Http\Controllers\Report\ReportByAgeRangeController::class, 'loadReport']);
+
 });
 
 Route::middleware(['auth', 'employee'])->group(function () {

@@ -7,7 +7,7 @@
                     <b-field label="Select designation" label-position="on-border"
                         expanded>
                         <b-select v-model="search.designation" expanded
-                            @input="loadReporyBySex">
+                            @input="loadReport">
                             <option value="">ALL</option>
                             <option value="FACULTY">FACULTY</option>
                             <option value="STAFF">STAFF</option>
@@ -22,9 +22,6 @@
                 </div>
             </div>
 
-            <div class="columns">
-
-            </div>
 
             <div class="has-text-weight-bold has-text-centered">REPORT BY EDUCATIONAL BACKGROUND
 
@@ -33,7 +30,7 @@
                 <span v-else-if="search.designation === 'STAFF'">STAFF</span>
             </div>
 
-            <table class="report-table">
+            <!-- <table class="report-table">
                 <tr>
                     <th>Sex</th>
                     <th>Count</th>
@@ -42,7 +39,7 @@
                     <td>{{ item.sex }}</td>
                     <td>{{ item.count }}</td>
                 </tr>
-            </table>
+            </table> -->
 
             <div class="mt-5">
                 <Bar 
@@ -114,7 +111,7 @@ export default{
     },
 
     methods: {
-        loadReporyBySex(){
+        loadReport(){
             const params = [
 
                 `designation=${this.search.designation}`,
@@ -122,7 +119,7 @@ export default{
             ].join('&')
 
 
-            axios.get(`/report-load-report-by-educational-background?${params}`).then(res=>{
+            axios.get(`/report-load-report-by-educational-backgrounds?${params}`).then(res=>{
                 this.data = res.data
             })
         },
@@ -134,19 +131,18 @@ export default{
     },
 
     mounted(){
-        this.loadReporyBySex()
-       // this.renderChart();
+        this.loadReport()
     },
     
     computed: {
         datasets: function(){
             //console.log(this.data);
             let arr = this.data.map(function(i){
-                return i.count
+                return i.count_level
             });
             //console.log(arr)
             let obj = {
-                label: 'Sex',
+                label: 'Level',
                 backgroundColor: '#f87979',
                 data: arr
             };
@@ -156,7 +152,7 @@ export default{
 
         labels: function() {
             let arr = this.data.map(function(i){
-                return i.sex
+                return i.level
             });
 
             return arr;
