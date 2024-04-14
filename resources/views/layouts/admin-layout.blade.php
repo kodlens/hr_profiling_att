@@ -81,7 +81,7 @@
                     USER
                 </b-navbar-item>
 
-                
+                <!-- ADMIN REPORT -->
                 <b-navbar-dropdown label="REPORTS" class="{{ request()->is('reports*') ? 'active' : '' }}">
                     <b-navbar-item
                         href="/report-by-sex">
@@ -172,13 +172,20 @@
                 </b-navbar-item>
             </b-navbar-dropdown>
 
+            <!-- RECORD OFFICER REPORT / SAME REPORT ON ADMIN SIDE -->
             <b-navbar-dropdown label="REPORTS" class="{{ request()->is('reports*') ? 'active' : '' }}">
                 <b-navbar-item
                     href="/report-by-sex">
                     Report By Sex
                 </b-navbar-item>
-                <b-navbar-item href="#">
+                <b-navbar-item href="/report-by-educational-backgrounds">
                     Report Educational Background
+                </b-navbar-item>
+                <b-navbar-item href="/report-by-age-ranges">
+                    Report Age Range
+                </b-navbar-item>
+                <b-navbar-item href="/report-by-engagement-status">
+                    Report Engagement Status
                 </b-navbar-item>
             </b-navbar-dropdown>
 
