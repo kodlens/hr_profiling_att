@@ -10,7 +10,7 @@ class FileManager extends Model
     use HasFactory;
 
     protected $table = 'file_managers';
-    protected $primaryKey = 'institute_id';
+    protected $primaryKey = 'file_manager_id';
 
 
     protected $fillable = [

@@ -9,7 +9,27 @@
                     <div class="has-text-weight-bold">{{ propData.lname }}, {{ propData.fname }}</div>
                     <hr>
                     
-
+                    <table class="table">
+                        <tr>
+                            <th>File Description</th>
+                            <!-- <th>File</th> -->
+                            <th>File Type</th>
+                        </tr>
+                        <tr v-for="(item, index) in files" :key="`file${index}`">
+                            <td>
+                                <a :href="`/storage/upload_files/${item.file_dir}`">
+                                    {{ item.file_description }}
+                                </a>
+                            </td>
+                        
+                            <td>{{ item.file_type }}</td>
+                            <td>
+                                <b-button class="is-small" type="is-primary" 
+                                    icon-right="delete-outline"
+                                    @click="confirmDelete(item.file_manager_id)"></b-button>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="buttons">
                         <button class="button is-primary" @click="openModalFileUpload">
                             <b-icon icon="file-cabinet" class="mr-2"></b-icon>
@@ -73,9 +93,6 @@
                                             </b-field>
                                         </div>
                                     </div>
-
-                                    
-
                                 </div>
                             </div>
                         </div>
@@ -114,7 +131,9 @@ export default{
             fields: {
                 file_description: null,
                 file: null,
-            }
+            },
+
+            errors: {},
 
         }
 
@@ -133,7 +152,62 @@ export default{
             this.modalUploadFile = true
         },
         submit(){
-            
+
+            let formData = new FormData();
+        
+            formData.append('file_description', this.fields.file_description ? this.fields.file_description : '');
+            formData.append('file', this.fields.file ? this.fields.file : '');
+
+            axios.post('/record-officer/files-manager/' + this.propData.user_id, formData).then(res=>{
+                if(res.data.status === 'saved'){
+                    this.$buefy.dialog.alert({
+                        title: 'Uploaded.',
+                        message: 'File successfully uploaded.',
+                        type: 'is-success',
+                        onConfirm: () => {
+                            this.clearFields()
+                            this.getLiistFiles()
+                            this.modalUploadFile = false
+                        }
+                    })
+                }
+            }).catch(err=>{
+                if(err.response.status === 422){
+                    this.errors = err.response.data.errors
+                }
+            })
+        },
+
+        confirmDelete(id){
+            this.$buefy.dialog.confirm({
+                title: 'Remove?',
+                type: 'is-danger',
+                message: 'Are you sure you want to remove this file?',
+                cancelText: 'Cancel',
+                confirmText: 'Remove',
+                onConfirm: () => this.deleteSubmit(id)
+            });
+
+          
+        },
+
+        deleteSubmit(id){
+            axios.delete('/record-officer/files-manager-delete/' + id).then(res=>{
+                this.$buefy.dialog.alert({
+                    title: 'Removed.',
+                    message: 'File successfully removed.',
+                    type: 'is-success',
+                    onConfirm: () => {
+                        this.getLiistFiles()
+                    }
+                })
+            })
+        },
+
+
+        clearFields(){
+            this.fields.file_description = ''
+            this.fields.file = null
         }
     },
 

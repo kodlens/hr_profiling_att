@@ -14,7 +14,7 @@ class CreateFileManagersTable extends Migration
     public function up()
     {
         Schema::create('file_managers', function (Blueprint $table) {
-            $table->id('file_manger_-id');
+            $table->id('file_manager_id');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('users')
