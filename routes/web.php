@@ -153,6 +153,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report-by-age-ranges', [App\Http\Controllers\Report\ReportByAgeRangeController::class, 'index']);
     Route::get('/report-load-report-by-age-ranges', [App\Http\Controllers\Report\ReportByAgeRangeController::class, 'loadReport']);
 
+    Route::get('/report-by-engagement-status', [App\Http\Controllers\Report\ReportByEngagementStatus::class, 'index']);
+    Route::get('/report-load-report-by-engagement-status', [App\Http\Controllers\Report\ReportByEngagementStatus::class, 'loadReport']);
+
 });
 
 Route::middleware(['auth', 'employee'])->group(function () {

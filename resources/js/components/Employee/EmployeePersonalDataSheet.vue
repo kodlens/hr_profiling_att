@@ -231,6 +231,18 @@
                                         </b-select>
                                     </b-field>
                                 </div>
+                                <!-- <div class="column">
+                                    <b-field label="PARTIME" label-position="on-border"
+                                        expanded
+                                        :type="errors.is_partime ? 'is-danger':''"
+                                        :message="errors.is_partime ? errors.is_partime[0] : ''">
+                                        <b-select v-model="fields.is_partime"
+                                            placeholder="Engagement Status" expanded>
+                                           <option :value="0">NO</option>
+                                           <option :value="1">YES</option>
+                                        </b-select>
+                                    </b-field>
+                                </div> -->
                                 <div class="column">
                                     <b-field label="EDUCATION LEVEL" label-position="on-border"
                                         expanded
@@ -1281,6 +1293,7 @@ export default {
 
             fields: {
                 engagement_status_id: null,
+                is_partime: 0,
                 dual_citizenship: '',
                 citizenship: '',
                 select_citizenship: '',
@@ -1381,6 +1394,7 @@ export default {
             this.fields.dual_citizenship = this.user.dual_citizenship;
             this.fields.select_citizenship = this.user.select_citizenship;
             this.fields.engagement_status_id = this.user.engagement_status_id;
+            this.fields.is_partime = this.user.is_partime;
             this.fields.education_level = this.user.education_level;
 
             //spouse

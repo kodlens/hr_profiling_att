@@ -95,6 +95,9 @@
                     <b-navbar-item href="/report-by-age-ranges">
                         Report Age Range
                     </b-navbar-item>
+                    <b-navbar-item href="/report-by-engagement-status">
+                        Report Engagement Status
+                    </b-navbar-item>
                 </b-navbar-dropdown>
 
 
