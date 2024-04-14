@@ -82,7 +82,7 @@
                             </div>
                         </div>
 
-                        <div class="columns">
+                        <!-- <div class="columns">
                             <div class="column">
                                 <b-field label="Remarks/Explanation">
                                     <b-input type="text"
@@ -91,7 +91,7 @@
                                         placeholder="Remarks/Explanation"></b-input>
                                 </b-field>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div> <!-- div class-->
                 </section>
