@@ -37,6 +37,23 @@ class UserController extends Controller
         $users = User::with(['engagement'])
             ->where('lname', 'like', $req->lname . '%')
             ->where('is_archive', $req->archive)
+            ->where('is_approve', 1)
+            ->orderBy($sort[0], $sort[1]);
+
+        if($req->engagement){
+            $users->where('engagement_status_id',$req->engagement);
+        }
+
+        return $users->paginate($req->perpage);
+    }
+
+    public function getUsersPending(Request $req){
+        $sort = explode('.', $req->sort_by);
+
+        $users = User::with(['engagement'])
+            ->where('lname', 'like', $req->lname . '%')
+            ->where('is_archive', 0)
+            ->where('is_approve', 0)
             ->orderBy($sort[0], $sort[1]);
 
         if($req->engagement){

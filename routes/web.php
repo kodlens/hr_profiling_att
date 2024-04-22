@@ -105,6 +105,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/users', App\Http\Controllers\ControlPanel\UserController::class);
     Route::get('/get-users', [App\Http\Controllers\ControlPanel\UserController::class, 'getUsers']);
+    Route::get('/get-users-pending', [App\Http\Controllers\ControlPanel\UserController::class, 'getUsersPending']);
     Route::post('/users-set-archive/{user}/{value}', [App\Http\Controllers\ControlPanel\UserController::class, 'setArchive']);
     Route::post('/user-set-approve/{userId}', [App\Http\Controllers\ControlPanel\UserController::class, 'setApprove']);
 
@@ -192,6 +193,11 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::resource('/employee/work-experiences', App\Http\Controllers\Employee\EmployeeWorkExperienceController::class);
     Route::resource('/employee/learning-developments', App\Http\Controllers\Employee\EmployeeLearningDevelopmentController::class);
     Route::resource('/employee/other-informations', App\Http\Controllers\Employee\EmployeeOtherInformationController::class);
+
+
+    Route::resource('/employee/file-manager', App\Http\Controllers\Employee\EmployeeFileManagerController::class);
+
+    Route::get('/employee/get-my-files', [App\Http\Controllers\Employee\EmployeeFileManagerController::class, 'getData']);
 
     // Route::resource('/employee/trainings-interventions', App\Http\Controllers\Employee\TrainingInterventionController::class);
     // Route::post('/employee/trainings-interventions-update/{id}', [App\Http\Controllers\Employee\TrainingInterventionController::class, 'update']);

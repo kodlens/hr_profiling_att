@@ -48,7 +48,7 @@
 
 
                             <div class="buttons mt-3">
-                                <b-button @click="openModal" icon-left="account" class="is-success is-outlined is-small has-text-weight-bold">NEW USER</b-button>
+                                <b-button @click="openModal" icon-left="account" class="is-success is-outlined is-small has-text-weight-bold">NEW EMPLOYEE</b-button>
                             </div>
 
 
@@ -158,13 +158,13 @@
                             </b-table>
 
 
-                            <div class="buttons">
+                            <!-- <div class="buttons">
                                 <b-button
                                     type="is-success"
                                     icon-left="archive-arrow-down-outline"
                                     @click="archiveEmployee"
                                     label="ARCHIVE EMPLOYEE"></b-button>
-                            </div>
+                            </div> -->
 
                             <!--modal create-->
                             <b-modal v-model="isModalCreate" has-modal-card
@@ -320,11 +320,11 @@
                                                                 :type="errors.role ? 'is-danger':''"
                                                                 :message="errors.role ? errors.role[0] : ''">
                                                             <b-select v-model="fields.role" expanded>
-                                                                <option value="administrator">ADMINISTRATOR</option>
+                                                                <!-- <option value="administrator">ADMINISTRATOR</option> -->
                                                                 <option value="employee">EMPLOYEE</option>
-                                                                <option value="point_person">POINT-PERSON</option>
+                                                                <!-- <option value="point_person">POINT-PERSON</option>
                                                                 <option value="record_officer">RECORD OFFICER</option>
-                                                                <option value="training_dev_officer">TRAINING/DEVELOPMENT OFFICER</option>
+                                                                <option value="training_dev_officer">TRAINING/DEVELOPMENT OFFICER</option> -->
                                                             </b-select>
                                                         </b-field>
                                                     </div>
@@ -532,6 +532,7 @@ export default{
                 password: '', password_confirmation : '',
                 sex : '', role: '',  cid_sub_role: '',
                 email : '', contact_no : '',
+                role: 'employee',
                 province: '', city: '', barangay: '', street: ''
             },
 

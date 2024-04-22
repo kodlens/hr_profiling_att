@@ -10,7 +10,9 @@
                             <b-tab-item label="User list">
                                 <user-main-list></user-main-list>
                             </b-tab-item>
-
+                            <b-tab-item label="Pending Users">
+                                <user-pending></user-pending>
+                            </b-tab-item>
                             <b-tab-item label="Archive user list">
                                 <user-archive-list></user-archive-list>
                             </b-tab-item>

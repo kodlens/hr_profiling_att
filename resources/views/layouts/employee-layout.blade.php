@@ -57,7 +57,11 @@
                 </b-navbar-dropdown>
 
 
-            
+                <b-navbar-dropdown label="Files">
+                    <b-navbar-item href="/employee/file-manager">
+                        File Manager
+                    </b-navbar-item>
+                </b-navbar-dropdown>
 
                 <b-navbar-dropdown label="{{ auth()->user()->lname }}">
                     <b-navbar-item href="/change-password">
