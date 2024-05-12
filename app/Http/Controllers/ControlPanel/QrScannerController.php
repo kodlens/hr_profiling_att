@@ -17,6 +17,7 @@ class QrScannerController extends Controller
 
 
     public function store(Request $req){
+
         $req->validate([
             'attendance_status' => ['required']
         ]);

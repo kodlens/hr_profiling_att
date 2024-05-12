@@ -101,9 +101,9 @@ class UserController extends Controller
             'password' => ['required', 'string', 'confirmed'],
             //'is_partime' => ['required'],
             'role' => ['required'],
-            'res_province' => ['required', 'string'],
-            'res_city' => ['required', 'string'],
-            'res_barangay' => ['required', 'string'],
+            // 'res_province' => ['required', 'string'],
+            // 'res_city' => ['required', 'string'],
+            // 'res_barangay' => ['required', 'string'],
         ]);
 
         User::create([
@@ -142,9 +142,9 @@ class UserController extends Controller
             'email' => ['required', 'unique:users,email,'.$id.',user_id'],
             'role' => ['required', 'string'],
             //'is_partime' => ['required'],
-            'res_province' => ['required', 'string'],
-            'res_city' => ['required', 'string'],
-            'res_barangay' => ['required', 'string'],
+            // 'res_province' => ['required', 'string'],
+            // 'res_city' => ['required', 'string'],
+            // 'res_barangay' => ['required', 'string'],
         ]);
 
         $data = User::find($id);

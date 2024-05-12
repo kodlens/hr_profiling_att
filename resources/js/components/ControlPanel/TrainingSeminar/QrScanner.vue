@@ -23,8 +23,8 @@
                             </qrcode-stream>
                         </div>
                         <b-field label="Attendance Status"
-                            :type="this.errors.attendance_status ? 'is-danger':''"
-                            :message="this.errors.attendance_status ? this.errors.attendance_status[0] : ''">
+                            :type="errors.attendance_status ? 'is-danger':''"
+                            :message="errors.attendance_status ? errors.attendance_status[0] : ''">
 
                             <b-select v-model="fields.attendance_status" expanded>
                                 <option value="in_am">IN AM</option>
@@ -85,16 +85,21 @@ export default {
         },
 
         async onDecode (content) {
+
             this.result = content;
+
             this.turnCameraOff();
+            
             const jsonResult = JSON.parse(content)
      
             // pretend it's taking really long
             this.isProcessing = true;
+
+            //console.log(jsonResult)
   
             await this.timeout(2000);
 
-            axios.post('/qr-scanner/', {
+            axios.post('/qr-scanner', {
                 'user_id' : jsonResult.user_id,
                 'training_seminar_id': jsonResult.training_seminar_id,
                 'attendance_status': this.fields.attendance_status
@@ -109,7 +114,7 @@ export default {
                 }
             }).catch(err=>{
                 this.isProcessing = false;
-                console.log(err.response.data.status);
+                //console.log(err.response.data.status);
 
                 if(err.response.status === 422){
                     this.errors = err.response.data.errors
@@ -136,6 +141,7 @@ export default {
 
             // some more delay, so users have time to read the message
             await this.timeout(2000);
+
             this.turnCameraOn()
         },
 
@@ -153,31 +159,31 @@ export default {
             })
         },
 
-        submit: function(){
-            axios.post('/save-frisk-item/' + this.user.appointment_id, this.fields).then(res=>{
-                if(res.data.status === 'saved'){
-                    this.isModalValidModal = false;
-                    this.$buefy.toast.open({
-                        message: 'Frisk item save successfully.',
-                        type: 'is-success'
-                    });
+        // submit: function(){
+        //     axios.post('/save-frisk-item/' + this.user.appointment_id, this.fields).then(res=>{
+        //         if(res.data.status === 'saved'){
+        //             this.isModalValidModal = false;
+        //             this.$buefy.toast.open({
+        //                 message: 'Frisk item save successfully.',
+        //                 type: 'is-success'
+        //             });
 
-                    this.fields = {
-                        friskItems: [],
-                    };
-                }
-            })
-        },
+        //             this.fields = {
+        //                 friskItems: [],
+        //             };
+        //         }
+        //     })
+        // },
 
-        add () {
-            this.fields.friskItems.push({
-                item_name: '',
-            })
-        },
-        remove(index){
-            //alert(index);
-            this.fields.friskItems.splice(index, 1);
-        },
+        // add () {
+        //     this.fields.friskItems.push({
+        //         item_name: '',
+        //     })
+        // },
+        // remove(index){
+        //     //alert(index);
+        //     this.fields.friskItems.splice(index, 1);
+        // },
 
     },
 
