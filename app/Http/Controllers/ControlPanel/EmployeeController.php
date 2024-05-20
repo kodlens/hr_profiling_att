@@ -47,7 +47,6 @@ class EmployeeController extends Controller
             ->leftJoin('learning_developments', 'users.user_id', 'learning_developments.user_id')
             ->leftJoin('work_experiences', 'users.user_id', 'work_experiences.user_id')
             ->select(
-
                 'users.user_id',
                 'users.username',
                 'users.lname',
@@ -177,6 +176,7 @@ class EmployeeController extends Controller
            // ->where('career_exam', 'like', '%'. $req->key . '%')
             ->where('is_archive', 0)
             ->where('role', 'EMPLOYEE')
+            ->groupBy('user_id')
             ->orderBy($sort[0], $sort[1]);
 
         if($req->engagement){
