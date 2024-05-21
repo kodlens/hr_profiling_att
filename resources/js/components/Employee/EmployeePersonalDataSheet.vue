@@ -1255,7 +1255,7 @@
 
 
                     <div class="buttons is-right">
-                        <b-button @click="submit" class="button is-primary">Update Information</b-button>
+                        <b-button @click="submit" :class="btnClass">Update Information</b-button>
                     </div>
 
                 </div> <!--panel-->
@@ -1307,7 +1307,11 @@ export default {
                 other_informations: [],
             },
 
-
+            btnClass: {
+                'button': true,
+                'is-loading': false,
+                'is-primary': true
+            },
 
             errors: {},
 
@@ -1328,7 +1332,10 @@ export default {
             degress: [],
             engagementStatus: [],
             educationLevels: [],
+
+
         }
+
     },
     methods: {
         //ADDRESS
@@ -1467,6 +1474,8 @@ export default {
                     date_birth: new Date(child.child_bdate)
                 });
             })
+            
+            console.log(this.user.educational_backgrounds)
             this.user.educational_backgrounds.forEach(ed=>{
                 this.fields.educational_backgrounds.push({
                     ed_bg_id: ed.ed_bg_id,

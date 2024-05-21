@@ -152,6 +152,7 @@ class EmployeePDSController extends Controller
         $data->contact_no = $req->contact_no;
         $data->email = $req->email;
 
+        return $req->educational_backgrounds;
 
         foreach($req->educational_backgrounds as $ed){
             $child = EducationalBackground::updateOrCreate(
@@ -162,7 +163,7 @@ class EmployeePDSController extends Controller
                     'degree' => strtoupper($ed['degree']),
                     'period_att_from' => strtoupper($ed['period_att_from']),
                     'period_att_to' => strtoupper($ed['period_att_to']),
-                    'highest_level_unit' => strtoupper($ed['highest_level_unit']),
+                    'highest_level_unit' => $ed['highest_level_unit'],
                     'year_graduated' => strtoupper($ed['year_graduated']),
                     'scholarship' => strtoupper($ed['scholarship']),
                 ]

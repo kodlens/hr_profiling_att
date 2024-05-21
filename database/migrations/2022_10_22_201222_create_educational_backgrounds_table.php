@@ -25,7 +25,7 @@ class CreateEducationalBackgroundsTable extends Migration
             $table->string('degree')->nullable();
             $table->string('period_att_from')->nullable();
             $table->string('period_att_to')->nullable();
-            $table->string('highest_level_unit')->nullable();
+            $table->integer('highest_level_unit')->default(0);
             $table->string('year_graduated')->nullable();
             $table->string('scholarship')->nullable();
 

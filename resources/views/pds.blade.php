@@ -506,9 +506,16 @@
 							<span class="count"></span> VOCATIONAL/<br>
 							<span class="count"></span> TRADE COURSE
 						</td>
-						<td colspan="4"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
+						<td colspan="4">
+							@if(isset($user->educational_backgrounds[2]))
+								{{$user->educational_backgrounds[2]->name_of_school}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->educational_backgrounds[2]))
+								{{$user->educational_backgrounds[2]->degree}}
+							@endisset
+						</td>
 						<td colspan="1">
 							@if(isset($user->educational_backgrounds[2]))
 								{{$user->educational_backgrounds[2]->period_att_from}}
@@ -518,6 +525,9 @@
 							@if(isset($user->educational_backgrounds[2]))
 								{{$user->educational_backgrounds[2]->period_att_to}}
 							@endisset
+						</td>
+						<td colspan="1">
+							
 						</td>
 						<td colspan="1">
 							@if(isset($user->educational_backgrounds[2]))
@@ -530,9 +540,16 @@
 						<td colspan="1" class="s-label">
 							<span class="count"></span> COLLEGE
 						</td>
-						<td colspan="4"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
+						<td colspan="4">
+							@if(isset($user->educational_backgrounds[3]))
+								{{$user->educational_backgrounds[3]->name_of_school}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->educational_backgrounds[3]))
+								{{$user->educational_backgrounds[3]->degree}}
+							@endisset
+						</td>
 						<td colspan="1">
 							@if(isset($user->educational_backgrounds[3]))
 								{{$user->educational_backgrounds[3]->period_att_from}}
@@ -543,6 +560,7 @@
 								{{$user->educational_backgrounds[3]->period_att_to}}
 							@endisset
 						</td>
+						<td colspan="1"></td>
 						<td colspan="1">
 							@if(isset($user->educational_backgrounds[3]))
 							{{date('Y/m/d', strtotime($user->educational_backgrounds[3]->year_graduated))}}
@@ -554,9 +572,16 @@
 						<td colspan="1" class="s-label">
 							<span class="count"></span> GRADUATE STUDIES
 						</td>
-						<td colspan="4"></td>
-						<td colspan="2"></td>
-						<td colspan="1"></td>
+						<td colspan="4">
+							@if(isset($user->educational_backgrounds[4]))
+								{{$user->educational_backgrounds[4]->name_of_school}}
+							@endisset
+						</td>
+						<td colspan="2">
+							@if(isset($user->educational_backgrounds[4]))
+								{{$user->educational_backgrounds[4]->degree}}
+							@endisset
+						</td>
 						<td colspan="1">
 							@if(isset($user->educational_backgrounds[4]))
 								{{$user->educational_backgrounds[4]->period_att_from}}
@@ -566,6 +591,9 @@
 							@if(isset($user->educational_backgrounds[4]))
 								{{$user->educational_backgrounds[4]->period_att_to}}
 							@endisset
+						</td>
+						<td colspan="1">
+							
 						</td>
 						<td colspan="1">
 							@if(isset($user->educational_backgrounds[4]))
