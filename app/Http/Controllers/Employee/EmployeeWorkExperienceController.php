@@ -1,24 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\Faculty;
+namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
-use App\Models\Children;
 use Illuminate\Http\Request;
+use App\Models\WorkExperience;
 
-class FacultyChildController extends Controller
+
+
+class EmployeeWorkExperienceController extends Controller
 {
     //
+
 
     public function __construct(){
         $this->middleware('auth');
     }
 
+
     public function destroy($id){
-        Children::destroy($id);
+        WorkExperience::destroy($id);
 
         return response()->json([
             'status' => 'deleted'
         ],200);
     }
+
 }

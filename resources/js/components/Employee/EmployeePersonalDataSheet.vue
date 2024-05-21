@@ -1732,10 +1732,10 @@ export default {
                 message: 'Are you sure you want to delete this information?',
 
                 onConfirm: ()=>{
-                    let work_ex_id = this.fields.work_experiences[index].cse_id;
+                    let work_ex_id = this.fields.work_experiences[index].work_ex_id;
 
                     if(work_ex_id > 0){
-                        axios.delete('/employee-work-experiences/' + work_ex_id).then(res=>{
+                        axios.delete('/employee/employee-work-experiences/' + work_ex_id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Work experience deleted successfully.`,

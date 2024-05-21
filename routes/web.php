@@ -180,9 +180,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::post('/employee/my-seminars-remove-me/{id}', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'removeMe']);
 
 
-
-
-
+    
 
     //attendance for event
     Route::post('/seminar-im-in', [App\Http\Controllers\Faculty\FacultyHomeController::class, 'imIn']);
@@ -190,7 +188,8 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::resource('/employee/educational-backgrounds', App\Http\Controllers\Employee\EmployeeEducationalBackgroundController::class);
     Route::resource('/employee/children', App\Http\Controllers\Employee\EmployeeChildController::class);
     Route::resource('/employee/eligibilities', App\Http\Controllers\Employee\EmployeeCSEController::class);
-    Route::resource('/employee/work-experiences', App\Http\Controllers\Employee\EmployeeWorkExperienceController::class);
+    Route::resource('/employee/employee-work-experiences', App\Http\Controllers\Employee\EmployeeWorkExperienceController::class);
+    
     Route::resource('/employee/learning-developments', App\Http\Controllers\Employee\EmployeeLearningDevelopmentController::class);
     Route::resource('/employee/other-informations', App\Http\Controllers\Employee\EmployeeOtherInformationController::class);
 
