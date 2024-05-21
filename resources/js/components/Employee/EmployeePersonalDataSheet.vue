@@ -1484,7 +1484,7 @@ export default {
                     degree: ed.degree,
                     period_att_from: ed.period_att_from,
                     period_att_to: ed.period_att_to,
-                    highest_level_unit: ed.highest_level_unit,
+                    highest_level_unit: ed.highest_level_unit ? ed.highest_level_unit : 0,
                     year_graduated: new Date(ed.year_graduated),
                     scholarship: ed.scholarship
                 });
@@ -1577,9 +1577,11 @@ export default {
         },
 
         submit(){
-
+            this.btnClass['is-loading'] = true
             //formData.append('fields', this.fields);
             axios.put('/employee/personal-data-sheet/' + this.user.user_id, this.fields).then(res=>{
+                this.btnClass['is-loading'] = false
+
                 if(res.data.status === 'saved'){
                     this.$buefy.dialog.alert({
                         title: "UPDATED!",
@@ -1589,6 +1591,8 @@ export default {
                     });
                 }
             }).catch(err=>{
+                this.btnClass['is-loading'] = false
+
                 if(err.response.status === 422){
                     this.errors = err.response.data.errors;
                 }else{

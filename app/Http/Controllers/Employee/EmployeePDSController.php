@@ -152,7 +152,7 @@ class EmployeePDSController extends Controller
         $data->contact_no = $req->contact_no;
         $data->email = $req->email;
 
-        return $req->educational_backgrounds;
+        //return $req->educational_backgrounds;
 
         foreach($req->educational_backgrounds as $ed){
             $child = EducationalBackground::updateOrCreate(
