@@ -221,7 +221,7 @@
 						<td colspan="1" class="s-label border-0">
 							<span class="count"></span> MIDDLE NAME
 						</td>
-						<td colspan="5">{{$user->spuse_mname}}</td>
+						<td colspan="5">{{$user->spouse_mname}}</td>
 						<td colspan="3">
 							@if(isset($user->children[1]))
 								{{ $user->children[1]->fullname}}

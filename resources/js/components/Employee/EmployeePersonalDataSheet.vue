@@ -1475,7 +1475,7 @@ export default {
                 });
             })
             
-            console.log(this.user.educational_backgrounds)
+            //console.log(this.user.educational_backgrounds)
             this.user.educational_backgrounds.forEach(ed=>{
                 this.fields.educational_backgrounds.push({
                     ed_bg_id: ed.ed_bg_id,
