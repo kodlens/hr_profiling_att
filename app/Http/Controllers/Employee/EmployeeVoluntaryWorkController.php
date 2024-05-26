@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Faculty;
+namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\OtherInformation;
+use App\Models\VoluntaryWork;
 
-class FacultyOtherInformationController extends Controller
+class EmployeeVoluntaryWorkController extends Controller
 {
     //
 
@@ -16,7 +16,8 @@ class FacultyOtherInformationController extends Controller
 
 
     public function destroy($id){
-        OtherInformation::destroy($id);
+
+        VoluntaryWork::destroy($id);
         return response()->json([
             'status' => 'deleted'
         ],200);

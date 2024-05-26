@@ -1779,7 +1779,7 @@ export default {
                     let id = this.fields.voluntary_works[index].voluntary_work_id;
 
                     if(id > 0){
-                        axios.delete('/employee-voluntary-works/' + id).then(res=>{
+                        axios.delete('/employee/voluntary-works/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1818,7 +1818,7 @@ export default {
                     let id = this.fields.learning_developments[index].learning_dev_id;
 
                     if(id > 0){
-                        axios.delete('/employee-learning-developments/' + id).then(res=>{
+                        axios.delete('/employee/learning-developments/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1853,7 +1853,7 @@ export default {
                     let id = this.fields.other_informations[index].other_info_id;
 
                     if(id > 0){
-                        axios.delete('/employee-other-informations/' + id).then(res=>{
+                        axios.delete('/employee/other-informations/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,

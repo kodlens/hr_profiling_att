@@ -19,6 +19,8 @@ class EmployeeWorkExperienceController extends Controller
 
 
     public function destroy($id){
+        return $id;
+        
         WorkExperience::destroy($id);
 
         return response()->json([

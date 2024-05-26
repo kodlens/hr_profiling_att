@@ -193,6 +193,9 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::resource('/employee/educational-backgrounds', App\Http\Controllers\Employee\EmployeeEducationalBackgroundController::class);
     Route::resource('/employee/children', App\Http\Controllers\Employee\EmployeeChildController::class);
     Route::resource('/employee/eligibilities', App\Http\Controllers\Employee\EmployeeCSEController::class);
+
+    Route::resource('/employee/voluntary-works', App\Http\Controllers\Employee\EmployeeVoluntaryWorkController::class);
+
     Route::resource('/employee/employee-work-experiences', App\Http\Controllers\Employee\EmployeeWorkExperienceController::class);
     
     Route::resource('/employee/learning-developments', App\Http\Controllers\Employee\EmployeeLearningDevelopmentController::class);
