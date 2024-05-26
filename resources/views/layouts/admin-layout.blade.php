@@ -95,6 +95,9 @@
                     <b-navbar-item href="/report-by-engagement-status">
                         Report Engagement Status
                     </b-navbar-item>
+                    <b-navbar-item href="/general-reports">
+                        General Reports
+                    </b-navbar-item>
                 </b-navbar-dropdown>
 
 
@@ -185,6 +188,9 @@
                 </b-navbar-item>
                 <b-navbar-item href="/report-by-engagement-status">
                     Report Engagement Status
+                </b-navbar-item>
+                <b-navbar-item href="/general-reports">
+                    General Reports
                 </b-navbar-item>
             </b-navbar-dropdown>
 

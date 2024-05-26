@@ -11,7 +11,7 @@ use App\Models\Degree;
 use App\Models\EngagementStatus;
 use App\Models\Educationlevel;
 use App\Models\Institute;
-
+use App\Models\User;
 
 class OpenController extends Controller
 {
@@ -55,6 +55,10 @@ class OpenController extends Controller
     public function loadInstitutes(){
         return Institute::orderBy('institute', 'asc')
             ->get();
+    }
+
+    public function loadSex(){
+        return User::select('sex')->distinct()->get();
     }
 
 

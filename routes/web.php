@@ -36,7 +36,7 @@ Route::get('/load-open-degrees', [App\Http\Controllers\OpenController::class, 'l
 Route::get('/load-engagement-status', [App\Http\Controllers\OpenController::class, 'loadEngagementStatus']);
 Route::get('load-education-levels', [App\Http\Controllers\OpenController::class, 'loadEducationLevels']);
 Route::get('load-institutes', [App\Http\Controllers\OpenController::class, 'loadInstitutes']);
-
+Route::get('load-sex', [App\Http\Controllers\OpenController::class, 'loadSex']);
 
 
 Auth::routes([
@@ -148,6 +148,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/report-by-sex', App\Http\Controllers\Report\ReportBySexController::class);
     Route::get('/report-load-report-by-sex', [App\Http\Controllers\Report\ReportBySexController::class, 'loadReportBySex']);
 
+    Route::resource('/report-by-sex', App\Http\Controllers\Report\ReportBySexController::class);
+    Route::get('/report-load-report-by-sex', [App\Http\Controllers\Report\ReportBySexController::class, 'loadReportBySex']);
+    
     Route::get('/report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'index']);
     Route::get('/report-load-report-by-educational-backgrounds', [App\Http\Controllers\Report\ReportByEducationalBackgroundController::class, 'loadReportEducationalBackground']);
 
@@ -157,6 +160,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report-by-engagement-status', [App\Http\Controllers\Report\ReportByEngagementStatus::class, 'index']);
     Route::get('/report-load-report-by-engagement-status', [App\Http\Controllers\Report\ReportByEngagementStatus::class, 'loadReport']);
 
+    Route::resource('/general-reports', App\Http\Controllers\Report\GeneralReportController::class);
+    Route::get('/report-load-general-report', [App\Http\Controllers\Report\GeneralReportController::class, 'loadGeneralReport']);
 });
 
 Route::middleware(['auth', 'employee'])->group(function () {

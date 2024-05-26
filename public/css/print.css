@@ -1,8 +1,13 @@
 @media print {
 
+    html, body{
+        background-color: white;
+    }
     .print-form{
         margin: 0;
+        width: 100%;
     }
+
     .myDivToPrint{
         margin: 0;
         color: #000;
@@ -27,12 +32,20 @@
         display: none;
     }
 
+    
+
+}
+
+@page {
+    size: 13in 8.5in;
 }
 
 
+
 .print-form{
-    width: 8.5in;
-    height: 13in;
+    width: 13in;
+    height: 8.5in;
+   
     margin: auto;
 }
 
