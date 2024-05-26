@@ -176,7 +176,7 @@
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label"><span class="count">15.</span> AGENCY EMPLOYEE NO.</td>
-						<td colspan="5">{{$user->agency_no}}</td>
+						<td colspan="5">{{$user->agency_idno}}</td>
 						<td colspan="2" class="s-label"><span class="count">21.</span> EMAIL ADDRESS (if any)</td>
 						<td colspan="4">{{$user->email}}</td>
 					</tr>
@@ -870,7 +870,7 @@
 
 				<tbody class="table-body">
 					<tr>
-						<td colspan="12" class="text-white separator">VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S<br>
+						<td colspan="12" class="text-white separator">VII. LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED<br>
 							<small><i>(Start from the most recent L&D/training program and include only the relevant L&D/training taken for the last five (5) years for Division Chief/Executive/Managerial positions)</i></small>
 						</td>
 					</tr>
