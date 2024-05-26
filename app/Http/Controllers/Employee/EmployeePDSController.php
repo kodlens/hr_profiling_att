@@ -113,6 +113,7 @@ class EmployeePDSController extends Controller
         $data->spouse_fname = strtoupper($req->spouse_fname);
         $data->spouse_mname = strtoupper($req->spouse_mname);
         $data->spouse_suffix = strtoupper($req->spouse_suffix);
+        $data->spouse_occupation = strtoupper($req->spouse_occupation);
 
         //business
         $data->business_name = strtoupper($req->business_name);

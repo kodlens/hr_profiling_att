@@ -412,7 +412,7 @@
                             </div>
 
                             <div class="columns" v-if="fields.civil_status === 'MARRIED'">
-                                <div class="column is-8">
+                                <div class="column is-6">
                                     <b-field label="Spouse Middle Name" label-position="on-border"
                                              :type="this.errors.spouse_mname ? 'is-danger':''"
                                              :message="this.errors.spouse_mname ? this.errors.spouse_mname[0] : ''">
@@ -421,9 +421,16 @@
                                 </div>
                                 <div class="column">
                                     <b-field label="Spouse Suffix" label-position="on-border"
-                                             :type="this.errors.spouse_suffix ? 'is-danger':''"
-                                             :message="this.errors.spouse_suffix ? this.errors.spouse_suffix[0] : ''">
+                                        :type="this.errors.spouse_suffix ? 'is-danger':''"
+                                        :message="this.errors.spouse_suffix ? this.errors.spouse_suffix[0] : ''">
                                         <b-input type="text" v-model="fields.spouse_suffix" placeholder="Spouse Suffix" icon="account"></b-input>
+                                    </b-field>
+                                </div>
+                                <div class="column">
+                                    <b-field label="Spouse Occupation" label-position="on-border"
+                                        :type="this.errors.spouse_occupation ? 'is-danger':''"
+                                        :message="this.errors.spouse_occupation ? this.errors.spouse_occupation[0] : ''">
+                                        <b-input type="text" v-model="fields.spouse_occupation" placeholder="Spouse Suffix" icon="account"></b-input>
                                     </b-field>
                                 </div>
                             </div>
@@ -1409,6 +1416,7 @@ export default {
             this.fields.spouse_fname = this.user.spouse_fname;
             this.fields.spouse_mname = this.user.spouse_mname;
             this.fields.spouse_suffix = this.user.spouse_suffix;
+            this.fields.spouse_occupation = this.user.spouse_occupation;
             //businees
             this.fields.business_name = this.user.business_name;
             this.fields.business_address = this.user.business_address;
