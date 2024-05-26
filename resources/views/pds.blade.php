@@ -56,7 +56,7 @@
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-0"><span class="count"></span> MIDDLE NAME</td>
-						<td colspan="11">{{ $user->middlename }}</td>
+						<td colspan="11">@if($user->mname) {{ $user->mname }} @endif</td>
 					</tr>
 					<tr>
 						<td colspan="1" class="s-label border-bottom-0">
