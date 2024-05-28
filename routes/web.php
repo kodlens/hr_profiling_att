@@ -255,6 +255,11 @@ Route::middleware(['auth', 'point_person'])->group(function () {
     //load list of attendees base on event id
     Route::get('/point-person/load-attendees-events-view', [App\Http\Controllers\PointPerson\PointPersonEventController::class, 'loadAttendees']);
 
+    //printing report attendance of event
+    Route::get('/report-event-attendance/{id}', [App\Http\Controllers\Report\ReportEventAttendanceController::class, 'index']);
+
+
+    
 
 });
 

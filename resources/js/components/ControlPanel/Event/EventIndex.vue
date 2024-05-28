@@ -102,6 +102,12 @@
                                             icon-right="delete"
                                             @click="confirmDelete(props.row.event_id)"></b-button>
                                     </b-tooltip>
+
+                                    <b-tooltip label="Delete" type="is-danger">
+                                        <b-button class="button is-small mr-1"
+                                            icon-right="printer"
+                                            @click="printMe(props.row)"></b-button>
+                                    </b-tooltip>
                                 </div>
                             </b-table-column>
 
@@ -313,6 +319,10 @@ export default {
             this.fields.event_title = ''
             this.fields.event_description = ''
             this.fields.img_path = ''
+        },
+
+        printMe(row){
+            window.location = 'report-event-attendance/' + row.event_id
         },
 
 
