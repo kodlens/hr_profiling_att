@@ -465,16 +465,16 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="Father Surname" label-position="on-border"
-                                            :type="this.errors.father_surname ? 'is-danger':''"
-                                            :message="this.errors.father_surname ? this.errors.father_surname[0] : ''">
+                                            :type="errors.father_surname ? 'is-danger':''"
+                                            :message="errors.father_surname ? errors.father_surname[0] : ''">
                                         <b-input type="text" v-model="fields.father_surname" placeholder="Father Surname" icon="account"></b-input>
                                     </b-field>
                                 </div>
 
                                 <div class="column">
                                     <b-field label="Father First Name" label-position="on-border"
-                                             :type="this.errors.father_fname ? 'is-danger':''"
-                                             :message="this.errors.father_fname ? this.errors.father_fname[0] : ''">
+                                             :type="errors.father_fname ? 'is-danger':''"
+                                             :message="errors.father_fname ? errors.father_fname[0] : ''">
                                         <b-input type="text" v-model="fields.father_fname" placeholder="Father First Name" icon="account"></b-input>
                                     </b-field>
                                 </div>
@@ -483,15 +483,15 @@
                             <div class="columns">
                                 <div class="column is-8">
                                     <b-field label="Father Middle Name" label-position="on-border"
-                                             :type="this.errors.father_mname ? 'is-danger':''"
-                                             :message="this.errors.father_mname ? this.errors.father_mname[0] : ''">
+                                             :type="errors.father_mname ? 'is-danger':''"
+                                             :message="errors.father_mname ? errors.father_mname[0] : ''">
                                         <b-input type="text" v-model="fields.father_mname" placeholder="Father Middle Name" icon="account"></b-input>
                                     </b-field>
                                 </div>
                                 <div class="column">
                                     <b-field label="Father Suffix" label-position="on-border"
-                                             :type="this.errors.father_suffix ? 'is-danger':''"
-                                             :message="this.errors.father_suffix ? this.errors.father_suffix[0] : ''">
+                                             :type="errors.father_suffix ? 'is-danger':''"
+                                             :message="errors.father_suffix ? errors.father_suffix[0] : ''">
                                         <b-input type="text" v-model="fields.father_suffix" placeholder="Father Suffix" icon="account"></b-input>
                                     </b-field>
                                 </div>
@@ -502,16 +502,16 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="Mother Maiden Name" label-position="on-border"
-                                             :type="this.errors.mother_maiden_name ? 'is-danger':''"
-                                             :message="this.errors.mother_maiden_name ? this.errors.mother_maiden_name[0] : ''">
+                                             :type="errors.mother_maiden_name ? 'is-danger':''"
+                                             :message="errors.mother_maiden_name ? errors.mother_maiden_name[0] : ''">
                                         <b-input type="text" v-model="fields.mother_maiden_name" placeholder="Mothers Maiden Name" icon="account"></b-input>
                                     </b-field>
                                 </div>
 
                                 <div class="column">
                                     <b-field label="Mother First Name" label-position="on-border"
-                                             :type="this.errors.mother_fname ? 'is-danger':''"
-                                             :message="this.errors.mother_fname ? this.errors.mother_fname[0] : ''">
+                                             :type="errors.mother_fname ? 'is-danger':''"
+                                             :message="errors.mother_fname ? errors.mother_fname[0] : ''">
                                         <b-input type="text" v-model="fields.mother_fname" placeholder="Mother First Name" icon="account"></b-input>
                                     </b-field>
                                 </div>
@@ -520,15 +520,15 @@
                             <div class="columns">
                                 <div class="column is-8">
                                     <b-field label="Mother Middle Name" label-position="on-border"
-                                             :type="this.errors.mother_mname ? 'is-danger':''"
-                                             :message="this.errors.mother_mname ? this.errors.mother_mname[0] : ''">
+                                             :type="errors.mother_mname ? 'is-danger':''"
+                                             :message="errors.mother_mname ? errors.mother_mname[0] : ''">
                                         <b-input type="text" v-model="fields.mother_mname" placeholder="Mother Middle Name" icon="account"></b-input>
                                     </b-field>
                                 </div>
                                 <div class="column">
                                     <b-field label="Mother Suffix" label-position="on-border"
-                                             :type="this.errors.mother_suffix ? 'is-danger':''"
-                                             :message="this.errors.mother_suffix ? this.errors.mother_suffix[0] : ''">
+                                             :type="errors.mother_suffix ? 'is-danger':''"
+                                             :message="errors.mother_suffix ? errors.mother_suffix[0] : ''">
                                         <b-input type="text" v-model="fields.mother_suffix" placeholder="Father Suffix" icon="account"></b-input>
                                     </b-field>
                                 </div>
@@ -540,7 +540,7 @@
                                 >
                                 Click <strong>ADD</strong> button to add new children
                             </div>
-                            <div v-for="(item, k) in this.fields.children" :key="`child${k}`">
+                            <div v-for="(item, k) in fields.children" :key="`child${k}`">
                                 <div class="columns">
                                     <div class="column">
                                         <b-field label="Fullname" label-position="on-border">

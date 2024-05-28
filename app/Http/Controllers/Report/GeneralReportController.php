@@ -33,13 +33,15 @@ class GeneralReportController extends Controller
         //return $req;
        
         $engagements = $this->cleanArray($req->engagement);
+        $civilStatus = $this->cleanArray($req->civil);
+    
         $sex = $req->sex == 'all' ? '' : $req->sex;
 
-        $data = User::with(['engagement', 'eligibilities', 'educational_backgrounds', 'learning_developments'])
+        $data = User::with(['children', 'engagement', 'eligibilities', 'educational_backgrounds', 'learning_developments',
+            'permanent_province', 'permanent_city', 'permanent_barangay', 'work_experiences', 'voluntary_works'])
             ->where('sex', 'like',  $sex . '%');
 
-        if($req->range != null){
-
+        if($req->range != null && $req->range != 'all'){
             $age = explode("-",$req->range);
             $minAge = $age[0];
             $maxAge = $age[1];
@@ -55,25 +57,40 @@ class GeneralReportController extends Controller
                 $q->whereIn('engagement_status', $engagements);
             });
         }
+        if(count($civilStatus) > 0){
+            $data->whereIn('civil_status',  $civilStatus);
+        }
 
         if($req->eligibility != null  || $req->eligibility != ''){
             $data->whereHas('eligibilities', function($q) use ($req){
-                $q->where('career_exam', 'like', '%'. $req->eligibility . '%');
+                $q->whereRaw('MATCH(career_exam) AGAINST(? IN NATURAL LANGUAGE MODE)',[$req->eligibility]);
             });
         }
         if($req->education != null  || $req->education != ''){
             $data->whereHas('educational_backgrounds', function($q) use ($req){
-                $q->where('degree', 'like', '%'. $req->education . '%')
-                    ->orWhere('level', 'like', '%'. $req->education . '%');
+                $q->whereRaw('MATCH(level, degree) AGAINST(? IN NATURAL LANGUAGE MODE)',[$req->education]);
             });
         }
         if($req->learningdev != null  || $req->learningdev != ''){
             $data->whereHas('learning_developments', function($q) use ($req){
-                $q->where('title_learning_dev', 'like', '%'. $req->learningdev . '%');
+                //$q->where('title_learning_dev', 'like', '%'. $req->learningdev . '%');
+                $q->whereRaw('MATCH(title_learning_dev) AGAINST(? IN NATURAL LANGUAGE MODE)',[$req->learningdev]);
+
+            });
+        }
+        if($req->work != null  || $req->work != ''){
+            $data->whereHas('work_experiences', function($q) use ($req){
+                $q->whereRaw('MATCH(position_title) AGAINST(? IN NATURAL LANGUAGE MODE)',[$req->work]);
+
             });
         }
 
-        
+        if($req->voluntary != null  || $req->voluntary != ''){
+            $data->whereHas('voluntary_works', function($q) use ($req){
+                $q->whereRaw('MATCH(name_address_org) AGAINST(? IN NATURAL LANGUAGE MODE)',[$req->voluntary]);
+
+            });
+        }
 
         return $data->get();
        

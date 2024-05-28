@@ -37314,9 +37314,6 @@ iframe,
     width: 200px !important;
   }
 }
-@page {
-  size: 13in 8.5in;
-}
 .is-noscroll {
   position: fixed;
   overflow-y: hidden;

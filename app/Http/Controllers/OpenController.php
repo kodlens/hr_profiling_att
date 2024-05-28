@@ -12,6 +12,7 @@ use App\Models\EngagementStatus;
 use App\Models\Educationlevel;
 use App\Models\Institute;
 use App\Models\User;
+use App\Models\CivilStatus;
 
 class OpenController extends Controller
 {
@@ -60,7 +61,12 @@ class OpenController extends Controller
     public function loadSex(){
         return User::select('sex')->distinct()->get();
     }
+    
+    public function loadCivilStatus(){
+        return CivilStatus::select('civil_status')->get();
+    }
 
+    
 
     
     

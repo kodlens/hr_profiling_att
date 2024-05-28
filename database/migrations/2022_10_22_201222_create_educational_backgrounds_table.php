@@ -22,7 +22,7 @@ class CreateEducationalBackgroundsTable extends Migration
 
             $table->string('level')->nullable();
             $table->string('name_of_school')->nullable();
-            $table->string('degree')->nullable();
+            $table->fullText('degree')->nullable(); //set to fulltext
             $table->string('period_att_from')->nullable();
             $table->string('period_att_to')->nullable();
             $table->integer('highest_level_unit')->default(0);

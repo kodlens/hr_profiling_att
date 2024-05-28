@@ -38,6 +38,9 @@ Route::get('load-education-levels', [App\Http\Controllers\OpenController::class,
 Route::get('load-institutes', [App\Http\Controllers\OpenController::class, 'loadInstitutes']);
 Route::get('load-sex', [App\Http\Controllers\OpenController::class, 'loadSex']);
 
+Route::get('load-civil-status', [App\Http\Controllers\OpenController::class, 'loadCivilStatus']);
+
+
 
 Auth::routes([
     'login' => 'false'
