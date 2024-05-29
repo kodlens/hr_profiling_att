@@ -37,7 +37,7 @@
                                 </div>
 
                                 <div class="column">
-                                    <div class="seminar-label"></div> 
+                                    <div class="seminar-label">HOURS:</div> 
                                     
                                     <div>
                                         {{ seminar.no_hours }}
