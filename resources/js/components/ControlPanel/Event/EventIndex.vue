@@ -103,7 +103,7 @@
                                             @click="confirmDelete(props.row.event_id)"></b-button>
                                     </b-tooltip>
 
-                                    <b-tooltip label="Delete" type="is-danger">
+                                    <b-tooltip label="Print Preview" type="is-info">
                                         <b-button class="button is-small mr-1"
                                             icon-right="printer"
                                             @click="printMe(props.row)"></b-button>

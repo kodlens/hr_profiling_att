@@ -1,7 +1,7 @@
-@extends('layouts.print-layout')
+@extends('layouts.print-portrait-layout')
 
 @section('content')
-    <report-event-attendance id="{{$id}}"></report-event-attendance>
+    <report-event-attendance :prop-id="{{$id}}"></report-event-attendance>
 @endsection
 
 

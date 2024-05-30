@@ -257,8 +257,8 @@ Route::middleware(['auth', 'point_person'])->group(function () {
 
     //printing report attendance of event
     Route::get('/report-event-attendance/{id}', [App\Http\Controllers\Report\ReportEventAttendanceController::class, 'index']);
-
-
+    Route::get('/load-event-attendances', [App\Http\Controllers\Report\ReportEventAttendanceController::class, 'loadReportAttendances']);
+    Route::get('/load-event-name/{id}', [App\Http\Controllers\Report\ReportEventAttendanceController::class, 'loadEventName']);
     
 
 });
