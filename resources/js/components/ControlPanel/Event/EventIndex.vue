@@ -77,9 +77,10 @@
                                 {{ props.row.event_title }}
                             </b-table-column>
 
-                            <b-table-column field="content" label="Desccription" v-slot="props">
-                                {{ props.row.event_desc }}
+                            <b-table-column field="content" label="Description" v-slot="props">
+                                {{ stripHTML(props.row.event_desc) }}
                             </b-table-column>
+
 
 
                             <b-table-column label="Action" v-slot="props">
@@ -220,6 +221,13 @@ export default {
     },
 
     methods: {
+
+     // Method to strip HTML tags
+     stripHTML(html) {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+        return tempDiv.textContent || tempDiv.innerText || "";
+    },
         /*
         * Load async data
         */
