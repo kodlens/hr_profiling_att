@@ -48,7 +48,7 @@
                 <b-navbar-dropdown label="MANAGE" class="{{ request()->is('engagement-status*') ? 'active' : '' }}">
                     <b-navbar-item
                         href="/engagement-status">
-                        Engagement Status
+                        Status of Appointment
                     </b-navbar-item>
                     <b-navbar-item href="/institutes">
                         Institutes
@@ -81,7 +81,7 @@
                 </b-navbar-item>
 
                 <!-- ADMIN REPORT -->
-                <b-navbar-dropdown label="REPORTS" class="{{ request()->is('reports*') ? 'active' : '' }}">
+                <b-navbar-dropdown label="REPORTS" class="{{ request()->is('report*') ? 'active' : '' }}">
                     <b-navbar-item
                         href="/report-by-sex">
                         Report By Sex
