@@ -7,7 +7,7 @@
                     <div class="box">
 
 
-                        <div class="is-flex mb-2" style="font-size: 20px; font-weight: bold;">ENGAGEMENT STATUS</div>
+                        <div class="is-flex mb-2" style="font-size: 20px; font-weight: bold;">STATUS OF APPOINTMENT</div>
                         <hr>
 
                         <div class="level">
