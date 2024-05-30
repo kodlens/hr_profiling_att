@@ -5,7 +5,7 @@
             <form @submit.prevent="submit">
                 <div class="card">
                     <div class="title is-4 has-text-centered">
-                        Welcome to HR Profiling and Events Monitoring System
+                        Welcome to Human Resource Profiling and Attendance System
                     </div>
 
                     <div>
