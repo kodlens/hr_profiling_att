@@ -37,7 +37,8 @@ class GeneralReportController extends Controller
     
         $sex = $req->sex == 'all' ? '' : $req->sex;
 
-        $data = User::with(['children', 'engagement', 'eligibilities', 'educational_backgrounds', 'learning_developments',
+        $data = User::select('users.*', DB::raw('TIMESTAMPDIFF(YEAR, date_birth, CURDATE()) AS age'))
+            ->with(['children', 'engagement', 'eligibilities', 'educational_backgrounds', 'learning_developments',
             'permanent_province', 'permanent_city', 'permanent_barangay', 'work_experiences', 'voluntary_works'])
             ->where('sex', 'like',  $sex . '%');
 

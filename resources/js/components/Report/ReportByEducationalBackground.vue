@@ -30,13 +30,13 @@
                 <span v-else-if="search.designation === 'FACULTY'">FACULTY</span>
                 <span v-else-if="search.designation === 'STAFF'">STAFF</span>
             </div>
-
+            
             <table class="report-table">
                 <tr>
                     <th>Level</th>
                     <th>Count</th>
                 </tr>
-                <tr v-for="(item, index) in sortedData" :key="`level${index}`">
+                <tr v-for="(item, index) in data" :key="`level${index}`">
                     <td>{{ item.level }}</td>
                     <td>{{ item.count_level }}</td>
                 </tr>
@@ -116,7 +116,8 @@ export default{
 
             axios.get(`/report-load-report-by-educational-backgrounds?${params}`).then(res=>{
                 // Sort the data before assigning it
-                this.data = res.data.sort((a, b) => a.level.localeCompare(b.level));
+                //this.data = res.data.sort((a, b) => a.level.localeCompare(b.level));
+                this.data = res.data
             })
         },
 
@@ -141,12 +142,18 @@ export default{
         },
 
         labels: function() {
-            let arr = this.data.map(i => i.level);
+            //let arr = this.data.map(i => i.level);
+            let arr = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES']
             return arr;
         },
 
         sortedData: function() {
-            return this.data.sort((a, b) => a.level.localeCompare(b.level));
+            const customOrder = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES'];
+
+            // return this.data.sort((a, b) => a.level.localeCompare(b.level));
+            this.data.sort((a, b) => {
+                return customOrder.indexOf(a.level) - customOrder.indexOf(b.level);
+            });
         }
     }
 }

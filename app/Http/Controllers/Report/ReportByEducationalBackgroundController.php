@@ -14,10 +14,12 @@ class ReportByEducationalBackgroundController extends Controller
     }
 
     public function loadReportEducationalBackground(Request $req){
-        $data = EducationalBackground::select('educational_backgrounds.*', 'users.designation', 'users.role')
+        $data = EducationalBackground::select('educational_backgrounds.level')
             ->selectRaw('COUNT(educational_backgrounds.level) AS count_level')
             ->join('users', 'users.user_id', '=', 'educational_backgrounds.user_id')
             ->groupBy('educational_backgrounds.level')
+            ->orderByRaw("FIELD(educational_backgrounds.level, 'ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES')")
+            
             ->where('users.designation', 'like', strtolower($req->designation) . '%')
             ->get();
 

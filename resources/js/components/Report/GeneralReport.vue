@@ -255,11 +255,18 @@
             <div class="columns nprint">
                 <div class="column">
                     <div class="buttons">
-                        <b-button icon-right="magnify" label="SEARCH"   @click="loadReport">
+                        <b-button icon-right="magnify"
+                            type="is-success" label="SEARCH" @click="loadReport">
                         </b-button>
 
-                        <b-button icon-right="printer" label="PRINT PREVIEW"   @click="printPreview">
+                        <b-button icon-right="printer"
+                            type="is-info" label="PRINT PREVIEW"  @click="printPreview">
                         </b-button>
+
+                        <b-button icon-right="restart"
+                            type="is-danger" label="RESET"  @click="resetFilter">
+                        </b-button>
+                        
                     </div>
                 </div>
             </div>
@@ -270,20 +277,20 @@
 
 
             <div class="mt-5">
-                <table class="table is-narrow">
+                <!-- <table class="table is-narrow">
                     <thead>
                         <tr>
-                            <th>NAME</th>
-                            <th>SEX</th>
-                            <th v-if="show.age">AGE</th>
+                            <th @click="sortField('lname')">NAME</th>
+                            <th @click="sortField('sex')">SEX</th>
+                            <th @click="sortField('date_birth')" v-if="show.age">AGE</th>
                             <th v-if="show.height">HEIGHT</th>
                             <th v-if="show.weight">WEIGHT</th>
                             <th v-if="show.blood">BLOOD</th>
                             <th v-if="show.permanent_address">PERMANENT ADDRESS</th>
                             <th v-if="show.children">CHILDREN</th>
 
-                            <th v-if="show.civil_status">CIVIL STATUS</th>
-                            <th v-if="show.birthdate">BIRTHDAY</th>
+                            <th @click="sortField('civil_status')" v-if="show.civil_status">CIVIL STATUS</th>
+                            <th sortable v-if="show.birthdate">BIRTHDAY</th>
                             <th v-if="show.gsis">GSIS</th>
                             <th v-if="show.pagibig">PAGIBIG</th>
                             <th v-if="show.philhealth">PHILHEALTH</th>
@@ -442,6 +449,153 @@
 
                     </tbody>
                 </table>
+
+                <hr> -->
+
+
+                <b-table
+                    :data="data">
+                
+                    <b-table-column field="lname" label="Name" sortable v-slot="props">
+                        {{ props.row.lname }}, {{ props.row.fname }} {{ props.row.mname }}
+                    </b-table-column>
+                    <b-table-column field="sex" label="Sex" sortable v-slot="props">
+                        {{ props.row.sex }}
+                    </b-table-column>
+                    <b-table-column field="age" :visible="show.age" label="Age" sortable v-slot="props">
+                        {{ props.row.age }}
+                    </b-table-column>
+                    <b-table-column :visible="show.height" field="height" label="Height" sortable v-slot="props">
+                        {{ props.row.height }}
+                    </b-table-column>
+                    <b-table-column :visible="show.weight" field="weight" label="Weight" sortable v-slot="props">
+                        {{ props.row.weight }}
+                    </b-table-column>
+                    <b-table-column :visible="show.blood" field="blood_type" label="Blood Type" sortable v-slot="props">
+                        {{ props.row.blood_type }}
+                    </b-table-column>
+                    <b-table-column :visible="show.permanent_address" field="permanent_province.provDesc" label="Address" sortable v-slot="props">
+                        <span v-if="props.row.permanent_province">
+                            {{ props.row.permanent_province.provDesc }}
+                        </span>
+                        <span v-if="props.row.permanent_city">
+                            , {{ props.row.permanent_city.citymunDesc }}
+                        </span>
+                        <span v-if="props.row.permanent_barangay">
+                            {{ props.row.permanent_barangay.brgyDesc }}, 
+                        </span>
+                        <span v-if="props.row.per_street">{{ props.row.per_street }}</span>
+                    </b-table-column>
+
+                    <b-table-column field="children" label="Children" sortable v-slot="props" :visible="show.children">
+                        <span v-if="props.row.children">
+                            <div v-for="(child, ix) in props.row.children" :key="`el${ix}`">
+                                <span v-if="child.fullname">
+                                    {{ child.fullname }},
+                                </span>
+                                
+                            </div>
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="civil_status" label="Civil Status" sortable v-slot="props" :visible="show.civil_status">
+                        <span :visible="props.row.civil_status">
+                            {{ props.row.civil_status }}
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="date_birth" label="Date Birth" sortable v-slot="props" :visible="show.birthdate">
+                        <span v-if="props.row.date_birth">
+                            {{ new Date(props.row.date_birth).toLocaleDateString() }}
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="gsis" label="GSIS" sortable v-slot="props" :visible="show.gsis">
+                        <span v-if="props.row.gsis">
+                            {{ props.row.gsis }}
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="pagibig" label="PAGIBIG" sortable v-slot="props" :visible="show.pagibig">
+                        <span v-if="props.row.pagibig">
+                            {{ props.row.pagibig }}
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="philhealth" label="Philhealth" sortable v-slot="props" :visible="show.philhealth">
+                        <span v-if="props.row.philhealth">
+                            {{ props.row.philhealth }}
+                        </span>
+                    </b-table-column>
+                    
+                    <b-table-column field="sss" label="SSS" sortable v-slot="props" :visible="show.sss">
+                        <span v-if="props.row.sss">
+                            {{ props.row.sss }}</span>
+                        </b-table-column>
+                    <b-table-column field="tin" label= "TIN" sortable v-slot="props" :visible="show.tin">
+                        {{ props.row.tin }}
+                    </b-table-column>
+                    <b-table-column field="engagement" label="Engagement" sortable v-slot="props" :visible="show.engagement">
+                        <span v-if="props.row.engagement">{{ props.row.engagement.engagement_status }}</span>
+                    </b-table-column>
+                    <b-table-column field="agency_idno" label= "Agency Id" sortable v-slot="props" :visible="show.agency_idno">
+                        <span v-if="props.row.agency_idno">{{ props.row.agency_idno }}</span>
+                    </b-table-column>
+                    <b-table-column field="eligibilities" label= "Eligibilities" v-slot="props" :visible="show.eligibility">
+                        <span v-if="props.row.eligibilities">
+                            <div v-for="(el, ix) in props.row.eligibilities" :key="`el${ix}`">
+                                <span v-if="el.career_exam">
+                                    {{ el.career_exam }}
+                                </span>
+                                <span v-if="el.rating">
+                                    - {{ el.rating }}, 
+                                </span>
+                            </div>
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="education" label="Education" v-slot="props" :visible="show.education">
+                        <span v-if="props.row.educational_backgrounds">
+                            <div v-for="(ed, idx) in props.row.educational_backgrounds" :key="`ed${idx}`">
+                                <span v-if="ed.level">
+                                    {{ ed.level }} 
+                                </span>
+                                <span v-if="ed.name_of_school">
+                                    - {{ ed.name_of_school }}  
+                                </span>
+                                <span v-if="ed.degree">
+                                    - {{ ed.degree }},
+                                </span>
+                            </div>
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="ld" label="Learning Development" v-slot="props" :visible="show.ld">
+                        <span v-if="props.row.learning_developments">
+                            <div v-for="(ld, idx) in props.row.learning_developments" :key="`ld${idx}`">
+                                <span v-if="ld.title_learning_dev">
+                                    {{ ld.title_learning_dev }} 
+                                </span> 
+                                <span v-if="ld.type_ld">
+                                    - {{ ld.type_ld }}, 
+                                </span>
+                            </div>
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="voluntary" label="Voluntary" v-slot="props" :visible="show.voluntary">
+                        <span v-if="props.row.voluntary_works">
+                            <div v-for="(voluntary, idx) in props.row.voluntary_works" :key="`voluntary${idx}`">
+                                <div v-if="voluntary.name_address_org">
+                                    {{ voluntary.name_address_org }} 
+                                </div> 
+                                
+                            </div>
+                        </span>
+                    </b-table-column>
+                    <b-table-column field="work_ex" label= "Work Experience" v-slot="props" :visible="show.work_ex">
+                        <span v-if="props.row.work_experiences">
+                            <div v-for="(work, idx) in props.row.work_experiences" :key="`work${idx}`">
+                                <div v-if="work.position_title">
+                                    {{ work.position_title }} 
+                                </div> 
+                            </div>
+                        </span>
+                    </b-table-column>
+                    
+                </b-table>
             </div>
 
             <div class="mt-6 nprint"></div>
@@ -503,15 +657,26 @@ export default{
             },
 
             show:{
+                age: false,
+                height: false,
+                weight: false,
+                blood: false,
+                permanent_address: false,
+                children: false,
+                civil_status: false,
                 birthdate: false,
                 gsis: false,
                 pagibig: false,
-                sss: false,
                 philhealth: false,
+                sss: false,
                 tin: false,
-                ld: false,
+                engagement: false,
+                agency_idno: false,
                 eligibility: false,
                 education: false,
+                ld: false,
+                voluntary: false,
+                work_ex: false,
             },
 
 
@@ -523,12 +688,80 @@ export default{
             civilStatus: [],
 
 
-        
+            sort: 1,
 
         }
     },
 
     methods: {
+
+        sortField(fieldName){
+            if(this.sort === 1){
+                this.sort = 0
+                this.data.sort((a, b) => {
+                    if (a[fieldName] < b[fieldName]) {
+                        return -1;
+                    }
+                    if (a[fieldName] > b[fieldName]) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }else{
+                this.sort = 1
+                this.data.sort((a, b) => {
+                    if (a[fieldName] < b[fieldName]) {
+                        return 1;
+                    }
+                    if (a[fieldName] > b[fieldName]) {
+                        return -1;
+                    }
+                    return 0;
+                });
+            }
+            
+        },
+
+        resetFilter(){
+            this.fields = {
+                sex: 'all',
+                range: 'all',
+                engagement_status: [],
+                civil_status: [],
+                learning_dev: '',
+                education: '',
+                eligibility: '',
+                work_ex: '',
+                voluntary: ''
+
+            };
+
+            this.show = {
+                age: false,
+                height: false,
+                weight: false,
+                blood: false,
+                permanent_address: false,
+                children: false,
+                civil_status: false,
+                birthdate: false,
+                gsis: false,
+                pagibig: false,
+                philhealth: false,
+                sss: false,
+                tin: false,
+                engagement: false,
+                agency_idno: false,
+                eligibility: false,
+                education: false,
+                ld: false,
+                voluntary: false,
+                work_ex: false,
+            };
+
+            this.loadReport()
+        },
+
         loadReport(){
             const params = [
                 `range=${this.fields.range}`,
