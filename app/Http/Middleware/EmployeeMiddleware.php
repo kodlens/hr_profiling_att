@@ -25,7 +25,7 @@ class EmployeeMiddleware
         }
 
 
-        if(strtolower($user->role) === 'employee'){
+        if(in_array(strtolower($user->role), ['employee', 'administrator'])){
             return $next($request);
         }
 

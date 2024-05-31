@@ -183,6 +183,11 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::get('/employee/get-training-seminars', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'getData']);
     Route::post('/employee/participate-me', [App\Http\Controllers\Employee\EmployeeTrainingSeminarController::class, 'participateMe']);
 
+    Route::get('/report-training-attendances/{id}', [App\Http\Controllers\Report\ReportTrainingAttendanceController::class, 'index']);
+    Route::get('/load-training-attendances', [App\Http\Controllers\Report\ReportTrainingAttendanceController::class, 'loadReportAttendances']);
+    Route::get('/load-training-name/{id}', [App\Http\Controllers\Report\ReportTrainingAttendanceController::class, 'loadTrainingName']);
+
+
     Route::get('/employee/my-seminars', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'index']);
     Route::get('/employee/get-my-seminars', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'getMySeminars']);
     Route::post('/employee/my-seminars-remove-me/{id}', [App\Http\Controllers\Employee\EmployeeMySeminarController::class, 'removeMe']);

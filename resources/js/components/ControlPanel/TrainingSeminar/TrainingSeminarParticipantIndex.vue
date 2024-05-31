@@ -31,6 +31,11 @@
                             </p>
                         </b-field>
 
+                        <div class="buttons">
+                            <b-button type="is-info" 
+                                @click="printPreview"
+                                label="PRINT" icon-right="printer"></b-button>
+                        </div>
 
                         <b-table
                             :data="data"
@@ -225,6 +230,10 @@ export default {
             });
         },
 
+
+        printPreview(){
+            window.location = '/report-training-attendances/' + this.propTrainingSeminarId
+        }
     
     },
 
