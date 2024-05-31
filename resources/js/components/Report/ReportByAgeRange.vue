@@ -2,6 +2,10 @@
     <div>
         <div class="print-form">
 
+            <div class="print-header">
+                <img src="/img/logo.png" height="50px" width="50px"><h3><b>Tangub City Global College</b></h3>
+            </div>
+
             <div class="columns m-2 nprint">
                 <div class="column nprint">
                     <b-field label="Select age range" label-position="on-border"
@@ -23,15 +27,24 @@
                 </div>
                 <div class="column">
                     <div class="buttons">
-                        <b-button icon-right="printer" label="PRINT PREVIEW"   @click="printPreview">
+                        <b-button icon-right="printer" label="PRINT PREVIEW" @click="printPreview">
                         </b-button>
                     </div>
                 </div>
             </div>
 
-            <div class="has-text-weight-bold has-text-centered">REPORT BY AGE RANGE
-            </div>
+            <!-- Display the selected age range and count -->
+            <div class="has-text-weight-bold has-text-centered">REPORT BY AGE RANGE</div>
+            <div class="has-text-centered">
+                <b>Age Range: {{ range }}</b> <br>
+                <b>Age Count: {{ totalCount }}</b>
+                <ul>
+                    <li v-for="(item, index) in data" :key="index">
+                        <i>{{ item.designation }}:</i> <i>{{ item.count }}</i>
+                    </li>
+                </ul>
 
+            </div>
 
             <div class="mt-5">
                 <Bar 
@@ -46,15 +59,17 @@
                     :height="height" />
             </div>
 
+              <!-- Footer for Print -->
+            <div class="print-footer">
+                <p>Human Resource Management Office Page  <span class="pageNumber" display="none"></span></p>
+            </div>
+
         </div>
-
-
-
     </div>
 </template>
 
-<script>
 
+<script>
 import { Bar } from 'vue-chartjs/legacy'
 import {
     Chart as ChartJS,
@@ -68,14 +83,13 @@ import {
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
-export default{
+export default {
     components: {
         Bar,
     },
 
-    data(){
+    data() {
         return {
-
             chartId: 'bar-chart',
             datasetIdKey: 'label',
             width: 400,
@@ -88,48 +102,39 @@ export default{
                 maintainAspectRatio: false
             },
 
+            range: '',
 
-           range: '',
-           
             data: [],
-
-        
-
         }
     },
 
     methods: {
-        loadReport(){
+        loadReport() {
             const params = [
-
                 `range=${this.range}`,
-
             ].join('&')
 
-
-            axios.get(`/report-load-report-by-age-ranges?${params}`).then(res=>{
+            axios.get(`/report-load-report-by-age-ranges?${params}`).then(res => {
                 this.data = res.data
             })
         },
 
-        printPreview(){
+        printPreview() {
             window.print()
         }
-
     },
 
-    mounted(){
+    mounted() {
         this.loadReport()
     },
-    
-    computed: {
 
-        //this dataset is for count
-        datasets: function(){
-            let arr = this.data.map(function(i){
-                return i.count //count column name from database
+    computed: {
+        // this dataset is for count
+        datasets: function() {
+            let arr = this.data.map(function(i) {
+                return i.count // count column name from database
             });
-            //console.log(arr)
+            // console.log(arr)
             let obj = {
                 label: 'Age Count',
                 backgroundColor: '#f87979',
@@ -139,32 +144,91 @@ export default{
             return [obj];
         },
 
-        //this labels is for the graph caption
+        // this labels is for the graph caption
         labels: function() {
-            let arr = this.data.map(function(i){
-                return i.designation //column name from database
+            let arr = this.data.map(function(i) {
+                return i.designation // column name from database
             });
 
             return arr;
+        },
+
+        // compute total count of the selected age range
+        totalCount: function() {
+            return this.data.reduce((acc, cur) => acc + cur.count, 0);
         }
-            
     }
 }
 </script>
 
 
 <style scoped>
-    .report-table{
+    .report-table {
         max-width: 400px;
         margin: 10px auto;
     }
 
-    .report-table tr th{
+    .report-table tr th {
         padding: 3px 10px;
     }
 
-    .report-table tr td{
+    .report-table tr td {
         padding: 3px 10px;
     }
 
+     /* Hide the header in the interface */
+     .print-header {
+        display: none;
+    }
+
+    /* Hide the footer in the interface */
+    .print-footer {
+        display: none;
+    }
+
+    /* Print-specific styles */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .print-form, .print-form * {
+            visibility: visible;
+        }
+        .print-form {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .print-header {
+            display: block; /* Show the header only during print */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+        }
+        .print-footer {
+            display: block; /* Show the footer only during print */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid black;
+            padding-top: 10px;
+            counter-increment: page;
+        }
+        .print-footer .pageNumber::before {
+            content: counter(page);
+        }
+        .print-form {
+            margin-top: 100px; /* Adjust top margin to avoid overlap with header */
+            margin-bottom: 50px; /* Adjust bottom margin to avoid overlap with footer */
+        }
+    }
+
+    @page {
+        counter-increment: page;
+        counter-reset: page 1; /* Start page numbering at 1 */
+    }
 </style>

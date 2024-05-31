@@ -33,10 +33,10 @@
                                 </div>
 
                                 <div class="column">
-                                    <b-field label="ENGAGEMENT STATUS">
+                                    <b-field label="STATUS OF APPOINTMENT">
                                         <b-select v-model="search.engagement"
                                             @input="loadAsyncData"
-                                            placeholder="Engagement Status">
+                                            placeholder="Status of Appointment">
                                             <option value="">ALL</option>
                                             <option v-for="(item, index) in engagementStatuses"
                                                 :key="`es${index}`"
@@ -126,17 +126,17 @@
 
                                 <template #detail="props">
                                     <tr>
-                                        <th>Engagement</th>
+                                        <!-- <th>Status of Appointment</th> -->
                                         <th>Designation</th>
                                         <th>Approve</th>
                                         <th>Created At</th>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <!-- <td>
                                             <span v-if="props.row.engagement">
                                                 {{ props.row.engagement.engagement_status }}
                                             </span>
-                                        </td>
+                                        </td> --> 
                                         <td>
                                             <span v-if="props.row.designation">
                                                 {{ props.row.designation }}
@@ -288,7 +288,7 @@
 
                                                 <div class="columns">
                                                     <div class="column">
-                                                        <b-field label="ENGAGEMENT STATUS" expanded
+                                                        <b-field label="STATUS OF APPOINTMENT" expanded
                                                             label-position="on-border"
                                                             :type="errors.engagement_status_id ? 'is-danger':''"
                                                             :message="errors.engagement_status_id ? errors.engagement_status_id[0] : ''">
