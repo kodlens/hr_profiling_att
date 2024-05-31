@@ -1,6 +1,12 @@
 <template>
     <div>
         <div class="print-form">
+
+            <div class="print-header">
+                <img src="/img/logo.png" height="50px" width="50px"><h3><b>Tangub City Global College</b></h3>
+            </div>
+
+
             <h2 class="divider nprint"><span>FILTER</span></h2>
             <div class="columns m-2 nprint">
                 <div class="column nprint">
@@ -277,181 +283,7 @@
 
 
             <div class="mt-5">
-                <!-- <table class="table is-narrow">
-                    <thead>
-                        <tr>
-                            <th @click="sortField('lname')">NAME</th>
-                            <th @click="sortField('sex')">SEX</th>
-                            <th @click="sortField('date_birth')" v-if="show.age">AGE</th>
-                            <th v-if="show.height">HEIGHT</th>
-                            <th v-if="show.weight">WEIGHT</th>
-                            <th v-if="show.blood">BLOOD</th>
-                            <th v-if="show.permanent_address">PERMANENT ADDRESS</th>
-                            <th v-if="show.children">CHILDREN</th>
-
-                            <th @click="sortField('civil_status')" v-if="show.civil_status">CIVIL STATUS</th>
-                            <th sortable v-if="show.birthdate">BIRTHDAY</th>
-                            <th v-if="show.gsis">GSIS</th>
-                            <th v-if="show.pagibig">PAGIBIG</th>
-                            <th v-if="show.philhealth">PHILHEALTH</th>
-                            <th v-if="show.sss">SSS</th>
-                            <th v-if="show.tin">TIN</th>
-                            <th v-if="show.engagement">ENGAGEMENT</th>
-                            <th v-if="show.agency_idno">AGENCY ID NO.</th>
-                            <th v-if="show.eligibility">ELIGIBILITY</th>
-                            <th v-if="show.education">EDUCATION</th>
-                            <th v-if="show.ld">LEARNING DEVELOPMENT</th>
-                            <th v-if="show.voluntary">VOLUNTARY WORK</th>
-                            <th v-if="show.work_ex">WORK EXPERIENCE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item, index) in data" :key="`data${index}`">
-                            <td>{{ item.lname }}, {{ item.fname }} {{ item.mname }} <span v-if="item.suffix">{{ item.suffix }}</span></td>
-                            <td>{{ item.sex }}</td>
-                            <td v-if="show.age">
-                                <span v-if="item.date_birth">
-                                    {{ calculateAge(item.date_birth) }}
-                                </span>
-                            </td>
-                            <td v-if="show.height">
-                                <span v-if="item.height">
-                                    {{ item.height }}
-                                </span>
-                            </td>
-                            <td v-if="show.weight">
-                                <span v-if="item.weight">
-                                    {{ item.weight }}
-                                </span>
-                            </td>
-                            <td v-if="show.blood">
-                                <span v-if="item.blood_type">
-                                    {{ item.blood_type }}
-                                </span>
-                            </td>
-                            <td v-if="show.permanent_address">
-                                <span v-if="item.permanent_province">
-                                    {{ item.permanent_province.provDesc }}
-                                </span>
-                                <span v-if="item.permanent_city">
-                                    , {{ item.permanent_city.citymunDesc }}
-                                </span>
-                                <span v-if="item.permanent_barangay">
-                                    {{ item.permanent_barangay.brgyDesc }}, 
-                                </span>
-                                <span v-if="item.per_street">{{ item.per_street }}</span>
-                            </td>
-                            <td v-if="show.children">
-                                <span v-if="item.children">
-                                    <div v-for="(child, ix) in item.children" :key="`el${ix}`">
-                                        <span v-if="child.fullname">
-                                            {{ child.fullname }},
-                                        </span>
-                                        
-                                    </div>
-                                </span>
-                            </td>
-                            <td v-if="show.civil_status">
-                                <span v-if="item.civil_status">
-                                    {{ item.civil_status }}
-                                </span>
-                            </td>
-                            <td v-if="show.birthdate">
-                                <span v-if="item.date_birth">
-                                    {{ new Date(item.date_birth).toLocaleDateString() }}
-                                </span>
-                            </td>
-                            <td v-if="show.gsis">
-                                <span v-if="item.gsis">
-                                    {{ item.gsis }}
-                                </span>
-                            </td>
-                            <td v-if="show.pagibig">
-                                <span v-if="item.pagibig">
-                                    {{ item.pagibig }}
-                                </span>
-                            </td>
-                            <td v-if="show.philhealth">
-                                <span v-if="item.philhealth">
-                                    {{ item.philhealth }}
-                                </span>
-                            </td>
-                           
-                            <td v-if="show.sss">
-                                <span v-if="item.sss">
-                                    {{ item.sss }}</span>
-                                </td>
-                            <td v-if="show.tin">{{ item.tin }}</td>
-                            <td v-if="show.engagement">
-                                <span v-if="item.engagement">{{ item.engagement.engagement_status }}</span>
-                            </td>
-                            <td v-if="show.agency_idno"><span v-if="item.agency_idno">{{ item.agency_idno }}</span></td>
-                            <td v-if="show.eligibility">
-                                <span v-if="item.eligibilities">
-                                    <div v-for="(el, ix) in item.eligibilities" :key="`el${ix}`">
-                                        <span v-if="el.career_exam">
-                                            {{ el.career_exam }}
-                                        </span>
-                                        <span v-if="el.rating">
-                                            - {{ el.rating }}, 
-                                        </span>
-                                    </div>
-                                </span>
-                            </td>
-                            <td v-if="show.education">
-                                <span v-if="item.educational_backgrounds">
-                                    <div v-for="(ed, idx) in item.educational_backgrounds" :key="`ed${idx}`">
-                                        <span v-if="ed.level">
-                                            {{ ed.level }} 
-                                        </span>
-                                        <span v-if="ed.name_of_school">
-                                            - {{ ed.name_of_school }}  
-                                        </span>
-                                        <span v-if="ed.degree">
-                                            - {{ ed.degree }},
-                                        </span>
-                                    </div>
-                                </span>
-                            </td>
-                            <td v-if="show.ld">
-                                <span v-if="item.learning_developments">
-                                    <div v-for="(ld, idx) in item.learning_developments" :key="`ld${idx}`">
-                                        <span v-if="ld.title_learning_dev">
-                                            {{ ld.title_learning_dev }} 
-                                        </span> 
-                                        <span v-if="ld.type_ld">
-                                            - {{ ld.type_ld }}, 
-                                        </span>
-                                    </div>
-                                </span>
-                            </td>
-                            <td v-if="show.voluntary">
-                                <span v-if="item.voluntary_works">
-                                    <div v-for="(voluntary, idx) in item.voluntary_works" :key="`voluntary${idx}`">
-                                        <div v-if="voluntary.name_address_org">
-                                            {{ voluntary.name_address_org }} 
-                                        </div> 
-                                       
-                                    </div>
-                                </span>
-                            </td>
-                            <td v-if="show.work_ex">
-                                <span v-if="item.work_experiences">
-                                    <div v-for="(work, idx) in item.work_experiences" :key="`work${idx}`">
-                                        <div v-if="work.position_title">
-                                            {{ work.position_title }} 
-                                        </div> 
-                                    </div>
-                                </span>
-                            </td>
-                            
-                        </tr>
-
-                    </tbody>
-                </table>
-
-                <hr> -->
-
+               
 
                 <b-table
                     :data="data">
@@ -599,7 +431,9 @@
             </div>
 
             <div class="mt-6 nprint"></div>
-
+            <div class="print-footer">
+                <p>Human Resource Management Office Page  <span class="pageNumber" display="none"></span></p>
+            </div>
         </div> <!-- print form-->
 
         
@@ -735,7 +569,7 @@ export default{
                 voluntary: ''
 
             };
-
+            this.reportTitle = 'REPORT'
             this.show = {
                 age: false,
                 height: false,
@@ -857,41 +691,80 @@ export default{
             });
 
             return arr;
-        },
-
-        // reportTitle(){
-        //     if(this.fields.education){
-        //         return 'EDUCATIONAL BACKGROUND REPORT'
-        //     }else if(this.fields.eligibility){
-        //         return 'ELIGIBILITY REPORT'
-        //     }else if(this.fields.learning_dev){
-        //         return 'LEARNING DEVELOPMENT REPORT'
-        //     }else if(this.fields.work_ex){
-        //         return 'WORK EXPERIENCE REPORT'
-        //     }else if(this.fields.voluntary){
-        //         return 'VOLUNTARY WORK REPORT'
-        //     }else{
-        //         return 'REPORT'
-        //     }
-        // }
-            
+        },   
     }
 }
 </script>
 
 
 <style scoped>
-    .report-table{
+    .report-table {
         max-width: 400px;
         margin: 10px auto;
     }
 
-    .report-table tr th{
+    .report-table tr th {
         padding: 3px 10px;
     }
 
-    .report-table tr td{
+    .report-table tr td {
         padding: 3px 10px;
+    }
+
+     /* Hide the header in the interface */
+    .print-header {
+        display: none;
+    }
+
+    /* Hide the footer in the interface */
+    .print-footer {
+        display: none;
+    }
+
+    /* Print-specific styles */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .print-form, .print-form * {
+            visibility: visible;
+        }
+        .print-form {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .print-header {
+            display: block; /* Show the header only during print */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+        }
+        .print-footer {
+            display: block; /* Show the footer only during print */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid black;
+            padding-top: 10px;
+            counter-increment: page;
+        }
+        .print-footer .pageNumber::before {
+            content: counter(page);
+        }
+        .print-form {
+            margin-top: 100px; /* Adjust top margin to avoid overlap with header */
+            margin-bottom: 50px; /* Adjust bottom margin to avoid overlap with footer */
+        }
+    }
+
+    @page {
+        counter-increment: page;
+        counter-reset: page 1; /* Start page numbering at 1 */
     }
 
 </style>

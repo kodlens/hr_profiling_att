@@ -14,6 +14,8 @@
   
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/print.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -187,7 +189,7 @@
                     Report Age Range
                 </b-navbar-item>
                 <b-navbar-item href="/report-by-engagement-status">
-                    Report Engagement Status
+                    Report Status of Appointment
                 </b-navbar-item>
                 <b-navbar-item href="/general-reports">
                     General Reports
