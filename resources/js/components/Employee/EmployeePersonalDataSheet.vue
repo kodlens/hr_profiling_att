@@ -690,7 +690,7 @@
                                             <div class="column">
                                                 <b-field label="Date of Exam (mm/dd/yyyy)" label-position="on-border">
                                                     <b-datepicker editable v-model="item.date_exam"
-                                                                  placeholder="Date of Exam" required> </b-datepicker>
+                                                        placeholder="Date of Exam" required> </b-datepicker>
                                                 </b-field>
                                             </div>
                                         </div>
@@ -1703,7 +1703,7 @@ export default {
                     let cse_id = this.fields.eligibilities[index].cse_id;
 
                     if(cse_id > 0){
-                        axios.delete('/employee-eligibilities/' + cse_id).then(res=>{
+                        axios.delete('/employee/eligibilities/' + cse_id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Eligibility deleted successfully.`,

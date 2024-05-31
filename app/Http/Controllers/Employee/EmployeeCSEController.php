@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Faculty;
+namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Models\CivilServiceEligibility;
 use Illuminate\Http\Request;
 
-class FacultyCSEController extends Controller
+class EmployeeCSEController extends Controller
 {
     //
     public function __construct(){
