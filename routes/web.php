@@ -226,6 +226,12 @@ Route::middleware(['auth', 'employee'])->group(function () {
 });
 
 
+Route::get('/training-seminar-participants/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'index']);
+Route::get('/get-training-seminar-participants', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'getData']);
+Route::post('/training-seminar-participant-approve/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'approve']);
+
+
+
 //Training dev officer moidule
 Route::middleware(['auth', 'training_officer'])->group(function () {
     Route::resource('/training-officer-dashboard', App\Http\Controllers\TrainingOfficer\TrainingSeminarDashboard::class);
@@ -235,10 +241,7 @@ Route::middleware(['auth', 'training_officer'])->group(function () {
     Route::get('/get-training-seminars', [App\Http\Controllers\ControlPanel\TrainingSeminarController::class, 'getData']);
 
 
-    Route::get('/training-seminar-participants/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'index']);
-    Route::get('/get-training-seminar-participants', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'getData']);
-    Route::post('/training-seminar-participant-approve/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'approve']);
-
+ 
     //qrscanner
     Route::get('/qr-scanner', [App\Http\Controllers\ControlPanel\QrScannerController::class, 'index']);
     Route::post('/qr-scanner', [App\Http\Controllers\ControlPanel\QrScannerController::class, 'store']);
