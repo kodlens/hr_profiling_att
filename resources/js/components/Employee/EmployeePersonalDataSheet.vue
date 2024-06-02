@@ -127,12 +127,16 @@
                                         <b-select placeholder="Blood Type" v-model="fields.blood_type" icon="water" expanded>
                                             <option value="O+">O+</option>
                                             <option value="O-">O-</option>
+                                            <option value="O">O</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
+                                            <option value="A">A</option>
                                             <option value="B+">B+</option>
                                             <option value="B-">B-</option>
+                                            <option value="B">B</option>
                                             <option value="AB+">AB+</option>
                                             <option value="AB-">AB-</option>
+                                            <option value="AB">AB</option>
                                         </b-select>
                                     </b-field>
                                 </div>
@@ -592,6 +596,7 @@
                                                         <option value="VOCATIONAL/TRADE COURSE">VOCATIONAL/TRADE COURSE</option>
                                                         <option value="COLLEGE">COLLEGE</option>
                                                         <option value="GRADUATE STUDIES">GRADUATE STUDIES</option>
+                                                        <option value="POST GRADUATE">POST GRADUATE</option>
                                                     </b-select>
                                                 </b-field>
                                             </div>
@@ -624,15 +629,15 @@
                                                 </b-field>
                                             </div>
                                             <div class="column">
-                                                <b-field label="Heighest Unit Earned" label-position="on-border">
-                                                    <b-numberinput  v-model="item.highest_level_unit" 
-                                                    placeholder="Unit Earned" :controls="false"></b-numberinput>
+                                                <b-field label="Highest Unit Earned" label-position="on-border">
+                                                    <b-input type="text"  v-model="item.highest_level_unit"
+                                                    placeholder="Unit Earned" :controls="false"></b-input>
                                                 </b-field>
                                             </div>
                                             <div class="column">
-                                                <b-field label="Year Graudated" label-position="on-border">
-                                                    <b-datepicker v-model="item.year_graduated"
-                                                        placeholder="Year Graduated"></b-datepicker>
+                                                <b-field label="Year Graduated" label-position="on-border">
+                                                    <b-input type="text" v-model="item.year_graduated"
+                                                        placeholder="Year Graduated"></b-input>
                                                 </b-field>
                                             </div>
                                         </div>

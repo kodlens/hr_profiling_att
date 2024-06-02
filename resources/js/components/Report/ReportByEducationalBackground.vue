@@ -26,9 +26,9 @@
 
             <div class="has-text-weight-bold has-text-centered">
                 REPORT BY EDUCATIONAL BACKGROUND
-                <span v-if="search.designation === ''">ALL</span>
-                <span v-else-if="search.designation === 'FACULTY'">FACULTY</span>
-                <span v-else-if="search.designation === 'STAFF'">STAFF</span>
+                <span v-if="search.designation === ''">( ALL )</span>
+                <span v-else-if="search.designation === 'FACULTY'">( FACULTY )</span>
+                <span v-else-if="search.designation === 'STAFF'">( STAFF )</span>
             </div>
             
             <table class="report-table">
