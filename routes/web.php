@@ -226,13 +226,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
 });
 
 
-Route::get('/training-seminar-participants/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'index']);
-Route::get('/get-training-seminar-participants', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'getData']);
-Route::post('/training-seminar-participant-approve/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'approve']);
-
-
-
-//Training dev officer moidule
+//Training dev officer module
 Route::middleware(['auth', 'training_officer'])->group(function () {
     Route::resource('/training-officer-dashboard', App\Http\Controllers\TrainingOfficer\TrainingSeminarDashboard::class);
 
@@ -240,8 +234,17 @@ Route::middleware(['auth', 'training_officer'])->group(function () {
     Route::post('/training-seminars-update/{id}', [App\Http\Controllers\ControlPanel\TrainingSeminarController::class, 'updateTrainingDSeminar']);
     Route::get('/get-training-seminars', [App\Http\Controllers\ControlPanel\TrainingSeminarController::class, 'getData']);
 
+    Route::get('/report-training-attendances/{id}', [App\Http\Controllers\Report\ReportTrainingAttendanceController::class, 'index']);
+    Route::get('/load-training-attendances', [App\Http\Controllers\Report\ReportTrainingAttendanceController::class, 'loadReportAttendances']);
+    Route::get('/load-training-name/{id}', [App\Http\Controllers\Report\ReportTrainingAttendanceController::class, 'loadTrainingName']);
 
- 
+
+
+
+    Route::get('/training-seminar-participants/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'index']);
+    Route::get('/get-training-seminar-participants', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'getData']);
+    Route::post('/training-seminar-participant-approve/{trainingId}', [App\Http\Controllers\ControlPanel\TrainingParticipantController::class, 'approve']);
+
     //qrscanner
     Route::get('/qr-scanner', [App\Http\Controllers\ControlPanel\QrScannerController::class, 'index']);
     Route::post('/qr-scanner', [App\Http\Controllers\ControlPanel\QrScannerController::class, 'store']);
