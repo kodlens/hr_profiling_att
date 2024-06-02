@@ -432,7 +432,7 @@
 
             <div class="mt-6 nprint"></div>
             <div class="print-footer">
-                <p>Human Resource Management Office Page  <span class="pageNumber" display="none"></span></p>
+                <p>Human Resource Management Office Page</p>
             </div>
         </div> <!-- print form-->
 
@@ -711,12 +711,8 @@ export default{
         padding: 3px 10px;
     }
 
-     /* Hide the header in the interface */
-    .print-header {
-        display: none;
-    }
-
-    /* Hide the footer in the interface */
+    /* Hide the header and footer in the interface */
+    .print-header,
     .print-footer {
         display: none;
     }
@@ -742,6 +738,7 @@ export default{
             text-align: center;
             border-bottom: 1px solid black;
             padding-bottom: 10px;
+            background-color: white;
         }
         .print-footer {
             display: block; /* Show the footer only during print */
@@ -751,7 +748,7 @@ export default{
             text-align: center;
             border-top: 1px solid black;
             padding-top: 10px;
-            counter-increment: page;
+            background-color: white;
         }
         .print-footer .pageNumber::before {
             content: counter(page);
@@ -766,5 +763,5 @@ export default{
         counter-increment: page;
         counter-reset: page 1; /* Start page numbering at 1 */
     }
-
 </style>
+
