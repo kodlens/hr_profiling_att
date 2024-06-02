@@ -143,12 +143,12 @@ export default{
 
         labels: function() {
             //let arr = this.data.map(i => i.level);
-            let arr = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES']
+            let arr = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES', 'POST GRADUATE']
             return arr;
         },
 
         sortedData: function() {
-            const customOrder = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES'];
+            const customOrder = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES', 'POST GRADUATE'];
 
             // return this.data.sort((a, b) => a.level.localeCompare(b.level));
             this.data.sort((a, b) => {
