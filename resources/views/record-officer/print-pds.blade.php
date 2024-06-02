@@ -397,212 +397,70 @@
 				</tbody>
 
 				<tbody class="table-body">
-					<tr>
-						<td colspan="12" class="text-white separator">III. EDUCATIONAL BACKGROUND</td>
-					</tr>
-					<tr class="text-center">
-						<td colspan="1" class="s-label border-bottom-0">
-							<span class="count">26.</span>
-							<span class="d-block text-center">LEVEL</span>
-						</td>
-						<td colspan="4" class="s-label border-bottom-0">
-							NAME OF SCHOOL<br>(Write in full)
-						</td>
-						<td colspan="2" class="s-label border-bottom-0">
-							BASIC EDUCATION/DEGREE/COURSE<br>
-							(Write in full)
-						</td>
-						<td colspan="2" class="s-label border-bottom-0">
-							PERIOD OF ATTENDANCE
-						</td>
-						<td colspan="1" class="s-label border-bottom-0">HIGHEST LEVEL/UNITS EARNED<br>(If not graduated)</td>
-						<td colspan="1" class="s-label border-bottom-0">YEAR GRADUATED</td>
-						<td colspan="1" class="s-label border-bottom-0">SCHOLARSHIP/<br>ACADEMIC<br>HONORS<br>RECEIVED</td>
-					</tr>
-					<tr class="text-center" style="margin-top: -20px;">
-						<td colspan="1" class="s-label border-top-0"></td>
-						<td colspan="4" class="s-label border-top-0"></td>
-						<td colspan="2" class="s-label border-top-0"></td>
-						<td colspan="1" class="s-label">From</td>
-						<td colspan="1" class="s-label">To</td>
-						<td colspan="1" class="s-label border-top-0"></td>
-						<td colspan="1" class="s-label border-top-0"></td>
-						<td colspan="1" class="s-label border-top-0"></td>
-					</tr>
-					<tr>
-						<td colspan="1" class="s-label">
-							<span class="count"></span> ELEMENTARY
-						</td>
-						<td colspan="4">
-							@if(isset($user->educational_backgrounds[0]))
-								{{ $user->educational_backgrounds[0]->name_of_school }}
-							@endisset
-						</td>
-						<td colspan="2">
-							@if(isset($user->educational_backgrounds[0]))
-								{{ $user->educational_backgrounds[0]->degree }}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[0]))
-								{{$user->educational_backgrounds[0]->period_att_from}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[0]))
-								{{$user->educational_backgrounds[0]->period_att_to}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[0]))
-								{{$user->educational_backgrounds[0]->highest_level_unit }}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[0]))
-							{{date('Y/m/d', strtotime($user->educational_backgrounds[0]->year_graduated))}}
-							@endisset
-						</td>
-						<td colspan="1"></td>
-					</tr>
-					<tr>
-						<td colspan="1" class="s-label">
-							<span class="count"></span> SECONDARY
-						</td>
-						<td colspan="4">
-							@if(isset($user->educational_backgrounds[1]))
-								{{ $user->educational_backgrounds[1]->name_of_school}}
-							@endisset
-						</td>
-						<td colspan="2">
-							@if(isset($user->educational_backgrounds[1]))
-								{{$user->educational_backgrounds[1]->degree}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[1]))
-								{{$user->educational_backgrounds[1]->period_att_from}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[1]))
-								{{$user->educational_backgrounds[1]->period_att_to}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[1]))
-								{{$user->educational_backgrounds[1]->highest_level_unit}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[1]))
-							{{date('Y/m/d', strtotime($user->educational_backgrounds[1]->year_graduated))}}
-							@endisset
-						</td>
-						<td colspan="1"></td>
-					</tr>
-					<tr>
-						<td colspan="1" class="s-label">
-							<span class="count"></span> VOCATIONAL/<br>
-							<span class="count"></span> TRADE COURSE
-						</td>
-						<td colspan="4">
-							@if(isset($user->educational_backgrounds[2]))
-								{{$user->educational_backgrounds[2]->name_of_school}}
-							@endisset
-						</td>
-						<td colspan="2">
-							@if(isset($user->educational_backgrounds[2]))
-								{{$user->educational_backgrounds[2]->degree}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[2]))
-								{{$user->educational_backgrounds[2]->period_att_from}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[2]))
-								{{$user->educational_backgrounds[2]->period_att_to}}
-							@endisset
-						</td>
-						<td colspan="1">
-							
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[2]))
-							{{date('Y/m/d', strtotime($user->educational_backgrounds[2]->year_graduated))}}
-							@endisset
-						</td>
-						<td colspan="1"></td>
-					</tr>
-					<tr>
-						<td colspan="1" class="s-label">
-							<span class="count"></span> COLLEGE
-						</td>
-						<td colspan="4">
-							@if(isset($user->educational_backgrounds[3]))
-								{{$user->educational_backgrounds[3]->name_of_school}}
-							@endisset
-						</td>
-						<td colspan="2">
-							@if(isset($user->educational_backgrounds[3]))
-								{{$user->educational_backgrounds[3]->degree}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[3]))
-								{{$user->educational_backgrounds[3]->period_att_from}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[3]))
-								{{$user->educational_backgrounds[3]->period_att_to}}
-							@endisset
-						</td>
-						<td colspan="1"></td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[3]))
-							{{date('Y/m/d', strtotime($user->educational_backgrounds[3]->year_graduated))}}
-							@endisset
-						</td>
-						<td colspan="1"></td>
-					</tr>
-					<tr>
-						<td colspan="1" class="s-label">
-							<span class="count"></span> GRADUATE STUDIES
-						</td>
-						<td colspan="4">
-							@if(isset($user->educational_backgrounds[4]))
-								{{$user->educational_backgrounds[4]->name_of_school}}
-							@endisset
-						</td>
-						<td colspan="2">
-							@if(isset($user->educational_backgrounds[4]))
-								{{$user->educational_backgrounds[4]->degree}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[4]))
-								{{$user->educational_backgrounds[4]->period_att_from}}
-							@endisset
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[4]))
-								{{$user->educational_backgrounds[4]->period_att_to}}
-							@endisset
-						</td>
-						<td colspan="1">
-							
-						</td>
-						<td colspan="1">
-							@if(isset($user->educational_backgrounds[4]))
-							{{date('Y/m/d', strtotime($user->educational_backgrounds[4]->year_graduated))}}
-							@endisset
-						</td>
-						<td colspan="1"></td>
-					</tr>
-				</tbody>
+    <tr>
+        <td colspan="12" class="text-white separator">III. EDUCATIONAL BACKGROUND</td>
+    </tr>
+    <tr class="text-center">
+        <td colspan="1" class="s-label border-bottom-0">
+            <span class="count">26.</span>
+            <span class="d-block text-center">LEVEL</span>
+        </td>
+        <td colspan="4" class="s-label border-bottom-0">
+            NAME OF SCHOOL<br>(Write in full)
+        </td>
+        <td colspan="2" class="s-label border-bottom-0">
+            BASIC EDUCATION/DEGREE/COURSE<br>(Write in full)
+        </td>
+        <td colspan="2" class="s-label border-bottom-0">
+            PERIOD OF ATTENDANCE
+        </td>
+        <td colspan="1" class="s-label border-bottom-0">HIGHEST LEVEL/UNITS EARNED<br>(If not graduated)</td>
+        <td colspan="1" class="s-label border-bottom-0">YEAR GRADUATED</td>
+        <td colspan="1" class="s-label border-bottom-0">SCHOLARSHIP/<br>ACADEMIC<br>HONORS<br>RECEIVED</td>
+    </tr>
+    <tr class="text-center" style="margin-top: -20px;">
+        <td colspan="1" class="s-label border-top-0"></td>
+        <td colspan="4" class="s-label border-top-0"></td>
+        <td colspan="2" class="s-label border-top-0"></td>
+        <td colspan="1" class="s-label">From</td>
+        <td colspan="1" class="s-label">To</td>
+        <td colspan="1" class="s-label border-top-0"></td>
+        <td colspan="1" class="s-label border-top-0"></td>
+        <td colspan="1" class="s-label border-top-0"></td>
+    </tr>
+    
+    @foreach ($user->educational_backgrounds as $background)
+        <tr>
+            <td colspan="1" class="s-label">
+                <span class="count"></span> {{ strtoupper($background->level) }}
+            </td>
+            <td colspan="4">
+                {{ $background->name_of_school ?? '' }}
+            </td>
+            <td colspan="2">
+                {{ $background->degree ?? '' }}
+            </td>
+            <td colspan="1">
+                {{ $background->period_att_from ?? '' }}
+            </td>
+            <td colspan="1">
+                {{ $background->period_att_to ?? '' }}
+            </td>
+            <td colspan="1">
+                {{ $background->highest_level_unit ?? '' }}
+            </td>
+            <td colspan="1">
+                @if(isset($background->year_graduated))
+                    {{ date('Y/m/d', strtotime($background->year_graduated)) }}
+                @endif
+            </td>
+            <td colspan="1">
+                {{ $background->scholarship ?? '' }}
+            </td>
+        </tr>
+    @endforeach
+</tbody>
+
 
 				<tbody class="table-body">
 					<tr>
@@ -940,42 +798,43 @@
 				</tbody>
 				
 				<tbody class="table-body">
-					<tr>
-						<td colspan="12" class="text-white separator">VIII.  OTHER INFORMATION</td>
-					</tr>
-					<tr class="text-center">
-						<td colspan="4" class="s-label">
-							<span class="count float-left">31.</span> SPECIAL SKILLS and HOBBIES
-						</td>
-						<td colspan="4" class="s-label">
-							<span class="count float-left">32.</span> NON-ACADEMIC DISTINCTIONS / RECOGNITION<br>(Write in full)
-						</td>
-						<td colspan="4" class="s-label">
-							<span class="count float-left">33.</span> MEMBERSHIP IN ASSOCIATION/ORGANIZATION<br>(Write in full)
-						</td>
-					</tr>
+    <tr>
+        <td colspan="12" class="text-white separator">VIII.  OTHER INFORMATION</td>
+    </tr>
+    <tr class="text-center">
+        <td colspan="4" class="s-label">
+            <span class="count float-left">31.</span> SPECIAL SKILLS and HOBBIES
+        </td>
+        <td colspan="4" class="s-label">
+            <span class="count float-left">32.</span> NON-ACADEMIC DISTINCTIONS / RECOGNITION<br>(Write in full)
+        </td>
+        <td colspan="4" class="s-label">
+            <span class="count float-left">33.</span> MEMBERSHIP IN ASSOCIATION/ORGANIZATION<br>(Write in full)
+        </td>
+    </tr>
 
-					@foreach($user->other_informations as $item)
-					<tr>
-						<td colspan="4">
-							@if(isset($item))
-								{{ $item->non_academic_distinction }}
-							@endisset
-						</td>
-						<td colspan="4">
-							@if(isset($item))
-								{{ $item->member_association }}
-							@endisset
-						</td>
-						<td colspan="4">
-							@if(isset($item))
-								{{ $item->skill_hobbies }}
-							@endisset
-						</td>
-					</tr>
-					@endforeach
-					
-				</tbody>
+    @foreach($user->other_informations as $item)
+    <tr>
+        <td colspan="4">
+            @isset($item->skill_hobbies)
+                {{ $item->skill_hobbies }}
+            @endisset
+        </td>
+        <td colspan="4">
+            @isset($item->non_academic_distinction)
+                {{ $item->non_academic_distinction }}
+            @endisset
+        </td>
+        <td colspan="4">
+            @isset($item->member_association)
+                {{ $item->member_association }}
+            @endisset
+        </td>
+    </tr>
+    @endforeach
+
+</tbody>
+
 
 				<tbody class="table-body">
 					<tr>
@@ -995,319 +854,368 @@
 
 				<!-- Q1 -->
 				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="12" class="separator"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">34.</span> Are you related by consanguinity or affinity to the appointing or recommending authority, or to the<br>
-							<span class="count"></span>chief of bureau or office or to the person who has immediate supervision over you in the Office,<br>
-							<span class="count"></span>Bureau or Department where you will beapppointed,<br>
-						</td>
-						<td colspan="2">
-							
-						</td>
-						<td colspan="3">
-							
-						</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span>a. within the third degree?<br>
-						</td>
-						<td colspan="2">
-							@if ($user->related_with_third_degree)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span>b. within the fourth degree (for Local Government Unit - Career Employees)?
-						</td>
-						<td colspan="2">
-							@if ($user->related_with_fourth_degree)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-						</td>
-						<td colspan="2">If YES, give details:</td>
-						<td colspan="3">
-							{{$user->related_with_fourth_degree_yes}}
-						</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="5"></td>
-					</tr>
-				</tbody>
+	<tr>
+		<td colspan="12" class="separator"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">34.</span> Are you related by consanguinity or affinity to the appointing or recommending authority, or to the<br>
+			<span class="count"></span>chief of bureau or office or to the person who has immediate supervision over you in the Office,<br>
+			<span class="count"></span>Bureau or Department where you will be appointed,<br>
+		</td>
+		<td colspan="2">
+			<!-- Intentionally left blank -->
+		</td>
+		<td colspan="3">
+			<!-- Intentionally left blank -->
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span>a. within the third degree?<br>
+		</td>
+		<td colspan="2">
+			@if ($user->related_with_third_degree)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span>b. within the fourth degree (for Local Government Unit - Career Employees)?
+		</td>
+		<td colspan="2">
+			@if ($user->related_with_fourth_degree)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<!-- Intentionally left blank -->
+		</td>
+		<td colspan="2">If YES, give details:</td>
+		<td colspan="3">
+			@if ($user->related_with_fourth_degree)
+				{{$user->related_with_fourth_degree_yes}}
+			@endif
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="5"></td>
+	</tr>
+</tbody>
+
 
 				<!-- Q2 -->
 				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">35.</span> a. Have you ever been found guilty of any administrative offense?
-						</td>
-						<td colspan="2">
-							@if ($user->is_guilty_administrative_offense)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="5">If YES, give details:</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="5">{{$user->is_guilty_administrative_offense_yes}}</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span> b. Have you been criminally charged before any court?
-						</td>
-						<td colspan="2" style="border-top-width: 1px !important;">
-							@if ($user->is_criminally_charge)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3" style="border-top-width: 1px !important;"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="5">If YES, give details: &nbsp; {{$user->is_criminally_charge_yes}}</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="2">Date Filed: {{$user->date_filed}}</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="2">Status of Case/s: &nbsp; {{$user->case_status}}</td>
-						<td colspan="3"></td>
-					</tr>
-				</tbody>
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">35.</span> a. Have you ever been found guilty of any administrative offense?
+		</td>
+		<td colspan="2">
+			@if ($user->is_guilty_administrative_offense)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="5">If YES, give details:</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="5">
+			@if ($user->is_guilty_administrative_offense)
+				{{$user->is_guilty_administrative_offense_yes}}
+			@endif
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span> b. Have you been criminally charged before any court?
+		</td>
+		<td colspan="2" style="border-top-width: 1px !important;">
+			@if ($user->is_criminally_charge)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3" style="border-top-width: 1px !important;"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="5">If YES, give details: &nbsp;
+			@if ($user->is_criminally_charge)
+				{{$user->is_criminally_charge_yes}}
+			@endif
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2">Date Filed: 
+			@if ($user->is_criminally_charge)
+				{{$user->date_filed}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2">Status of Case/s: &nbsp;
+			@if ($user->is_criminally_charge)
+				{{$user->case_status}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+</tbody>
 
-				<!-- Q3 -->
-				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">36.</span> Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?
-						</td>
-						<td colspan="2">
-							@if ($user->is_convicted)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="5">If YES, give details: &nbsp; {{$user->is_convicted_yes}}</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="5"></td>
-					</tr>
-				</tbody>
+<!-- Q3 -->
+<tbody class="table-body question-block">
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">36.</span> Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?
+		</td>
+		<td colspan="2">
+			@if ($user->is_convicted)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="5">If YES, give details: &nbsp;
+			@if ($user->is_convicted)
+				{{$user->is_convicted_yes}}
+			@endif
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="5"></td>
+	</tr>
+</tbody>
+
 
 				<!-- Q4 -->
 				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">37.</span> Have you ever been separated from the service in any of the following modes: resignation,<br>
-							
-							
-						</td>
-						<td colspan="2">
-							@if ($user->is_separated)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span> retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased<br>
-						</td>
-						<td colspan="5">If YES, give details: &nbsp; {{$user->is_separated_yes_details}}</td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span> out (abolition) in the public or private sector?
-						</td>
-						<td colspan="2"></td>
-						<td colspan="3"></td>
-					</tr>
-				</tbody>
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">37.</span> Have you ever been separated from the service in any of the following modes: resignation,<br>
+		</td>
+		<td colspan="2">
+			@if ($user->is_separated)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span> retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased<br>
+		</td>
+		<td colspan="5">
+			@if ($user->is_separated)
+				If YES, give details: &nbsp; {{$user->is_separated_yes_details}}
+			@endif
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span> out (abolition) in the public or private sector?
+		</td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+	</tr>
+</tbody>
+
 
 				<!-- Q5 -->
 				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">38.</span> a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?
-						</td>
-						<td colspan="2">
-							@if ($user->is_candidate_election)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span><br>
-						</td>
-						<td colspan="2">If YES, give details: {{$user->is_candiadte_election_yes}}</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span> b. Have you resigned from the government service during the three (3)-month period before the last
-						</td>
-						<td colspan="2">
-							@if ($user->is_resigned)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span> election to promote/actively campaign for a national or local candidate?
-						</td>
-						<td colspan="2">If YES, give details: &nbsp; {{$user->is_resigned_yes}}</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="2"></td>
-						<td colspan="3"></td>
-					</tr>
-				</tbody>
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">38.</span> a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?
+		</td>
+		<td colspan="2">
+			@if ($user->is_candidate_election)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span><br>
+		</td>
+		<td colspan="2">
+			@if ($user->is_candidate_election)
+				If YES, give details: {{$user->is_candidate_election_yes}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span> b. Have you resigned from the government service during the three (3)-month period before the last
+		</td>
+		<td colspan="2">
+			@if ($user->is_resigned)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span> election to promote/actively campaign for a national or local candidate?
+		</td>
+		<td colspan="2">
+			@if ($user->is_resigned)
+				If YES, give details: &nbsp; {{$user->is_resigned_yes}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+	</tr>
+</tbody>
+
 
 				<!-- Q6 -->
 				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">39.</span> Have you acquired the status of an immigrant or permanent resident of another country?
-						</td>
-						<td colspan="2">
-							@if ($user->is_immigrant)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-						</td>
-						<td colspan="2">if YES, give details (country): &nbsp; {{$user->is_immigrant_yes}}</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-						</td>
-						<td colspan="2"></td>
-						<td colspan="3"></td>
-					</tr>
-				</tbody>
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">39.</span> Have you acquired the status of an immigrant or permanent resident of another country?
+		</td>
+		<td colspan="2">
+			@if ($user->is_immigrant)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2">
+			@if ($user->is_immigrant)
+				if YES, give details (country): &nbsp; {{$user->is_immigrant_yes}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+	</tr>
+</tbody>
 
 				<!-- Q7 -->
 				<tbody class="table-body question-block">
-					<tr>
-						<td colspan="7" class="s-label border-bottom-0">
-							<span class="count">40.</span> Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA<br>
-							<span class="count"></span> 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:
-						</td>
-						<td colspan="2">
-							
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span>a. Are you a member of any indigenous group?<br>
-						</td>
-						<td colspan="2">
-							@if ($user->is_indigenous)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span><br>
-						</td>
-						<td colspan="2">If YES, please specify: &nbsp; {{$user->is_indigenous_yes}}</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span>b. Are you a person with disability?
-						</td>
-						<td colspan="2">
-							@if ($user->is_disable)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-						</td>
-						<td colspan="2">If YES, please specify: &nbsp; {{$user->is_disable_id_no}}</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label">
-							<span class="count"></span>c. Are you a solo parent?
-						</td>
-						<td colspan="2">
-							@if ($user->is_solo_parent)
-								YES
-							@else
-								NO
-							@endif
-						</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td colspan="7" class="s-label"></td>
-						<td colspan="2">If YES, please specify: &nbsp; {{$user->is_solo_parent_yes}}</td>
-						<td colspan="3"></td>
-					</tr>
-				</tbody>
+	<tr>
+		<td colspan="7" class="s-label border-bottom-0">
+			<span class="count">40.</span> Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA<br>
+			<span class="count"></span> 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:
+		</td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span>a. Are you a member of any indigenous group?<br>
+		</td>
+		<td colspan="2">
+			@if ($user->is_indigenous)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span><br>
+		</td>
+		<td colspan="2">
+			@if ($user->is_indigenous)
+				If YES, please specify: &nbsp; {{$user->is_indigenous_yes}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span>b. Are you a person with disability?
+		</td>
+		<td colspan="2">
+			@if ($user->is_disable)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2">
+			@if ($user->is_disable)
+				If YES, please specify: &nbsp; {{$user->is_disable_id_no}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label">
+			<span class="count"></span>c. Are you a solo parent?
+		</td>
+		<td colspan="2">
+			@if ($user->is_solo_parent)
+				✔ YES
+			@else
+				✔ NO
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="7" class="s-label"></td>
+		<td colspan="2">
+			@if ($user->is_solo_parent)
+				If YES, please specify: &nbsp; {{$user->is_solo_parent_yes}}
+			@endif
+		</td>
+		<td colspan="3"></td>
+	</tr>
+</tbody>
+
 
 				<!-- End of Page 4 -->
 
