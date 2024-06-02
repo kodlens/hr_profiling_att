@@ -18,7 +18,7 @@ class ReportByEducationalBackgroundController extends Controller
             ->selectRaw('COUNT(educational_backgrounds.level) AS count_level')
             ->join('users', 'users.user_id', '=', 'educational_backgrounds.user_id')
             ->groupBy('educational_backgrounds.level')
-            ->orderByRaw("FIELD(educational_backgrounds.level, 'ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES')")
+            ->orderByRaw("FIELD(educational_backgrounds.level, 'ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES', 'POST GRADUATE')")
             
             ->where('users.designation', 'like', strtolower($req->designation) . '%')
             ->get();
