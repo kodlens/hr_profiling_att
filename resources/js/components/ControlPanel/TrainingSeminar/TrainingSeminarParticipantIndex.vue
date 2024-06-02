@@ -81,7 +81,7 @@
                                 </div>
                             </b-table-column>
                             
-                            <template #detail="props">
+                            <!-- <template #detail="props">
                                 <tr>
                                     <th>Time Logs</th>
                                     <th>Attendance Status</th>
@@ -98,7 +98,7 @@
                                         <span v-if="item.attendance_status === 'out_pm'">OUT PM</span>
                                     </td>
                                 </tr>
-                            </template>
+                            </template> -->
                         </b-table>
 
 

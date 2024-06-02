@@ -223,12 +223,12 @@
 
                             <div class="columns">
                                 <div class="column">
-                                    <b-field label="ENGAGEMENT STATUS" label-position="on-border"
+                                    <b-field label="STATUS OF APPOINTMENT" label-position="on-border"
                                         expanded
                                         :type="errors.engagement_status_id ? 'is-danger':''"
                                         :message="errors.engagement_status_id ? errors.engagement_status_id[0] : ''">
                                         <b-select v-model="fields.engagement_status_id"
-                                            placeholder="Engagement Status" expanded>
+                                            placeholder="Status of Appointment" expanded>
                                             <option v-for="(item, index) in engagementStatus"
                                                 :key="`es${index}`" 
                                                 :value="item.engagement_status_id">{{ item.engagement_status }}</option>
@@ -247,7 +247,7 @@
                                         </b-select>
                                     </b-field>
                                 </div> -->
-                                <div class="column">
+                                <!-- <div class="column">
                                     <b-field label="EDUCATION LEVEL" label-position="on-border"
                                         expanded
                                         :type="errors.education_level ? 'is-danger':''"
@@ -259,7 +259,7 @@
                                                 :value="item.education_level">{{ item.education_level }}</option>
                                         </b-select>
                                     </b-field>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- RESIDENTIAL ADDRESS-->
@@ -636,8 +636,8 @@
                                             </div>
                                             <div class="column">
                                                 <b-field label="Year Graduated" label-position="on-border">
-                                                    <b-input type="text" v-model="item.year_graduated"
-                                                        placeholder="Year Graduated"></b-input>
+                                                    <b-datepicker v-model="item.year_graduated"
+                                                        placeholder="Year Graduated"></b-datepicker>
                                                 </b-field>
                                             </div>
                                         </div>

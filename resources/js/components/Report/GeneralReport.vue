@@ -217,7 +217,7 @@
                         <b-checkbox v-model="show.engagement"
                             :true-value="true"
                             :false-value="false">
-                            ENGAGEMENT
+                            STATUS OF APPOINTMENT
                         </b-checkbox>
                         <b-checkbox v-model="show.agency_idno"
                             :true-value="true"
@@ -362,7 +362,7 @@
                     <b-table-column field="tin" label= "TIN" sortable v-slot="props" :visible="show.tin">
                         {{ props.row.tin }}
                     </b-table-column>
-                    <b-table-column field="engagement" label="Engagement" sortable v-slot="props" :visible="show.engagement">
+                    <b-table-column field="engagement" label="Status of Appointment" sortable v-slot="props" :visible="show.engagement">
                         <span v-if="props.row.engagement">{{ props.row.engagement.engagement_status }}</span>
                     </b-table-column>
                     <b-table-column field="agency_idno" label= "Agency Id" sortable v-slot="props" :visible="show.agency_idno">
@@ -432,7 +432,7 @@
 
             <div class="mt-6 nprint"></div>
             <div class="print-footer">
-                <p>Human Resource Management Office Page</p>
+                <p>Human Resource Management Office</p>
             </div>
         </div> <!-- print form-->
 

@@ -42,7 +42,7 @@
                             <b-button @click="openModal" 
                                 icon-left="account" 
                                 class="is-success is-outlined is-small has-text-weight-bold">
-                                New Engagement
+                                New SOP
                             </b-button>
                         </div>
 
@@ -105,7 +105,7 @@
             <form @submit.prevent="submit">
                 <div class="modal-card">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">ENGAGEMENT STATUS</p>
+                        <p class="modal-card-title">STATUS OF APPOINTMENT</p>
                         <button
                             type="button"
                             class="delete"
