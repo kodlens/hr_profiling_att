@@ -1,5 +1,4 @@
 <template>
-    
     <div>
         <div class="columns is-centered">
             <div class="column is-8">
@@ -13,46 +12,34 @@
             <div class="column is-8">
                 <div class="has-text-weight-bold has-text-centered mt-4">TRAINING/SEMINAR ATTENDANCE</div>
                 <div class="has-text-weight-bold has-text-centered">{{ training.seminar_title }}</div>
-               <table class="table mt-4" style="margin: auto;">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Sex</td>
-                        <td>Date & Time</td>
-                        <td>Status</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in data" :key="`data${index}`">
-                        <td>
-                            {{ item.user.lname }}, {{item.user.fname}} {{item.user.mname}}
-                        </td>
-                        <td>
-                            <span v-if="item.user.sex">{{item.user.sex}}</span>
-                        </td>
-                        <td>
-                            <span v-if="item.datetime_scanned">{{ new Date(item.datetime_scanned).toLocaleString()}}</span>
-                        </td>
-                        <td>
-                            <span v-if="item.attendance_status === 'in_am'">IN AM</span>
-                            <span v-if="item.attendance_status === 'in_pm'">IN PM</span>
-                            <span v-if="item.attendance_status === 'out_am'">OUT AM</span>
-                            <span v-if="item.attendance_status === 'out_pm'">OUT PM</span>
-                        </td>
-                    </tr>
-                </tbody>
-               </table>
+                <table class="table mt-4" style="margin: auto;">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Sex</td>
+                            <td>Time In (AM)</td>
+                            <td>Time Out (AM)</td>
+                            <td>Time In (PM)</td>
+                            <td>Time Out (PM)</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in transformedData" :key="`data${index}`">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.sex }}</td>
+                            <td>{{ item.timeInAM }}</td>
+                            <td>{{ item.timeOutAM }}</td>
+                            <td>{{ item.timeInPM }}</td>
+                            <td>{{ item.timeOutPM }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
     </div>
-
-
 </template>
 
-
 <script>
-
 export default {
     props: {
         propId: {
@@ -62,43 +49,77 @@ export default {
     },
 
     data() {
-        return  {
+        return {
             data: [],
             training: {},
+            transformedData: []
         }
     },
 
     methods: {
-
-        loadTraining(){
-            axios.get(`/load-training-name/${this.propId}`).then(res=>{
+        loadTraining() {
+            axios.get(`/load-training-name/${this.propId}`).then(res => {
                 this.training = res.data
-            }).catch(err=>{
+            }).catch(err => {
                 throw err
             })
         },
 
-        loadAttendances(){
-             const params = [
+        loadAttendances() {
+            const params = [
                 `id=${this.propId}`,
             ].join('&')
 
-            axios.get(`/load-training-attendances?${params}`).then(res=>{
+            axios.get(`/load-training-attendances?${params}`).then(res => {
                 this.data = res.data
-            }).catch(err=>{
+                this.transformData()
+            }).catch(err => {
                 throw err
             })
         },
 
-        print(){
+        transformData() {
+            const tempData = {}
+
+            this.data.forEach(item => {
+                const name = `${item.user.lname}, ${item.user.fname} ${item.user.mname}`
+                if (!tempData[name]) {
+                    tempData[name] = {
+                        name,
+                        sex: item.user.sex,
+                        timeInAM: '',
+                        timeOutAM: '',
+                        timeInPM: '',
+                        timeOutPM: ''
+                    }
+                }
+
+                const time = new Date(item.datetime_scanned).toLocaleTimeString()
+
+                if (item.attendance_status === 'in_am') {
+                    tempData[name].timeInAM = time
+                } else if (item.attendance_status === 'out_am') {
+                    tempData[name].timeOutAM = time
+                } else if (item.attendance_status === 'in_pm') {
+                    tempData[name].timeInPM = time
+                } else if (item.attendance_status === 'out_pm') {
+                    tempData[name].timeOutPM = time
+                }
+            })
+
+            this.transformedData = Object.values(tempData)
+        },
+
+        print() {
             window.print()
         }
     },
 
-    mounted(){
+    mounted() {
         this.loadTraining()
         this.loadAttendances()
-        console.log('test');
     }
 }
 </script>
+
+
