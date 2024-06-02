@@ -141,9 +141,10 @@ export default {
             let arr = this.data.map(function (i) {
                 return i.count
             });
+            let colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#8836FF']; // Define an array of colors
             let obj = {
                 label: 'Sex',
-                backgroundColor: '#f87979',
+                backgroundColor: arr.map((_, index) => colors[index % colors.length]),
                 data: arr
             };
 

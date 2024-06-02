@@ -92,21 +92,21 @@ export default {
         return {
             chartId: 'bar-chart',
             datasetIdKey: 'label',
-            width: 400,
-            height: 400,
+            width: 50,
+            height: 300,
             cssClasses: '',
             styles: { },
             plugins: [],
             chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false
-            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
 
-            range: '',
-
-            data: [],
-        }
-    },
+        range: '',
+        
+        data: [],
+    }
+},
 
     methods: {
         loadReport() {
@@ -131,18 +131,42 @@ export default {
     computed: {
         // this dataset is for count
         datasets: function() {
-            let arr = this.data.map(function(i) {
-                return i.count // count column name from database
-            });
-            // console.log(arr)
-            let obj = {
-                label: 'Age Count',
-                backgroundColor: '#f87979',
-                data: arr
-            };
+    let arr = this.data.map(i => i.count); // Extract count values from data
+    let colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']; // Array of colors
+    
+    let obj = {
+        label: 'Age Count',
+        backgroundColor: arr.map((_, index) => colors[index % colors.length]), // Assign different color for each bar
+        data: arr,
+        barPercentage: 0.8 // Adjust the width of the bars as needed (0.8 means 80% of the available space)
+    };
 
-            return [obj];
-        },
+    return [obj];
+},
+
+options: {
+    scales: {
+        x: {
+            grid: {
+                display: false
+            }
+        }
+    },
+    layout: {
+        padding: {
+            left: 50, // Adjust left padding as needed
+            right: 50 // Adjust right padding as needed
+        }
+    },
+    plugins: {
+        legend: {
+            position: 'top',
+        }
+    },
+    responsive: true,
+    maintainAspectRatio: false, // This will allow you to adjust the width independently of the height
+},
+
 
         // this labels is for the graph caption
         labels: function() {
@@ -199,6 +223,7 @@ export default {
             left: 0;
             top: 0;
         }
+
         .print-header {
             display: block; /* Show the header only during print */
             position: fixed;
@@ -224,9 +249,20 @@ export default {
         .print-form {
             margin-top: 100px; /* Adjust top margin to avoid overlap with header */
             margin-bottom: 50px; /* Adjust bottom margin to avoid overlap with footer */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the child elements horizontally */
+            width: 100%;
         }
-    }
 
+        
+    }
+    .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+}
     @page {
         counter-increment: page;
         counter-reset: page 1; /* Start page numbering at 1 */

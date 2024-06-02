@@ -25,7 +25,7 @@
             </div>
 
             <div class="has-text-weight-bold has-text-centered">
-                REPORT BY EDUCATIONAL BACKGROUND
+                REPORT BY EDUCATIONAL ATTAINMENT
                 <span v-if="search.designation === ''">( ALL )</span>
                 <span v-else-if="search.designation === 'FACULTY'">( FACULTY )</span>
                 <span v-else-if="search.designation === 'STAFF'">( STAFF )</span>
@@ -51,7 +51,7 @@
                     :plugins="plugins" 
                     :css-classes="cssClasses" 
                     :styles="styles" 
-                    :width="width" 
+                    :width="400" 
                     :height="height" />
             </div>
 
@@ -95,9 +95,21 @@ export default{
             styles: { },
             plugins: [],
             chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false
-            },
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+        padding: {
+            left: 10, // Adjust left padding here
+            right: 10 // Adjust right padding here
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: true
+        }
+    }
+},
+
 
             search: {
                 designation: '',
@@ -132,23 +144,27 @@ export default{
 
     computed: {
         datasets: function(){
-            let arr = this.data.map(i => i.count_level);
-            let obj = {
-                label: 'Level',
-                backgroundColor: '#f87979',
-                data: arr
-            };
-            return [obj];
-        },
+    let arr = this.data.map(i => i.count_level);
+    let colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', 'RED']; // Updated array of colors
+    // Create a single dataset with an array of data points and an array of colors
+    let obj = {
+        label: 'Level',
+        backgroundColor: arr.map((_, index) => colors[index % colors.length]), // Assign colors to each data point
+        data: arr
+    };
+    return [obj];
+},
+
+
 
         labels: function() {
             //let arr = this.data.map(i => i.level);
-            let arr = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES']
+            let arr = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES', 'POST GRADUATE']
             return arr;
         },
 
         sortedData: function() {
-            const customOrder = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES'];
+            const customOrder = ['ELEMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES', 'POST GRADUATE'];
 
             // return this.data.sort((a, b) => a.level.localeCompare(b.level));
             this.data.sort((a, b) => {
