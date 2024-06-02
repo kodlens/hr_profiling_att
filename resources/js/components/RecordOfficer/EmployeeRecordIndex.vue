@@ -19,19 +19,19 @@
                         </div>
                         <div class="column">
                             <b-field label="Search">
-                                <b-input type="text"
-                                            v-model="search.lname" placeholder="Search Lastname"
-                                            @keyup.native.enter="loadAsyncData"/>
-                                <p class="control">
-                                        <b-tooltip label="Search" type="is-success">
-                                    <b-button type="is-primary" icon-right="magnify" @click="loadAsyncData"/>
-                                        </b-tooltip>
-                                </p>
+                                        <b-input type="text"
+                                                    v-model="search.key" placeholder="Search something here ..."
+                                                    @keyup.native.enter="loadAsyncData"/>
+                                        <p class="control">
+                                                <b-tooltip label="Search" type="is-success">
+                                            <b-button type="is-primary" icon-right="magnify" @click="loadAsyncData"/>
+                                                </b-tooltip>
+                                        </p>
                             </b-field>
                         </div>
 
                         <div class="column">
-                            <b-field label="ENGAGEMENT STATUS">
+                            <b-field label="STATUS OF APPOINTMENT">
                                 <b-select v-model="search.engagement"
                                     @input="loadAsyncData"
                                     placeholder="Engagement Status">
@@ -181,7 +181,7 @@ export default{
             global_id : 0,
 
             search: {
-                lname: '',
+                key: '',
                 engagement: ''
             },
 
@@ -230,7 +230,7 @@ export default{
         loadAsyncData() {
             const params = [
                 `sort_by=${this.sortField}.${this.sortOrder}`,
-                `lname=${this.search.lname}`,
+                `key=${this.search.key}`,
                 `engagement=${this.search.engagement}`,
                 `archive=0`,
                 `perpage=${this.perPage}`,
