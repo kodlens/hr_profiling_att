@@ -144,14 +144,14 @@ export default{
 
     computed: {
         datasets: function(){
-    let arr = this.data.map(i => i.count_level);
-    let colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', 'RED']; // Updated array of colors
-    // Create a single dataset with an array of data points and an array of colors
-    let obj = {
-        label: 'Level',
-        backgroundColor: arr.map((_, index) => colors[index % colors.length]), // Assign colors to each data point
-        data: arr
-    };
+            let arr = this.data.map(i => i.count_level);
+            let colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', 'RED']; // Updated array of colors
+            // Create a single dataset with an array of data points and an array of colors
+            let obj = {
+                label: 'Level',
+                backgroundColor: arr.map((_, index) => colors[index % colors.length]), // Assign colors to each data point
+                data: arr
+            };
     return [obj];
 },
 

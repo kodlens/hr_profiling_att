@@ -25,22 +25,95 @@ class ReportByEducationalBackgroundController extends Controller
         //     ->where('users.designation', 'like', strtolower($req->designation) . '%')
         //     ->get();
 
-        $data = \DB::select('
-            SELECT 
-            `level`,
-            `designation`,
-            COUNT(`level`) AS count_level FROM (SELECT
-            a.user_id,
-            a.level,
-            b.designation
-            FROM
-            educational_backgrounds a
-            JOIN users AS b ON a.user_id = b.user_id
-            WHERE b.designation LIKE ?
-            GROUP BY a.user_id, a.level) AS aa
-            GROUP BY aa.level
-            ORDER BY FIELD(aa.level, "ELEMENTARY", "SECONDARY", "VOCATIONAL/TRADE COURSE", "COLLEGE", "GRADUATE STUDIES", "POST GRADUATE")
-        ', [$req->designation . '%']);
+        $data = \DB::select("
+            SELECT 'ELEMENTARY' AS level, COUNT(*) AS count_level
+            FROM users
+            WHERE user_id IN (
+                SELECT user_id
+                FROM educational_backgrounds
+                GROUP BY user_id
+                HAVING MAX(CASE WHEN LEVEL = 'ELEMENTARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'SECONDARY' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'VOCATIONAL/TRADE COURSE' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'COLLEGE' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'GRADUATE STUDIES' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'POST GRADUATE' THEN 1 ELSE 0 END) = 0
+            )
+            AND users.designation LIKE ?
+            UNION ALL
+            SELECT 'SECONDARY' AS level, COUNT(*) AS count_level
+            FROM users
+            WHERE user_id IN (
+                SELECT user_id
+                FROM educational_backgrounds
+                GROUP BY user_id
+                HAVING MAX(CASE WHEN LEVEL = 'SECONDARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'ELEMENTARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'VOCATIONAL/TRADE COURSE' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'COLLEGE' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'GRADUATE STUDIES' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'POST GRADUATE' THEN 1 ELSE 0 END) = 0
+            )
+            AND users.designation LIKE ?
+            UNION ALL
+            SELECT 'VOCATIONAL/TRADE COURSE' AS level, COUNT(*) AS count_level
+            FROM users
+            WHERE user_id IN (
+                SELECT user_id
+                FROM educational_backgrounds
+                GROUP BY user_id
+                HAVING MAX(CASE WHEN LEVEL = 'SECONDARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'ELEMENTARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'VOCATIONAL/TRADE COURSE' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'COLLEGE' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'GRADUATE STUDIES' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'POST GRADUATE' THEN 1 ELSE 0 END) = 0
+            )
+            AND users.designation LIKE ?
+            UNION ALL
+            SELECT 'COLLEGE' AS level, COUNT(*) AS count_level
+            FROM users
+            WHERE user_id IN (
+                SELECT user_id
+                FROM educational_backgrounds
+                GROUP BY user_id
+                HAVING MAX(CASE WHEN LEVEL = 'SECONDARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'ELEMENTARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'COLLEGE' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'GRADUATE STUDIES' THEN 1 ELSE 0 END) = 0
+                AND MAX(CASE WHEN LEVEL = 'POST GRADUATE' THEN 1 ELSE 0 END) = 0
+            )
+            AND users.designation LIKE ?
+            UNION ALL
+            SELECT 'GRADUATE STUDIES' AS level, COUNT(*) AS count_level
+            FROM users
+            WHERE user_id IN (
+                SELECT user_id
+                FROM educational_backgrounds
+                GROUP BY user_id
+                HAVING MAX(CASE WHEN LEVEL = 'SECONDARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'ELEMENTARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'COLLEGE' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'GRADUATE STUDIES' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'POST GRADUATE' THEN 1 ELSE 0 END) = 0
+            )
+            AND users.designation LIKE ?
+            UNION ALL
+            SELECT 'POST GRADUATE' AS level, COUNT(*) AS count_level
+            FROM users
+            WHERE user_id IN (
+                SELECT user_id
+                FROM educational_backgrounds
+                GROUP BY user_id
+                HAVING MAX(CASE WHEN LEVEL = 'SECONDARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'ELEMENTARY' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'COLLEGE' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'GRADUATE STUDIES' THEN 1 ELSE 0 END) = 1
+                AND MAX(CASE WHEN LEVEL = 'POST GRADUATE' THEN 1 ELSE 0 END) = 1
+            )
+            AND users.designation LIKE ?
+        
+        ", [$req->designation . '%', $req->designation . '%', $req->designation . '%', $req->designation . '%', $req->designation . '%', $req->designation . '%']);
 
         return $data;
     }

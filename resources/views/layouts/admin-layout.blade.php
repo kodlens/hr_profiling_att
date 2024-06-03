@@ -91,6 +91,9 @@
                     <b-navbar-item href="/report-by-educational-backgrounds">
                         Report Educational Attainment
                     </b-navbar-item>
+                    {{-- <b-navbar-item href="/report-highest-educational-attainment">
+                        Report Highest Educational Attainment
+                    </b-navbar-item> --}}
                     <b-navbar-item href="/report-by-age-ranges">
                         Report Age Range
                     </b-navbar-item>
@@ -185,6 +188,9 @@
                 <b-navbar-item href="/report-by-educational-backgrounds">
                     Report Educational Background
                 </b-navbar-item>
+                {{-- <b-navbar-item href="/report-highest-educational-attainment">
+                    Report Highest Educational Attainment
+                </b-navbar-item> --}}
                 <b-navbar-item href="/report-by-age-ranges">
                     Report Age Range
                 </b-navbar-item>
