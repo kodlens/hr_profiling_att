@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="print-form">
+        <div class="print-form" style="width: 700px;">
 
             <div class="print-header">
                 <img src="/img/logo.png" height="50px" width="50px"><h3><b>Tangub City Global College</b></h3>
-</div>
+            </div>
 
             <div class="columns m-2 nprint">
                 <div class="column nprint">
@@ -104,7 +104,28 @@ export default {
             plugins: [],
             chartOptions: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 0,
+                        bottom: 10
+                    }
+                },
             },
 
             search: {
@@ -144,6 +165,7 @@ export default {
             let colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#8836FF']; // Define an array of colors
             let obj = {
                 label: 'Sex',
+                barThickness: 50,
                 backgroundColor: arr.map((_, index) => colors[index % colors.length]),
                 data: arr
             };
@@ -195,6 +217,7 @@ export default {
         }
         .print-form, .print-form * {
             visibility: visible;
+            margin: auto;
         }
         .print-form {
             position: absolute;
