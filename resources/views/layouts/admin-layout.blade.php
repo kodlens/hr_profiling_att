@@ -186,7 +186,7 @@
                     Report By Sex
                 </b-navbar-item>
                 <b-navbar-item href="/report-by-educational-backgrounds">
-                    Report Educational Background
+                    Report Educational Attainment
                 </b-navbar-item>
                 {{-- <b-navbar-item href="/report-highest-educational-attainment">
                     Report Highest Educational Attainment
