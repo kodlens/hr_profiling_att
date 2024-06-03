@@ -397,69 +397,276 @@
 				</tbody>
 
 				<tbody class="table-body">
-    <tr>
-        <td colspan="12" class="text-white separator">III. EDUCATIONAL BACKGROUND</td>
-    </tr>
-    <tr class="text-center">
-        <td colspan="1" class="s-label border-bottom-0">
-            <span class="count">26.</span>
-            <span class="d-block text-center">LEVEL</span>
-        </td>
-        <td colspan="4" class="s-label border-bottom-0">
-            NAME OF SCHOOL<br>(Write in full)
-        </td>
-        <td colspan="2" class="s-label border-bottom-0">
-            BASIC EDUCATION/DEGREE/COURSE<br>(Write in full)
-        </td>
-        <td colspan="2" class="s-label border-bottom-0">
-            PERIOD OF ATTENDANCE
-        </td>
-        <td colspan="1" class="s-label border-bottom-0">HIGHEST LEVEL/UNITS EARNED<br>(If not graduated)</td>
-        <td colspan="1" class="s-label border-bottom-0">YEAR GRADUATED</td>
-        <td colspan="1" class="s-label border-bottom-0">SCHOLARSHIP/<br>ACADEMIC<br>HONORS<br>RECEIVED</td>
-    </tr>
-    <tr class="text-center" style="margin-top: -20px;">
-        <td colspan="1" class="s-label border-top-0"></td>
-        <td colspan="4" class="s-label border-top-0"></td>
-        <td colspan="2" class="s-label border-top-0"></td>
-        <td colspan="1" class="s-label">From</td>
-        <td colspan="1" class="s-label">To</td>
-        <td colspan="1" class="s-label border-top-0"></td>
-        <td colspan="1" class="s-label border-top-0"></td>
-        <td colspan="1" class="s-label border-top-0"></td>
-    </tr>
+					<tr>
+						<td colspan="12" class="text-white separator">III. EDUCATIONAL BACKGROUND</td>
+					</tr>
+					<tr class="text-center">
+						<td colspan="1" class="s-label border-bottom-0">
+							<span class="count">26.</span>
+							<span class="d-block text-center">LEVEL</span>
+						</td>
+						<td colspan="4" class="s-label border-bottom-0">
+							NAME OF SCHOOL<br>(Write in full)
+						</td>
+						<td colspan="2" class="s-label border-bottom-0">
+							BASIC EDUCATION/DEGREE/COURSE<br>(Write in full)
+						</td>
+						<td colspan="2" class="s-label border-bottom-0">
+							PERIOD OF ATTENDANCE
+						</td>
+						<td colspan="1" class="s-label border-bottom-0">HIGHEST LEVEL/UNITS EARNED<br>(If not graduated)</td>
+						<td colspan="1" class="s-label border-bottom-0">YEAR GRADUATED</td>
+						<td colspan="1" class="s-label border-bottom-0">SCHOLARSHIP/<br>ACADEMIC<br>HONORS<br>RECEIVED</td>
+					</tr>
+					<tr class="text-center" style="margin-top: -20px;">
+						<td colspan="1" class="s-label border-top-0"></td>
+						<td colspan="4" class="s-label border-top-0"></td>
+						<td colspan="2" class="s-label border-top-0"></td>
+						<td colspan="1" class="s-label">From</td>
+						<td colspan="1" class="s-label">To</td>
+						<td colspan="1" class="s-label border-top-0"></td>
+						<td colspan="1" class="s-label border-top-0"></td>
+						<td colspan="1" class="s-label border-top-0"></td>
+					</tr>
     
-    @foreach ($user->educational_backgrounds as $background)
-        <tr>
-            <td colspan="1" class="s-label">
-                <span class="count"></span> {{ strtoupper($background->level) }}
-            </td>
-            <td colspan="4">
-                {{ $background->name_of_school ?? '' }}
-            </td>
-            <td colspan="2">
-                {{ $background->degree ?? '' }}
-            </td>
-            <td colspan="1">
-                {{ $background->period_att_from ?? '' }}
-            </td>
-            <td colspan="1">
-                {{ $background->period_att_to ?? '' }}
-            </td>
-            <td colspan="1">
-                {{ $background->highest_level_unit ?? '' }}
-            </td>
-            <td colspan="1">
-                @if(isset($background->year_graduated))
-                    {{ date('Y/m/d', strtotime($background->year_graduated)) }}
-                @endif
-            </td>
-            <td colspan="1">
-                {{ $background->scholarship ?? '' }}
-            </td>
-        </tr>
-    @endforeach
-</tbody>
+					{{-- THIS IS SECONDARY, PICKING UP THE LATEST RECORD FROM DATABASE --}}
+
+					{{-- PRIMARY --}}
+					@php
+						$elem = \App\Models\EducationalBackground::where('user_id', $user->user_id)
+							->where('level', 'ELEMENTARY')
+							->orderBy('ed_bg_id', 'desc')
+							->first();
+					@endphp
+					@if(isset($elem))
+
+					<tr>
+						<td colspan="1" class="s-label">
+							<span class="count"></span> ELEMENTARY
+						</td>
+						<td colspan="4">
+							{{ $elem->name_of_school ?? '' }}
+						</td>
+						<td colspan="2">
+							{{ $elem->degree ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $elem->period_att_from ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $elem->period_att_to ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $elem->highest_level_unit ?? '' }}
+						</td>
+						<td colspan="1">
+							@if(isset($elem->year_graduated))
+								{{ date('Y/m/d', strtotime($elem->year_graduated)) }}
+							@endif
+						</td>
+						<td colspan="1">
+							{{ $elem->scholarship ?? '' }}
+						</td>
+					</tr>
+					@endif
+
+					{{-- SECONDARY --}}
+					@php
+						$secondary = \App\Models\EducationalBackground::where('user_id', $user->user_id)
+							->where('level', 'SECONDARY')
+							->orderBy('ed_bg_id', 'desc')
+							->first();
+					@endphp
+					@if(isset($secondary))
+					<tr>
+						<td colspan="1" class="s-label">
+							<span class="count"></span> SECONDARY
+						</td>
+						
+
+						<td colspan="4">
+							{{ $secondary->name_of_school ?? '' }}
+						</td>
+						<td colspan="2">
+							{{ $secondary->degree ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $secondary->period_att_from ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $secondary->period_att_to ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $secondary->highest_level_unit ?? '' }}
+						</td>
+						<td colspan="1">
+							@if(isset($secondary->year_graduated))
+								{{ date('Y/m/d', strtotime($secondary->year_graduated)) }}
+							@endif
+						</td>
+						<td colspan="1">
+							{{ $secondary->scholarship ?? '' }}
+						</td>
+					</tr>
+					@endif
+
+					{{-- VOCATIONAL --}}
+					@php
+						$vocational = \App\Models\EducationalBackground::where('user_id', $user->user_id)
+							->where('level', 'VOCATIONAL/TRADE COURSE')
+							->orderBy('ed_bg_id', 'desc')
+							->first();
+					@endphp
+					@if(isset($vocational))
+					<tr>
+						<td colspan="1" class="s-label">
+							<span class="count"></span> COLLEGE
+						</td>
+						<td colspan="4">
+							{{ $vocational->name_of_school ?? '' }}
+						</td>
+						<td colspan="2">
+							{{ $vocational->degree ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $vocational->period_att_from ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $vocational->period_att_to ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $vocational->highest_level_unit ?? '' }}
+						</td>
+						<td colspan="1">
+							@if(isset($vocational->year_graduated))
+								{{ date('Y/m/d', strtotime($vocational->year_graduated)) }}
+							@endif
+						</td>
+						<td colspan="1">
+							{{ $vocational->scholarship ?? '' }}
+						</td>
+					</tr>
+					@endif
+					
+					{{-- COLLEGE --}}
+					@php
+						$college = \App\Models\EducationalBackground::where('user_id', $user->user_id)
+							->where('level', 'COLLEGE')
+							->orderBy('ed_bg_id', 'desc')
+							->first();
+					@endphp
+					@if(isset($college))
+					<tr>
+						<td colspan="1" class="s-label">
+							<span class="count"></span> COLLEGE
+						</td>
+						<td colspan="4">
+							{{ $college->name_of_school ?? '' }}
+						</td>
+						<td colspan="2">
+							{{ $college->degree ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $college->period_att_from ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $college->period_att_to ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $college->highest_level_unit ?? '' }}
+						</td>
+						<td colspan="1">
+							@if(isset($college->year_graduated))
+								{{ date('Y/m/d', strtotime($college->year_graduated)) }}
+							@endif
+						</td>
+						<td colspan="1">
+							{{ $college->scholarship ?? '' }}
+						</td>
+					</tr>
+					@endif
+
+
+					{{-- COLLEGE --}}
+					@php
+						$graduates = \App\Models\EducationalBackground::where('user_id', $user->user_id)
+							->where('level', 'GRADUATE STUDIES')
+							->orderBy('ed_bg_id', 'desc')
+							->first();
+					@endphp
+					@if(isset($graduates))
+					<tr>
+						<td colspan="1" class="s-label">
+							<span class="count"></span> GRADUATE STUDIES
+						</td>
+						<td colspan="4">
+							{{ $graduates->name_of_school ?? '' }}
+						</td>
+						<td colspan="2">
+							{{ $graduates->degree ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $graduates->period_att_from ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $graduates->period_att_to ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $graduates->highest_level_unit ?? '' }}
+						</td>
+						<td colspan="1">
+							@if(isset($graduates->year_graduated))
+								{{ date('Y/m/d', strtotime($graduates->year_graduated)) }}
+							@endif
+						</td>
+						<td colspan="1">
+							{{ $graduates->scholarship ?? '' }}
+						</td>
+					</tr>
+					@endif
+
+
+
+					{{-- POST GRADUATE --}}
+					@php
+						$post_grad = \App\Models\EducationalBackground::where('user_id', $user->user_id)
+							->where('level', 'POST GRADUATE')
+							->orderBy('ed_bg_id', 'desc')
+							->first();
+					@endphp
+					@if(isset($post_grad))
+					<tr>
+						<td colspan="1" class="s-label">
+							<span class="count"></span> POST GRADUATE
+						</td>
+						<td colspan="4">
+							{{ $post_grad->name_of_school ?? '' }}
+						</td>
+						<td colspan="2">
+							{{ $post_grad->degree ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $post_grad->period_att_from ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $post_grad->period_att_to ?? '' }}
+						</td>
+						<td colspan="1">
+							{{ $post_grad->highest_level_unit ?? '' }}
+						</td>
+						<td colspan="1">
+							@if(isset($post_grad->year_graduated))
+								{{ date('Y/m/d', strtotime($post_grad->year_graduated)) }}
+							@endif
+						</td>
+						<td colspan="1">
+							{{ $post_grad->scholarship ?? '' }}
+						</td>
+					</tr>
+					@endif
+
+
+				</tbody>
 
 
 				<tbody class="table-body">
