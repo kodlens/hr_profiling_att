@@ -103,7 +103,27 @@ export default{
             plugins: [],
             chartOptions: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 0,
+                        bottom: 10
+                    }
+                },
             },
 
 
@@ -152,6 +172,7 @@ export default{
             //console.log(arr)
             let obj = {
                 label: 'Status of Appointment',
+                barThickness: 150,
                 backgroundColor: arr.map((_, index) => colors[index % colors.length]),
                 data: arr
             };
@@ -204,6 +225,7 @@ export default{
         }
         .print-form, .print-form * {
             visibility: visible;
+            margin: auto;
         }
         .print-form {
             position: absolute;

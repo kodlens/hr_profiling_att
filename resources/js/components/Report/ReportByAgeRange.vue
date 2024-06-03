@@ -99,7 +99,27 @@ export default {
             plugins: [],
             chartOptions: {
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 0,
+                        bottom: 10
+                    }
+                },
         },
 
         range: '',
@@ -136,6 +156,7 @@ export default {
     
     let obj = {
         label: 'Age Count',
+        barThickness: 100,
         backgroundColor: arr.map((_, index) => colors[index % colors.length]), // Assign different color for each bar
         data: arr,
         barPercentage: 0.8 // Adjust the width of the bars as needed (0.8 means 80% of the available space)
@@ -217,6 +238,7 @@ options: {
         }
         .print-form, .print-form * {
             visibility: visible;
+            margin: auto;
         }
         .print-form {
             position: absolute;
