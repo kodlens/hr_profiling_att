@@ -56,9 +56,9 @@
             </div>
 
                         <!-- Footer for Print -->
-<div class="print-footer">
+<!-- <div class="print-footer">
     <p>Human Resource Management Office Page  <span class="pageNumber" display="none"></span></p>
-</div>
+</div> -->
 
         </div>
     </div>
